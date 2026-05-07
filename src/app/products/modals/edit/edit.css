@@ -1,0 +1,164 @@
+/* =====================================
+   MODAL EDITAR PRODUCTO - PRO VERSION
+   ===================================== */
+
+::ng-deep .edit-modal .p-dialog {
+  border-radius: 18px;
+  overflow: hidden;
+  font-family: 'Aptos', 'Segoe UI', Tahoma, sans-serif;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  animation: fadeInScale 0.2s ease;
+}
+
+/* HEADER */
+::ng-deep .edit-modal .p-dialog-header {
+  padding: 18px 22px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+::ng-deep .edit-modal .p-dialog-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #163047;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* CONTENT */
+::ng-deep .edit-modal .p-dialog-content {
+  padding: 22px;
+  overflow: visible !important;
+}
+
+/* FORM */
+.modal-form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* CAMPOS */
+.modal-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.modal-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.modal-field-row {
+  display: flex;
+  gap: 16px;
+}
+
+.modal-field.half {
+  flex: 1 1 0;
+}
+
+/* LABEL */
+.modal-field label {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #163047;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ICONOS */
+.modal-field .pi {
+  font-size: 1.1em;
+  color: #6b7280;
+}
+
+/* INPUTS */
+::ng-deep .edit-modal input,
+::ng-deep .edit-modal input.p-inputtext {
+  width: 100%;
+  height: 44px;
+  border-radius: 14px;
+  border: 1px solid #e5e7eb;
+  padding: 10px 14px;
+  font-size: 1.05rem;
+  color: #222;
+  background-color: #ffffff;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+}
+
+/* NUMBER FIX */
+::ng-deep .edit-modal input[type="number"]::-webkit-inner-spin-button,
+::ng-deep .edit-modal input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+::ng-deep .edit-modal input[type="number"] {
+  appearance: textfield;
+}
+
+/* HOVER */
+::ng-deep .edit-modal input:hover {
+  border-color: #9ca3af;
+}
+
+/* FOCUS */
+::ng-deep .edit-modal input:focus {
+  outline: none;
+  border-color: #6b7280;
+  box-shadow: 0 0 0 2px rgba(107, 114, 128, 0.15);
+}
+
+/* FOOTER */
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  padding-top: 20px;
+}
+
+/* BOTONES */
+.modal-btn {
+  border-radius: 14px !important;
+  font-weight: 700 !important;
+  font-size: 1.05rem !important;
+  padding: 10px 28px !important;
+}
+
+/* ACTUALIZAR */
+::ng-deep .edit-modal .p-button-success.modal-btn {
+  background: linear-gradient(90deg, #18794e 60%, #1bbf72 100%);
+  border: none;
+  color: #fff;
+}
+
+::ng-deep .edit-modal .p-button-success.modal-btn:hover {
+  background: #145c3a;
+}
+
+/* CANCELAR */
+::ng-deep .edit-modal .p-button-secondary.modal-btn {
+  background: #6b7280;
+  border: none;
+  color: #fff;
+}
+
+::ng-deep .edit-modal .p-button-secondary.modal-btn:hover {
+  background: #495057;
+}
+
+/* ANIMACIÓN */
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

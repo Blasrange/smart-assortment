@@ -1,0 +1,172 @@
+/* =============================
+   MODAL PRIME NG - ESTILO LIMPIO
+   ============================= */
+
+/* Contenedor principal del diálogo */
+.custom-modal .p-dialog {
+  border-radius: 18px;
+  overflow: hidden;
+  font-family: 'Aptos', 'Segoe UI', Tahoma, sans-serif;
+}
+
+/* Header */
+.custom-modal .p-dialog-header {
+  padding: 18px 22px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.custom-modal .p-dialog-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #163047;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Contenido */
+.custom-modal .p-dialog-content {
+  padding: 22px;
+  overflow: visible !important;
+}
+
+/* =============================
+   FORMULARIO
+   ============================= */
+
+.modal-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.modal-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.modal-field-row {
+  display: flex;
+  gap: 16px;
+}
+
+.modal-field.half {
+  flex: 1 1 0;
+}
+
+/* Labels */
+.modal-field label {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #163047;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Iconos */
+.modal-field .pi {
+  font-size: 1.1em;
+  color: #6b7280;
+}
+
+/* Inputs */
+.modal-field input,
+.modal-field-row input,
+.custom-modal input.p-inputtext {
+  width: 100%;
+  height: 44px;
+  border-radius: 14px;
+  border: 1px solid #e5e7eb;
+  padding: 10px 14px;
+  font-size: 1.05rem;
+  color: #222222;
+  background-color: #ffffff;
+  box-sizing: border-box;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+/* Quitar flechas de number */
+.modal-field input[type="number"]::-webkit-inner-spin-button,
+.modal-field input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.modal-field input[type="number"] {
+  appearance: textfield;
+}
+
+/* Focus */
+.modal-field input:focus {
+  outline: none;
+  border-color: #6b7280;
+  box-shadow: 0 0 0 2px rgba(107, 114, 128, 0.15);
+}
+
+/* =============================
+   FOOTER
+   ============================= */
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  padding-top: 20px;
+}
+
+/* Botones */
+.modal-btn {
+  border-radius: 14px !important;
+  font-weight: 700 !important;
+  font-size: 1.05rem !important;
+  padding: 10px 28px !important;
+}
+
+/* Guardar */
+.p-button-success.modal-btn {
+  background: linear-gradient(90deg, #18794e 60%, #1bbf72 100%);
+  border: none;
+  color: #ffffff;
+}
+
+.p-button-success.modal-btn:hover {
+  background: #145c3a;
+}
+
+/* Cancelar */
+.p-button-secondary.modal-btn {
+  background: #6b7280;
+  border: none;
+  color: #ffffff;
+}
+
+.p-button-secondary.modal-btn:hover {
+  background: #495057;
+}
+
+.custom-modal .p-dialog {
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+}
+
+/* Hover elegante en inputs */
+.modal-field input:hover {
+  border-color: #9ca3af;
+}
+
+/* Animación suave */
+.custom-modal .p-dialog {
+  animation: fadeInScale 0.2s ease;
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

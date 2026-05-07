@@ -1,1 +1,40 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@600&display=swap');
+@import 'primeicons/primeicons.css';
+
+:root {
+	--font-sans: 'Manrope', 'Aptos', 'Segoe UI Variable Text', 'Segoe UI', sans-serif;
+	--font-mono: 'JetBrains Mono', 'Cascadia Code', 'Consolas', monospace;
+	color-scheme: light;
+	font-family: var(--font-sans);
+	background: #ffffff;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	min-height: 100%;
+	margin: 0;
+}
+
+body {
+	color: #163047;
+	background: #ffffff;
+	font-family: var(--font-sans);
+}
+
+.p-select-overlay,
+.p-connected-overlay,
+.p-overlay,
+.p-component-overlay {
+	z-index: 1300 !important;
+}
+
+button,
+input,
+select,
+textarea {
+	font: inherit;
+}

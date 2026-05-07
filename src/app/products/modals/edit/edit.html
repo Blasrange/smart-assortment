@@ -1,0 +1,64 @@
+<p-dialog header="Editar producto" [(visible)]="visible" [modal]="true" [closable]="true" [dismissableMask]="true"
+  [style]="{ width: '520px' }" styleClass="edit-modal" (onHide)="onCancel()">
+  <form (ngSubmit)="onSave()" class="modal-form">
+
+    <div class="modal-fields">
+
+      <!-- Nombre -->
+      <div class="modal-field">
+        <label><i class="pi pi-tag"></i> Nombre</label>
+        <input pInputText [(ngModel)]="product.title" name="title" required />
+      </div>
+
+      <!-- SKU + Categoría -->
+      <div class="modal-field-row">
+        <div class="modal-field half">
+          <label><i class="pi pi-barcode"></i> SKU</label>
+          <input pInputText [(ngModel)]="product.sku" name="sku" required />
+        </div>
+
+        <div class="modal-field half">
+          <label><i class="pi pi-list"></i> Categoría</label>
+          <input pInputText [(ngModel)]="product.category" name="category" />
+        </div>
+      </div>
+
+      <!-- Descripción -->
+      <div class="modal-field">
+        <label><i class="pi pi-align-left"></i> Descripción</label>
+        <input pInputText [(ngModel)]="product.description" name="description" />
+      </div>
+
+      <!-- Precio + Stock -->
+      <div class="modal-field-row">
+        <div class="modal-field half">
+          <label><i class="pi pi-dollar"></i> Precio</label>
+          <input pInputText type="number" [(ngModel)]="product.price" name="price" required />
+        </div>
+
+        <div class="modal-field half">
+          <label><i class="pi pi-box"></i> Stock</label>
+          <input pInputText type="number" [(ngModel)]="product.stock" name="stock" required />
+        </div>
+      </div>
+
+      <!-- Descuento -->
+      <div class="modal-field">
+        <label><i class="pi pi-percentage"></i> Descuento (%)</label>
+        <input pInputText type="number" [(ngModel)]="product.discountPercentage" name="discountPercentage" />
+      </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="modal-footer">
+      <button pButton type="button" label="Cancelar" class="p-button-secondary modal-btn" (click)="onCancel()">Cancelar
+      </button>
+
+      <button pButton type="submit" label="Actualizar" icon="pi pi-check" class="p-button-success modal-btn">
+        Actualizar
+      </button>
+    </div>
+
+  </form>
+</p-dialog>
