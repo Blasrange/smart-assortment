@@ -147,3 +147,7 @@ Nota: el mapeo contempla multiples nombres de columna para cada campo (por ejemp
 3. Agregar pruebas unitarias al algoritmo de analisis de ventas.
 4. Corregir y ampliar pruebas de interfaz para Home, Productos y Ventas.
 5. Parametrizar constantes de negocio (estados validos, niveles de picking/reserva, umbral de alta rotacion).
+
+```bash
+git add .; git commit -m "Actualización del proyecto"; git push origin main
+```
