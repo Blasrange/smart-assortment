@@ -359,6 +359,30 @@ throw new Error('Method not implemented.');
     const text = normalized.replace(/_/g, ' ').toLowerCase();
     return text.charAt(0).toUpperCase() + text.slice(1);
   }
+
+  getTipoFaltaClass(tipoFalta: string): string {
+    if (!tipoFalta) return 'status-neutral';
+
+    const normalized = tipoFalta.toUpperCase();
+
+    if (normalized.includes('SIN_INVENTARIO') || normalized.includes('INVENTARIO')) {
+      return 'status-inventory';
+    }
+
+    if (normalized.includes('SIN_RESERVA') || normalized.includes('RESERVA')) {
+      return 'status-reserve';
+    }
+
+    if (normalized.includes('INSUFICIENTE') || normalized.includes('FALTANTE')) {
+      return 'status-insufficient';
+    }
+
+    if (normalized === 'OK' || normalized.includes('COMPLETO') || normalized.includes('COBERTURA')) {
+      return 'status-ok';
+    }
+
+    return 'status-neutral';
+  }
   
   formatFileSize(bytes: number): string {
     if (bytes === 0) return '0 Bytes';

@@ -1,0 +1,165 @@
+:host {
+	--text-primary: #1a1a1a;
+	--text-secondary: #666666;
+	--text-tertiary: #999999;
+	--bg-primary: #ffffff;
+	--bg-secondary: #f5f5f5;
+	--border: #e5e5e5;
+	--accent: #000000;
+	--shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.05);
+	--transition: all 0.2s ease;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+.app-shell {
+	min-height: 100dvh;
+	background: var(--bg-primary);
+}
+
+.menu-wrapper {
+	position: sticky;
+	top: 0;
+	z-index: 1000;
+	background: var(--bg-primary);
+	border-bottom: 1px solid var(--border);
+}
+
+::ng-deep .home-menubar {
+	background: var(--bg-primary) !important;
+	border: none !important;
+	border-radius: 0 !important;
+	padding: 0.75rem 1.25rem !important;
+	margin: 0 !important;
+	max-width: none !important;
+	width: 100% !important;
+}
+
+.brand {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+.brand-icon {
+	color: var(--accent);
+	display: flex;
+	align-items: center;
+	transition: var(--transition);
+}
+
+.brand:hover .brand-icon {
+	transform: scale(1.05);
+}
+
+.brand-text {
+	font-size: 1rem;
+	font-weight: 500;
+	color: var(--text-primary);
+	letter-spacing: -0.01em;
+}
+
+::ng-deep .home-menubar .p-menubar-root-list {
+	gap: 0.5rem !important;
+	margin-left: 2rem !important;
+}
+
+::ng-deep .home-menubar .p-menubar-item {
+	margin: 0 !important;
+}
+
+.menu-link {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 0.5rem 1rem !important;
+	color: var(--text-secondary) !important;
+	font-size: 0.875rem;
+	font-weight: 450;
+	text-decoration: none;
+	transition: var(--transition);
+	border-radius: 6px;
+	cursor: pointer;
+}
+
+.menu-icon {
+	font-size: 1rem;
+	color: var(--text-tertiary);
+	transition: var(--transition);
+}
+
+.menu-chevron {
+	font-size: 0.75rem;
+	margin-left: 4px;
+	color: var(--text-tertiary);
+}
+
+.menu-link:hover {
+	color: var(--text-primary) !important;
+	background: var(--bg-secondary) !important;
+}
+
+.menu-link:hover .menu-icon {
+	color: var(--text-primary);
+}
+
+::ng-deep .menu-link.active {
+	color: var(--accent) !important;
+	font-weight: 500;
+}
+
+::ng-deep .menu-link.active .menu-icon {
+	color: var(--accent);
+}
+
+::ng-deep .home-menubar .p-submenu-list {
+	background: var(--bg-primary) !important;
+	border: 1px solid var(--border) !important;
+	border-radius: 8px !important;
+	box-shadow: var(--shadow-lg) !important;
+	padding: 0.5rem !important;
+	min-width: 200px !important;
+	margin-top: 0.5rem !important;
+}
+
+::ng-deep .home-menubar .p-submenu-list .p-menuitem-link {
+	display: flex !important;
+	align-items: center !important;
+	gap: 8px !important;
+	padding: 0.5rem 1rem !important;
+	color: var(--text-secondary) !important;
+	border-radius: 6px !important;
+	transition: var(--transition) !important;
+}
+
+::ng-deep .home-menubar .p-submenu-list .p-menuitem-link .pi {
+	font-size: 0.875rem;
+	color: var(--text-tertiary);
+}
+
+::ng-deep .home-menubar .p-submenu-list .p-menuitem-link:hover {
+	background: var(--bg-secondary) !important;
+	color: var(--text-primary) !important;
+}
+
+::ng-deep .home-menubar .p-submenu-list .p-menuitem-link:hover .pi {
+	color: var(--text-primary);
+}
+
+.app-content {
+	width: 100%;
+}
+
+@media (max-width: 768px) {
+	::ng-deep .home-menubar {
+		padding: 0.75rem 1rem !important;
+	}
+
+	::ng-deep .home-menubar .p-menubar-root-list {
+		margin-left: 1rem !important;
+	}
+}

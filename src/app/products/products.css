@@ -18,20 +18,23 @@
 
 :host {
   display: block;
+  min-height: 100vh;
+  /* background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); */
 }
 
 .products-page {
-  min-height: 100vh;
+  min-height: calc(100vh - 44px);
   width: 100%;
   max-width: none;
   margin: 0;
-  padding: 8px 20px 24px;
-  background: #ffffff;
+  padding: 8px 24px 24px;
+  background: transparent;
   font-family: var(--font-sans);
 }
 
 .page-breadcrumb-outside {
-  padding: 10px 24px 6px;  
+  padding: 14px 28px 0;
+  background: transparent;
 }
 
 .table-header,
@@ -104,7 +107,7 @@
   border-radius: 18px;
   overflow: hidden;
   background: var(--table-surface);
-  box-shadow: none;
+  box-shadow: var(--shadow-sm);
   border: 1px solid var(--border-color);
   width: 100%;
 }
@@ -370,6 +373,22 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--primary-dark);
+}
+
+/* Boton principal de alta de producto, alineado con la paleta verde clara de la plataforma. */
+::ng-deep .new-product-btn.p-button {
+  background: #2d7a4b !important;
+  border-color: #2d7a4b !important;
+  color: #ffffff !important;
+}
+
+::ng-deep .new-product-btn.p-button:hover {
+  background: #245f3b !important;
+  border-color: #245f3b !important;
+}
+
+::ng-deep .new-product-btn.p-button:focus-visible {
+  box-shadow: 0 0 0 3px rgba(45, 122, 75, 0.2) !important;
 }
 
 /* Variables de diseño compartidas por todo sale.html. Las clases del template consumen estos tokens visuales. */

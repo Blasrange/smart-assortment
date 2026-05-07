@@ -1,9 +1,11 @@
+<div class="page-breadcrumb-fixed">
+  <p-breadcrumb [model]="breadcrumbItems" [home]="breadcrumbHome" styleClass="app-breadcrumb"></p-breadcrumb>
+</div>
+
 <p-toast position="top-right"></p-toast>
 
 <section class="sales-module">
-  <div class="page-breadcrumb">
-    <p-breadcrumb [model]="breadcrumbItems" [home]="breadcrumbHome" styleClass="app-breadcrumb"></p-breadcrumb>
-  </div>
+  
   <div class="table-container">
     
     <!-- HEADER PRINCIPAL -->
@@ -34,7 +36,7 @@
         <button pButton 
                 icon="pi pi-filter-slash" 
                 label="Limpiar"
-                class="p-button-outlined p-button-sm"
+          class="p-button-outlined p-button-sm clear-btn"
                 (click)="clearFilters()" 
                 pTooltip="Limpiar todos los filtros"
                 tooltipPosition="top">
@@ -43,7 +45,7 @@
         <button pButton 
           icon="pi pi-cog"
           label="Analizar"
-          class="p-button-outlined p-button-sm"
+          class="p-button-outlined p-button-sm analyze-btn"
           (click)="generateSalesAnalysis()"
           [disabled]="!salesFile() || !inventoryFile()"
           pTooltip="Analizar archivos de ventas e inventario"
@@ -54,7 +56,7 @@
                 *ngIf="analysisResult()"
                 icon="pi pi-file-excel"
                 label="Exportar Excel"
-                class="p-button-outlined p-button-sm"
+          class="p-button-outlined p-button-sm export-btn"
                 (click)="exportToExcel()"
                 pTooltip="Exportar a Excel con hojas Surtido y Faltantes"
                 tooltipPosition="top">
@@ -150,12 +152,12 @@
     <!-- TABS DE RESULTADOS -->
     <div class="results-header" *ngIf="analysisResult()">
       <div class="tabs">
-        <button class="tab" [class.active]="activeTab === 'missing'" (click)="activeTab = 'missing'">
+        <button class="tab tab-missing" [class.active]="activeTab === 'missing'" (click)="activeTab = 'missing'">
           <i class="pi pi-exclamation-triangle"></i>
           Faltantes
           <span class="badge badge-danger">{{ filteredMissingProducts.length }}</span>
         </button>
-        <button class="tab" [class.active]="activeTab === 'suggestions'" (click)="activeTab = 'suggestions'">
+        <button class="tab tab-suggestions" [class.active]="activeTab === 'suggestions'" (click)="activeTab = 'suggestions'">
           <i class="pi pi-lightbulb"></i>
           Surtido
           <span class="badge badge-warning">{{ filteredRestockSuggestions.length }}</span>
@@ -164,28 +166,28 @@
       
       <!-- Stats Cards -->
       <div class="stats-cards">
-        <div class="stat-card">
+        <div class="stat-card stat-products">
           <div class="stat-icon blue"><i class="pi pi-box"></i></div>
           <div class="stat-info">
             <div class="stat-value">{{ analysisResult()?.stats?.totalProductos || 0 }}</div>
             <div class="stat-label">Productos</div>
           </div>
         </div>
-        <div class="stat-card">
+        <div class="stat-card stat-restock">
           <div class="stat-icon orange"><i class="pi pi-truck"></i></div>
           <div class="stat-info">
             <div class="stat-value">{{ getProductsToRestock() }}</div>
             <div class="stat-label">A surtir</div>
           </div>
         </div>
-        <div class="stat-card">
+        <div class="stat-card stat-missing">
           <div class="stat-icon red"><i class="pi pi-times-circle"></i></div>
           <div class="stat-info">
             <div class="stat-value">{{ getMissingProductsCount() }}</div>
             <div class="stat-label">Faltantes</div>
           </div>
         </div>
-        <div class="stat-card">
+        <div class="stat-card stat-coverage">
           <div class="stat-icon green"><i class="pi pi-chart-line"></i></div>
           <div class="stat-info">
             <div class="stat-value">{{ analysisResult()?.stats?.porcentajeCobertura || 0 }}%</div>
@@ -268,6 +270,7 @@
             <td class="text-center col-state">
               <p-tag [value]="getTipoFaltaLabel(missing.tipoFalta)" 
                      [severity]="getTipoFaltaSeverity(missing.tipoFalta)"
+                     [styleClass]="getTipoFaltaClass(missing.tipoFalta)"
                      [rounded]="true"
                      [icon]="getTipoFaltaIcon(missing.tipoFalta)">
               </p-tag>

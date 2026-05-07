@@ -1,18 +1,25 @@
-<section class="home-menu">
-	<div class="page-breadcrumb">
-		<p-breadcrumb [model]="items" [home]="home" styleClass="app-breadcrumb"></p-breadcrumb>
-	</div>
-	<div class="table-header">
-		<div class="header-info">
-			<h2>Menú principal</h2>
-		</div>
-		<div class="header-actions">			
-			<a routerLink="/products" class="menu-link">
-				<button pButton type="button" icon="pi pi-box" label="Productos" class="p-button-text"></button>
-			</a>
-			<a routerLink="/sales" class="menu-link">
-				<button pButton type="button" icon="pi pi-shopping-cart" label="Ventas" class="p-button-text"></button>
-			</a>
-		</div>
-	</div>
-</section>
+<div class="home-container">
+  <!-- Layout principal -->
+  <div class="hero">
+    <aside class="table-sidebar">
+      <p class="sidebar-label">Tablas del sistema</p>
+      <ul class="table-name-list">
+        <li *ngFor="let section of tableSections" class="table-name-item">
+          <span class="table-name">{{ section.name }}</span>
+          <span class="table-detail">{{ section.description }}</span>
+        </li>
+      </ul>
+    </aside>
+
+    <div class="hero-content">
+      <div class="table-card">
+        <h1 class="hero-title">
+          Gestion inteligente<br>de inventario
+        </h1>
+        <p class="hero-description">
+          Analiza ventas, optimiza tu surtido y maximiza tu rentabilidad
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,64 +1,149 @@
-# SurtidorLogistico
+# Smart Assortment (Surtidor Logistico)
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.3.
+Aplicacion Angular para gestion operativa de surtido con tres vistas principales:
 
-## Development server
+- Inicio
+- Productos
+- Ventas (analisis de faltantes y sugerencias de resurtido)
 
-To start a local development server, run:
+## Stack Tecnologico
 
-```bash
-ng serve
-```
+- Angular 21 (standalone components)
+- PrimeNG 21 + PrimeIcons + PrimeFlex
+- Tema PrimeUIX Aura
+- Signals de Angular para estado local
+- SSR habilitado con @angular/ssr + Express
+- XLSX para lectura y exportacion de Excel
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Requisitos
 
-## Code scaffolding
+- Node.js 20+
+- npm 10+
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Instalacion Y Ejecucion
 
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
+1. Instalar dependencias:
 
 ```bash
-ng build
+npm install
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+2. Levantar entorno de desarrollo:
 
 ```bash
-ng test
+npm start
 ```
 
-## Running end-to-end tests
+3. Abrir en navegador:
 
-For end-to-end (e2e) testing, run:
+http://localhost:4200/
 
-```bash
-ng e2e
-```
+## Scripts Disponibles
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+- npm start: inicia servidor de desarrollo (ng serve)
+- npm run build: compila aplicacion
+- npm run watch: compilacion en modo watch para desarrollo
+- npm test: ejecuta pruebas unitarias
+- npm run serve:ssr:surtidor_logistico: ejecuta build SSR en Node
 
-## Additional Resources
+## Estructura Funcional
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+### Inicio
 
+Vista de portada con acceso al flujo operativo del sistema.
 
-<!-- comando crear carpetas en app = ng g c sale / ng g s service-->
+### Productos
 
-<!-- ng g c products/modals/create -->
+Modulo conectado a API publica DummyJSON para operaciones CRUD basicas:
+
+- Listado con filtros y ordenamiento
+- Creacion de producto
+- Edicion de producto
+- Inactivacion logica (PATCH active: false)
+
+Servicio: src/app/service/api.products.ts
+
+### Ventas (Modulo Principal de Analisis)
+
+El modulo de ventas trabaja con 2 archivos de entrada:
+
+- Archivo de ventas (CSV/XLSX/XLS/TXT)
+- Archivo de inventario (CSV/XLSX/XLS/TXT)
+
+Incluye validacion de columnas, analisis de cobertura y exportacion a Excel.
+
+#### Flujo Funcional
+
+1. Carga de archivos por click o drag and drop.
+2. Validacion de formato y columnas requeridas.
+3. Mapeo flexible de encabezados (acepta aliases).
+4. Agrupacion por SKU de ventas e inventario.
+5. Clasificacion de ubicaciones por picking/reserva.
+6. Generacion de:
+	 - sugerencias de surtido
+	 - productos faltantes
+	 - metricas de cobertura
+7. Exportacion a Excel en dos hojas:
+	 - Surtido
+	 - Faltantes
+
+#### Columnas Esperadas (Con Alias)
+
+Ventas:
+
+- material
+- descripcion
+- cantidadConfirmada
+
+Inventario:
+
+- sku
+- descripcion
+- localizacion
+- disponible
+- estado
+
+Nota: el mapeo contempla multiples nombres de columna para cada campo (por ejemplo SKU/Codigo/Material, etc.), por lo que no depende de un solo encabezado fijo.
+
+#### Reglas De Negocio Clave
+
+- Solo se considera inventario con estado valido (o sin estado reconocible) y se excluyen ubicaciones ignoradas.
+- El stock se separa entre picking y reserva.
+- Si picking no cubre ventas, se propone surtido desde reserva.
+- La seleccion de ubicaciones usa criterio FEFO (prioriza menor FPC y vencimiento mas cercano).
+- Si no hay inventario o no hay reserva suficiente, se marcan faltantes.
+- Para alta rotacion (umbral >= 10 unidades), se permite sugerir estibas completas.
+
+#### Salida Del Analisis
+
+- Resumen general del proceso
+- Tabla de faltantes por SKU
+- Tabla de surtido sugerido por SKU y ubicacion
+- KPIs:
+	- total productos
+	- productos a surtir
+	- productos faltantes
+	- porcentaje de cobertura
+
+## Arquitectura De Frontend
+
+- Navegacion principal con menubar y rutas standalone.
+- Rutas actuales:
+	- /
+	- /products
+	- /sales
+- Internacionalizacion parcial de textos de filtros PrimeNG a espanol.
+
+## Estado Actual Del Proyecto
+
+- El menu muestra una seccion Reportes, pero no existe ruta funcional para ese modulo aun.
+- Existe una prueba en app.spec.ts que espera un titulo antiguo y puede requerir ajuste para reflejar el template actual.
+- En sales.ts hay un metodo placeholder analizarArchivos() no utilizado.
+
+## Recomendaciones De Mejora
+
+1. Crear modulo real de Reportes con rutas y pantallas.
+2. Unificar tipado de modelos (ventas, inventario, sugerencias) en archivos compartidos.
+3. Agregar pruebas unitarias al algoritmo de analisis de ventas.
+4. Corregir y ampliar pruebas de interfaz para Home, Productos y Ventas.
+5. Parametrizar constantes de negocio (estados validos, niveles de picking/reserva, umbral de alta rotacion).

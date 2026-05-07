@@ -1,75 +1,154 @@
-.home-menu {
-	min-height: 60vh;
-	width: 100%;
-	max-width: none;
-	margin: 0;
-	padding: 32px 20px 24px;
-	background: #ffffff;
-	font-family: var(--font-sans, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif);
+/* Reset y variables */
+:host {
+  --text-primary: #1f3a2b;
+  --text-secondary: #4e6a5c;
+  --text-tertiary: #7c9a8a;
+  --bg-primary: #f5fcf8;
+  --bg-secondary: #edf8f1;
+  --border: #cfe8da;
+  --accent: #2d7a4b;
+  --accent-hover: #245f3b;
+  --shadow-sm: 0 2px 6px rgba(41, 96, 61, 0.08);
+  --shadow-md: 0 10px 24px rgba(41, 96, 61, 0.1);
+  --shadow-lg: 0 16px 30px rgba(41, 96, 61, 0.12);
+  --transition: all 0.2s ease;
 }
 
-.page-breadcrumb {
-	margin: 0 0 14px;
-	padding: 0 4px;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.table-header {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	gap: 24px;
-	margin-bottom: 0;
-	flex-wrap: wrap;
-	padding: 18px 20px;
-	background: #ffffff;
-	border-radius: 0;
-	box-shadow: none;
-	border: 0;
-	border-bottom: 1px solid #e5e7eb;
+.home-container {
+  height: calc(100dvh - 64px);
+  background: #ffffff;
+  font-family: 'Segoe UI', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  overflow: hidden;
 }
 
-.header-info h2 {
-	margin: 0 0 4px;
-	font-size: 1.55rem;
-	color: #163047;
-	letter-spacing: -0.03em;
+/* Layout principal */
+.hero {
+  display: grid;
+  grid-template-columns: minmax(260px, 360px) minmax(0, 1fr);
+  align-items: center;
+  height: 100%;
+  min-height: 0;
+  padding: 0.75rem 1rem;
+  gap: 0.75rem;
+  max-width: 1080px;
+  margin: 0 auto;
+  width: 100%;
 }
 
-.header-info {
-	display: flex;
-	flex-direction: column;
-	gap: 8px;
+.table-sidebar {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: linear-gradient(180deg, #ffffff 0%, #f0faf4 100%);
+  box-shadow: var(--shadow-sm);
 }
 
-::ng-deep .app-breadcrumb {
-	padding: 0;
-	border: 0;
-	background: transparent;
-	font-size: 0.88rem;
+.sidebar-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-tertiary);
+  margin-bottom: 0.65rem;
 }
 
-::ng-deep .app-breadcrumb .p-breadcrumb-list {
-	gap: 8px;
+.table-name-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
 }
 
-::ng-deep .app-breadcrumb .p-breadcrumb-item-link {
-	color: #5a7a67;
-	text-decoration: none;
-	font-weight: 600;
+.table-name-item {
+  display: flex;
+  flex-direction: column;
+  padding: 0.55rem 0.7rem;
+  border-radius: 9px;
+  border: 1px solid var(--border);
+  background: #f9fefb;
 }
 
-::ng-deep .app-breadcrumb .p-breadcrumb-separator,
-::ng-deep .app-breadcrumb .p-breadcrumb-item-icon {
-	color: #7db391;
+.table-name {
+  color: var(--text-primary);
+  font-size: 0.88rem;
+  font-weight: 600;
+  margin-bottom: 0.1rem;
 }
 
-.header-actions {
-	display: flex;
-	gap: 14px;
-	align-items: center;
-	flex-wrap: wrap;
+.table-detail {
+  color: var(--text-secondary);
+  font-size: 0.76rem;
+  line-height: 1.25;
 }
 
-.menu-link {
-	text-decoration: none;
+.hero-content {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.table-card {
+  width: min(560px, 100%);
+  text-align: center;
+  padding: 1.2rem 1.35rem;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow-md);
+  background: radial-gradient(circle at top, #ffffff, #eef8f2 75%);
+}
+
+.hero-title {
+  font-size: clamp(1.6rem, 3.2vw, 2.35rem);
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.2;
+  margin-bottom: 0.7rem;
+  letter-spacing: -0.02em;
+}
+
+.hero-description {
+  font-size: clamp(0.86rem, 1.2vw, 0.98rem);
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero {
+    grid-template-columns: 1fr;
+    height: auto;
+    padding: 0.7rem;
+    gap: 0.7rem;
+    place-items: center;
+  }
+
+  .table-sidebar {
+    padding: 0.8rem;
+  }
+
+  .table-card {
+    padding: 1rem 0.9rem;
+  }
+
+  .hero-content {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .home-container {
+    height: calc(100dvh - 64px);
+    min-height: 0;
+    overflow: hidden;
+  }
 }
