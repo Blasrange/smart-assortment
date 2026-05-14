@@ -12,6 +12,7 @@ import { MessageService, MenuItem } from 'primeng/api';
 import { PrimeNG } from 'primeng/config';
 import * as XLSX from 'xlsx';
 import { PrintModal } from './modal/print-modal';
+import storesJson from './tiendas.json';
 
 interface FileData {
   name: string;
@@ -87,78 +88,22 @@ const exitoLabelsColumnMapping = {
   cantidadInterna: ['CANT', 'QTY', 'UNIDADES', 'CANTIDAD'],
 };
 
-const STORES_DATA: StoreRecord[] = [
-  {
-    Codigo: '0217',
-    Tienda: '217B GUITA S MAX SAN LUIS SUBA',
-    Direccion: 'TRANSVERSAL 91 # 128D - 34',
-    Ciudad: 'BOGOTA D.C.',
-    Departamento: 'BOGOTA D.C.',
-  },
-  {
-    Codigo: '0224',
-    Tienda: '224B GUITA S MAX BRITALIA',
-    Direccion: 'CALLE 46 # 81 - 102SUR',
-    Ciudad: 'BOGOTA D.C.',
-    Departamento: 'BOGOTA D.C.',
-  },
-  {
-    Codigo: '0225',
-    Tienda: '225B GUITA S MAX SANTA ANA MOSQUERA',
-    Direccion: 'CARRERA 10 # 10 - 04',
-    Ciudad: 'BOGOTA D.C.',
-    Departamento: 'BOGOTA D.C.',
-  },
-  {
-    Codigo: '0333',
-    Tienda: '333B GUITA S MAX LA CEJA',
-    Direccion: 'CALLE 19 # 19-20',
-    Ciudad: 'LA CEJA',
-    Departamento: 'ANTIOQUIA',
-  },
-  {
-    Codigo: '0376',
-    Tienda: 'ALMACENES EXITO BOSA 376',
-    Direccion: 'CL 65 SUR78H 54',
-    Ciudad: 'BOGOTA D.C.',
-    Departamento: 'BOGOTA D.C.',
-  },
-  {
-    Codigo: '0020',
-    Tienda: 'ALMACENES EXITO S.A.',
-    Direccion: 'CRA 24A # 163A -28',
-    Ciudad: 'ENVIGADO',
-    Departamento: 'ANTIOQUIA',
-  },
-  {
-    Codigo: '0085',
-    Tienda: 'CEDI FUNZA 085',
-    Direccion: 'KM4 VIA FUNZA PARQ INDT SAN C',
-    Ciudad: 'BOGOTA D.C.',
-    Departamento: 'BOGOTA D.C.',
-  },
-  {
-    Codigo: '0050',
-    Tienda: 'CEDI CALI 050',
-    Direccion: 'CR 36 A 16 79 ACOPI',
-    Ciudad: 'CALI',
-    Departamento: 'VALLE DEL CAUCA',
-  },
-  {
-    Codigo: '0146',
-    Tienda: 'CEDI CARIBE 146',
-    Direccion: 'PARQUE INDUSTR MALAMBO PIMSA KILOMETRO 3 VIA MALAMBO',
-    Ciudad: 'BARRANQUILLA',
-    Departamento: 'ATLANTICO',
-  },
-  {
-    Codigo: '0091',
-    Tienda: 'EXITO OCCIDENTE 091',
-    Direccion: 'CR 114A # 78B -85 AUTOPISTA MEDELLIN',
-    Ciudad: 'BOGOTA D.C.',
-    Departamento: 'BOGOTA D.C.',
-  },
-];
+type StoreRecordJson = {
+  Codigo?: string;
+  Tienda?: string;
+  Direccion?: string;
+  Dirección?: string;
+  Ciudad?: string;
+  Departamento?: string;
+};
+
+const STORES_DATA: StoreRecord[] = (storesJson as StoreRecordJson[]).map((store) => ({
+  Codigo: String(store.Codigo ?? '').trim(),
+  Tienda: String(store.Tienda ?? '').trim(),
+  Direccion: String(store.Direccion ?? store.Dirección ?? '').trim(),
+  Ciudad: String(store.Ciudad ?? '').trim(),
+  Departamento: String(store.Departamento ?? '').trim(),
+}));
 
 const normalizeStoreCode = (value: unknown): string => {
   const raw = String(value ?? '').trim();
