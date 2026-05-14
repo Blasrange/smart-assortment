@@ -267,6 +267,10 @@ export class InventoryReconciliation {
   // ============================================================
 
   private loadWmsStatusMapping() {
+    if (!this.isBrowser || typeof localStorage === 'undefined') {
+      return;
+    }
+
     const saved = localStorage.getItem('wms_status_mappings');
     if (saved) {
       try {
@@ -279,6 +283,10 @@ export class InventoryReconciliation {
   }
 
   private saveWmsStatusMapping() {
+    if (!this.isBrowser || typeof localStorage === 'undefined') {
+      return;
+    }
+
     localStorage.setItem('wms_status_mappings', JSON.stringify(this.wmsStatusMappings));
   }
 

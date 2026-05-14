@@ -309,6 +309,14 @@
   pointer-events: none;
 }
 
+/* Evita que los tooltips se partan letra por letra cerca del borde derecho. */
+:host ::ng-deep .p-tooltip .p-tooltip-text {
+  white-space: nowrap;
+  word-break: normal;
+  overflow-wrap: normal;
+  max-width: none;
+}
+
 /* ============================================================
    STATUS MAPPING PANEL
    ============================================================ */

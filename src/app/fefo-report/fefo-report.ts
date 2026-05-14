@@ -365,6 +365,13 @@ export class FefoReport implements OnInit {
     if (type === 'inventario') this.inventarioFile.set(null);
     if (type === 'reglas') this.reglasFile.set(null);
     this.analysisResult.set([]);
+
+    this.messageService.add({
+      severity: 'info',
+      summary: 'Archivo removido',
+      detail: `Archivo de ${type} eliminado`,
+      life: 3000,
+    });
   }
 
   private processFile(file: File, type: FileType) {

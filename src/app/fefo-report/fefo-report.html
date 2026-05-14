@@ -45,6 +45,8 @@
           label="Limpiar"
           class="p-button-outlined p-button-sm clear-btn"
           (click)="clearFilters()"
+          pTooltip="Limpiar todos los filtros"
+          tooltipPosition="top"
         ></button>
 
         <button
@@ -54,6 +56,8 @@
           class="p-button-outlined p-button-sm analyze-btn"
           (click)="generateReport()"
           [disabled]="!pedidosFile() || !inventarioFile() || !reglasFile()"
+          pTooltip="Generar reporte FEFO con Pedidos, Inventario y Reglas"
+          tooltipPosition="top"
         ></button>
 
         <button
@@ -63,6 +67,8 @@
           class="p-button-outlined p-button-sm export-btn"
           *ngIf="analysisResult().length"
           (click)="exportToExcel()"
+          pTooltip="Exportar resultado FEFO a Excel"
+          tooltipPosition="top"
         ></button>
       </div>
     </div>
@@ -92,6 +98,8 @@
                 icon="pi pi-times"
                 class="p-button-rounded p-button-danger p-button-text p-button-sm"
                 (click)="removeFile('pedidos'); $event.stopPropagation()"
+                pTooltip="Eliminar archivo"
+                tooltipPosition="left"
               ></button>
             </div>
           </div>
@@ -139,6 +147,8 @@
                 icon="pi pi-times"
                 class="p-button-rounded p-button-danger p-button-text p-button-sm"
                 (click)="removeFile('inventario'); $event.stopPropagation()"
+                pTooltip="Eliminar archivo"
+                tooltipPosition="left"
               ></button>
             </div>
           </div>
@@ -186,6 +196,8 @@
                 icon="pi pi-times"
                 class="p-button-rounded p-button-danger p-button-text p-button-sm"
                 (click)="removeFile('reglas'); $event.stopPropagation()"
+                pTooltip="Eliminar archivo"
+                tooltipPosition="left"
               ></button>
             </div>
           </div>
