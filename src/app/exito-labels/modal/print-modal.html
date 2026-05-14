@@ -1,0 +1,262 @@
+<p-dialog
+  [visible]="visible"
+  [modal]="true"
+  [draggable]="false"
+  [resizable]="false"
+  [dismissableMask]="!printing"
+  [closeOnEscape]="!printing"
+  [style]="{ width: 'min(1240px, 96vw)' }"
+  styleClass="print-dialog"
+  (visibleChange)="visibleChange.emit($event)"
+  (onHide)="closeModal()"
+>
+  <ng-template pTemplate="header">
+    <div class="dialog-header">
+      <div class="title-group">
+        <h3>Centro de Impresión de Etiquetas</h3>
+        <p>{{ labelPreviews.length }} etiqueta(s) lista(s) para impresión</p>
+      </div>
+      <span class="badge" *ngIf="selectedLabelNumber !== null"
+        >Etiqueta {{ selectedLabelNumber }}</span
+      >
+    </div>
+  </ng-template>
+
+  <div class="print-layout">
+    <section class="panel panel-printers">
+      <header class="panel-header">
+        <h4>1. Impresora del sistema</h4>
+        <button
+          pButton
+          type="button"
+          icon="pi pi-refresh"
+          class="p-button-text p-button-sm"
+          (click)="loadPrinters()"
+          [disabled]="loadingPrinters || printing"
+          pTooltip="Actualizar lista"
+        ></button>
+      </header>
+
+      <div class="printer-body">
+        <div class="field-block">
+          <label for="printerSelect">Selecciona una impresora</label>
+          <select
+            id="printerSelect"
+            class="native-select"
+            [(ngModel)]="selectedPrinter"
+            [disabled]="loadingPrinters || printing"
+          >
+            <option value="" disabled>Elige impresora...</option>
+            <option *ngFor="let printer of printers" [value]="printer.name">
+              {{ printer.name }} {{ printer.status ? '(' + printer.status + ')' : '' }}
+            </option>
+          </select>
+          <small *ngIf="loadingPrinters">Cargando impresoras...</small>
+          <small *ngIf="!loadingPrinters && printers.length === 0"
+            >No se encontraron impresoras en el sistema.</small
+          >
+        </div>
+
+        <div class="field-block">
+          <label>Modo de impresión</label>
+          <div class="radio-row">
+            <label class="radio-item">
+              <input
+                type="radio"
+                name="printMode"
+                [checked]="!printOnlySelected"
+                (change)="printOnlySelected = false"
+                [disabled]="printing"
+              />
+              <span>Imprimir lote completo</span>
+            </label>
+            <label class="radio-item">
+              <input
+                type="radio"
+                name="printMode"
+                [checked]="printOnlySelected"
+                (change)="printOnlySelected = true"
+                [disabled]="printing || selectedMatchIndex === null"
+              />
+              <span>Solo etiqueta seleccionada</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="meta-grid">
+          <div class="meta-card">
+            <span>Total</span>
+            <strong>{{ labelPreviews.length }}</strong>
+          </div>
+          <div class="meta-card">
+            <span>A imprimir</span>
+            <strong>{{ printableTotal }}</strong>
+          </div>
+          <div class="meta-card">
+            <span>Tamaño ZPL</span>
+            <strong>{{ zplSizeKb }} KB</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="progress-zone printer-progress-zone" *ngIf="printing || printCompleted">
+        <div class="progress-header">
+          <span>Progreso de impresión</span>
+          <strong>{{ progress | number: '1.0-0' }}%</strong>
+        </div>
+        <p-progressBar [value]="progress" [styleClass]="progressBarClass"></p-progressBar>
+        <small>{{ progressLabel }}</small>
+      </div>
+    </section>
+
+    <section class="panel panel-stores">
+      <header class="panel-header">
+        <h4>2. Buscar tienda y etiqueta</h4>
+      </header>
+
+      <div class="search-box">
+        <i class="pi pi-search"></i>
+        <input
+          type="text"
+          pInputText
+          [(ngModel)]="searchQuery"
+          (input)="onSearchInputChange()"
+          placeholder="Buscar por tienda, código o código de barras"
+          [disabled]="printing"
+        />
+        <button
+          pButton
+          type="button"
+          icon="pi pi-times"
+          class="p-button-text p-button-sm"
+          (click)="clearSearch(); onSearchInputChange()"
+          *ngIf="hasSearch"
+          [disabled]="printing"
+        ></button>
+      </div>
+
+      <div class="search-result" *ngIf="currentSearchResult as result; else emptyStores">
+        <div class="search-caption">
+          <span>Resultado encontrado</span>
+          <small>Etiqueta {{ result.index + 1 }} de {{ labelPreviews.length }}</small>
+        </div>
+
+        <article class="store-item active">
+          <div class="store-item-top">
+            <strong>{{ result.storeCode || '----' }}</strong>
+            <span>{{ result.boxLabel }}</span>
+          </div>
+          <p>{{ result.storeName }}</p>
+          <small>{{ result.barcode }}</small>
+        </article>
+
+        <button
+          pButton
+          type="button"
+          class="p-button-outlined p-button-sm"
+          icon="pi pi-check"
+          label="Mostrar esta etiqueta"
+          (click)="selectStoreLabel(result.index)"
+          [disabled]="printing"
+        ></button>
+      </div>
+
+      <ng-template #emptyStores>
+        <div class="empty-block">
+          <i class="pi pi-inbox"></i>
+          <p>No hay coincidencias para tu búsqueda.</p>
+        </div>
+      </ng-template>
+    </section>
+
+    <section class="panel label-preview-container">
+      <header class="panel-header">
+        <h4>3. Vista gráfica de etiqueta</h4>
+      </header>
+
+      <div class="label-stage" *ngIf="currentLabelData as label; else emptyPreview">
+        <article class="label-card">
+          <div class="label-brand">Corporacion Colombiana de Logistica</div>
+          <div class="label-divider"></div>
+
+          <div class="barcode-wrap">
+            <div class="barcode-visual"></div>
+            <div class="code">{{ label.ct || '----' }}</div>
+          </div>
+
+          <div class="label-divider"></div>
+
+          <div class="label-row">
+            <span class="k">TIENDA</span>
+            <span class="v">{{ label.tienda || 'N/A' }}</span>
+          </div>
+          <div class="label-row">
+            <span class="k">CAJAS</span>
+            <span class="v">{{ label.cajaTexto }}</span>
+          </div>
+          <div class="label-row">
+            <span class="k">COD BARRA</span>
+            <span class="v">{{ label.codigoBarra || 'N/A' }}</span>
+          </div>
+        </article>
+
+        <div class="preview-nav">
+          <button
+            pButton
+            type="button"
+            icon="pi pi-chevron-left"
+            class="p-button-text"
+            (click)="prevPreview()"
+            [disabled]="previewIndex === 0 || printing"
+          ></button>
+          <span>{{ previewIndex + 1 }} / {{ labelPreviews.length }}</span>
+          <button
+            pButton
+            type="button"
+            icon="pi pi-chevron-right"
+            class="p-button-text"
+            (click)="nextPreview()"
+            [disabled]="previewIndex >= labelPreviews.length - 1 || printing"
+          ></button>
+        </div>
+      </div>
+
+      <ng-template #emptyPreview>
+        <div class="empty-block">
+          <i class="pi pi-image"></i>
+          <p>No hay etiqueta para previsualizar.</p>
+        </div>
+      </ng-template>
+    </section>
+  </div>
+
+  <ng-template pTemplate="footer">
+    <div class="footer-actions">
+      <button
+        pButton
+        type="button"
+        label="Descargar ZPL"
+        icon="pi pi-download"
+        class="p-button-outlined"
+        (click)="downloadZpl()"
+        [disabled]="printing"
+      ></button>
+      <button
+        pButton
+        type="button"
+        label="Cancelar"
+        class="p-button-text"
+        (click)="closeModal()"
+        [disabled]="printing"
+      ></button>
+      <button
+        pButton
+        type="button"
+        label="Imprimir ahora"
+        icon="pi pi-print"
+        (click)="startPrint()"
+        [disabled]="!canPrint"
+      ></button>
+    </div>
+  </ng-template>
+</p-dialog>

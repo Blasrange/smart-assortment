@@ -10,19 +10,18 @@
 
 <section class="sales-module">
   <div class="table-container">
-    <!-- HEADER PRINCIPAL -->
     <div class="table-header">
       <div class="header-info">
         <div class="logo-area">
-          <i class="pi pi-chart-line"></i>
-          <h2>Análisis de Ventas y Surtido</h2>
+          <i class="pi pi-warehouse"></i>
+          <h2>Surtido Inteligente</h2>
         </div>
         <div class="summary" *ngIf="analysisResult()">
           {{ analysisResult()?.summary }}
         </div>
       </div>
+
       <div class="header-actions">
-        <!-- Búsqueda Global -->
         <div class="search-wrapper">
           <i class="pi pi-search search-icon"></i>
           <input
@@ -34,7 +33,7 @@
                 ? dt1.filterGlobal($any($event.target).value, 'contains')
                 : dt2.filterGlobal($any($event.target).value, 'contains')
             "
-            placeholder="Buscar SKU o descripción..."
+            placeholder="Buscar SKU o descripcion..."
             class="search-input"
           />
           <i
@@ -59,9 +58,9 @@
           icon="pi pi-cog"
           label="Analizar"
           class="p-button-outlined p-button-sm analyze-btn"
-          (click)="generateSalesAnalysis()"
-          [disabled]="!salesFile() || !inventoryFile()"
-          pTooltip="Analizar archivos de ventas e inventario"
+          (click)="generateAssortmentAnalysis()"
+          [disabled]="!salesFile() || !stockFile()"
+          pTooltip="Analizar ventas y stock"
           tooltipPosition="top"
         ></button>
 
@@ -72,15 +71,13 @@
           label="Exportar Excel"
           class="p-button-outlined p-button-sm export-btn"
           (click)="exportToExcel()"
-          pTooltip="Exportar a Excel con hojas Surtido y Faltantes"
+          pTooltip="Exportar resultado"
           tooltipPosition="top"
         ></button>
       </div>
     </div>
 
-    <!-- ÁREA DE SUBIDA DE ARCHIVOS CON DRAG & DROP -->
-    <div class="upload-area">
-      <!-- Ventas Drop Zone -->
+    <div class="upload-area upload-area-triple">
       <div
         class="drop-zone"
         [class.dragging]="isDraggingSales()"
@@ -91,7 +88,7 @@
       >
         <ng-container *ngIf="salesFile() as file; else noSalesFile">
           <div class="drop-zone-content">
-            <i class="pi" [class.pi-upload]="!file" [class.pi-file-excel]="file"></i>
+            <i class="pi pi-chart-line"></i>
             <div class="drop-zone-text">
               <span class="title">{{ file.name }}</span>
               <span class="subtitle"
@@ -130,23 +127,21 @@
         <button class="hidden-button" type="button" (click)="salesInput.click()"></button>
       </div>
 
-      <!-- Inventario Drop Zone -->
       <div
         class="drop-zone"
-        [class.dragging]="isDraggingInventory()"
-        [class.has-file]="inventoryFile()"
-        (dragover)="onDragOver($event, 'inventory')"
-        (dragleave)="onDragLeave($event, 'inventory')"
-        (drop)="onDrop($event, 'inventory')"
+        [class.dragging]="isDraggingStock()"
+        [class.has-file]="stockFile()"
+        (dragover)="onDragOver($event, 'stock')"
+        (dragleave)="onDragLeave($event, 'stock')"
+        (drop)="onDrop($event, 'stock')"
       >
-        <ng-container *ngIf="inventoryFile() as invFile; else noInventoryFile">
+        <ng-container *ngIf="stockFile() as file; else noStockFile">
           <div class="drop-zone-content">
-            <i class="pi" [class.pi-upload]="!invFile" [class.pi-database]="invFile"></i>
+            <i class="pi pi-database"></i>
             <div class="drop-zone-text">
-              <span class="title">{{ invFile.name }}</span>
+              <span class="title">{{ file.name }}</span>
               <span class="subtitle"
-                >{{ formatFileSize(invFile.size || 0) }} •
-                {{ invFile.uploadDate | date: 'short' }}</span
+                >{{ formatFileSize(file.size || 0) }} • {{ file.uploadDate | date: 'short' }}</span
               >
             </div>
             <div class="drop-zone-actions">
@@ -155,36 +150,93 @@
                 type="button"
                 icon="pi pi-times"
                 class="p-button-rounded p-button-danger p-button-text p-button-sm"
-                (click)="removeFile('inventory'); $event.stopPropagation()"
+                (click)="removeFile('stock'); $event.stopPropagation()"
                 pTooltip="Eliminar archivo"
                 tooltipPosition="left"
               ></button>
             </div>
           </div>
         </ng-container>
-        <ng-template #noInventoryFile>
+        <ng-template #noStockFile>
           <div class="drop-zone-content">
-            <i class="pi pi-database"></i>
+            <i class="pi pi-box"></i>
             <div class="drop-zone-text">
-              <span class="title">📦 Archivo de Inventario</span>
+              <span class="title">📦 Archivo de Stock</span>
               <span class="subtitle">Arrastra o haz clic para subir (CSV, Excel)</span>
             </div>
           </div>
         </ng-template>
         <input
           type="file"
-          (change)="onFileUpload('inventory', $event)"
+          (change)="onFileUpload('stock', $event)"
           accept=".csv,.xlsx,.xls,.txt"
           hidden
-          #inventoryInput
+          #stockInput
         />
-        <button class="hidden-button" type="button" (click)="inventoryInput.click()"></button>
+        <button class="hidden-button" type="button" (click)="stockInput.click()"></button>
+      </div>
+
+      <div
+        class="drop-zone"
+        [class.dragging]="isDraggingMaster()"
+        [class.has-file]="masterFile()"
+        (dragover)="onDragOver($event, 'master')"
+        (dragleave)="onDragLeave($event, 'master')"
+        (drop)="onDrop($event, 'master')"
+      >
+        <ng-container *ngIf="masterFile() as file; else noMasterFile">
+          <div class="drop-zone-content">
+            <i class="pi pi-file"></i>
+            <div class="drop-zone-text">
+              <span class="title">{{ file.name }}</span>
+              <span class="subtitle"
+                >{{ formatFileSize(file.size || 0) }} • {{ file.uploadDate | date: 'short' }}</span
+              >
+            </div>
+            <div class="drop-zone-actions">
+              <button
+                pButton
+                type="button"
+                icon="pi pi-times"
+                class="p-button-rounded p-button-danger p-button-text p-button-sm"
+                (click)="removeFile('master'); $event.stopPropagation()"
+                pTooltip="Eliminar archivo"
+                tooltipPosition="left"
+              ></button>
+            </div>
+          </div>
+        </ng-container>
+        <ng-template #noMasterFile>
+          <div class="drop-zone-content">
+            <i class="pi pi-file-edit"></i>
+            <div class="drop-zone-text">
+              <span class="title">📝 Maestra de Materiales (Opcional)</span>
+              <span class="subtitle">Usada para destino sugerido de picking</span>
+            </div>
+          </div>
+        </ng-template>
+        <input
+          type="file"
+          (change)="onFileUpload('master', $event)"
+          accept=".csv,.xlsx,.xls,.txt"
+          hidden
+          #masterInput
+        />
+        <button class="hidden-button" type="button" (click)="masterInput.click()"></button>
       </div>
     </div>
 
-    <!-- TABS DE RESULTADOS -->
     <div class="results-header" *ngIf="analysisResult()">
       <div class="tabs">
+        <button
+          class="tab tab-suggestions"
+          [class.active]="activeTab === 'suggestions'"
+          (click)="activeTab = 'suggestions'"
+        >
+          <i class="pi pi-truck"></i>
+          Surtido
+          <span class="badge badge-warning">{{ filteredRestockSuggestions.length }}</span>
+        </button>
         <button
           class="tab tab-missing"
           [class.active]="activeTab === 'missing'"
@@ -194,18 +246,8 @@
           Faltantes
           <span class="badge badge-danger">{{ filteredMissingProducts.length }}</span>
         </button>
-        <button
-          class="tab tab-suggestions"
-          [class.active]="activeTab === 'suggestions'"
-          (click)="activeTab = 'suggestions'"
-        >
-          <i class="pi pi-lightbulb"></i>
-          Surtido
-          <span class="badge badge-warning">{{ filteredRestockSuggestions.length }}</span>
-        </button>
       </div>
 
-      <!-- Stats Cards -->
       <div class="stats-cards">
         <div class="stat-card stat-products">
           <div class="stat-icon blue"><i class="pi pi-box"></i></div>
@@ -217,14 +259,14 @@
         <div class="stat-card stat-restock">
           <div class="stat-icon orange"><i class="pi pi-truck"></i></div>
           <div class="stat-info">
-            <div class="stat-value">{{ getProductsToRestock() }}</div>
-            <div class="stat-label">A surtir</div>
+            <div class="stat-value">{{ analysisResult()?.stats?.productosConSurtido || 0 }}</div>
+            <div class="stat-label">Surtir</div>
           </div>
         </div>
         <div class="stat-card stat-missing">
           <div class="stat-icon red"><i class="pi pi-times-circle"></i></div>
           <div class="stat-info">
-            <div class="stat-value">{{ getMissingProductsCount() }}</div>
+            <div class="stat-value">{{ analysisResult()?.stats?.productosFaltantes || 0 }}</div>
             <div class="stat-label">Faltantes</div>
           </div>
         </div>
@@ -238,7 +280,168 @@
       </div>
     </div>
 
-    <!-- TABLA DE PRODUCTOS FALTANTES (Diseño tipo productos) -->
+    <div class="table-wrapper" *ngIf="activeTab === 'suggestions' && analysisResult()">
+      <p-table
+        #dt2
+        [value]="filteredRestockSuggestions"
+        [loading]="loading()"
+        [paginator]="true"
+        [rows]="10"
+        [rowsPerPageOptions]="[10, 25, 50, 100]"
+        [paginatorDropdownAppendTo]="'body'"
+        [showCurrentPageReport]="true"
+        currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} productos"
+        [globalFilterFields]="['sku', 'descripcion', 'localizacionDestino', 'estadoSurtido']"
+        styleClass="p-datatable-sm custom-table"
+        [tableStyle]="{ 'min-width': '800px' }"
+      >
+        >
+        <ng-template pTemplate="header">
+          <tr>
+            <th pSortableColumn="sku" class="col-sku">
+              <div class="column-header">
+                <span>SKU</span>
+                <div class="column-controls">
+                  <p-sortIcon field="sku" />
+                  <p-columnFilter type="text" field="sku" display="menu" />
+                </div>
+              </div>
+            </th>
+            <th pSortableColumn="descripcion" class="col-description">
+              <div class="column-header">
+                <span>Descripcion</span>
+                <div class="column-controls">
+                  <p-sortIcon field="descripcion" />
+                  <p-columnFilter type="text" field="descripcion" display="menu" />
+                </div>
+              </div>
+            </th>
+            <th pSortableColumn="cantidadVendida" class="col-number">
+              <div class="column-header column-header-center">
+                <span>Vendida</span>
+                <div class="column-controls">
+                  <p-sortIcon field="cantidadVendida" />
+                  <p-columnFilter type="numeric" field="cantidadVendida" display="menu" />
+                </div>
+              </div>
+            </th>
+            <th pSortableColumn="cantidadDisponiblePicking" class="col-number">
+              <div class="column-header column-header-center">
+                <span>Picking</span>
+                <div class="column-controls">
+                  <p-sortIcon field="cantidadDisponiblePicking" />
+                  <p-columnFilter type="numeric" field="cantidadDisponiblePicking" display="menu" />
+                </div>
+              </div>
+            </th>
+            <th pSortableColumn="cantidadEnReserva" class="col-number">
+              <div class="column-header column-header-center">
+                <span>Reserva</span>
+                <div class="column-controls">
+                  <p-sortIcon field="cantidadEnReserva" />
+                  <p-columnFilter type="numeric" field="cantidadEnReserva" display="menu" />
+                </div>
+              </div>
+            </th>
+            <th pSortableColumn="cantidadARestockear" class="col-number">
+              <div class="column-header column-header-center">
+                <span>A surtir</span>
+                <div class="column-controls">
+                  <p-sortIcon field="cantidadARestockear" />
+                  <p-columnFilter type="numeric" field="cantidadARestockear" display="menu" />
+                </div>
+              </div>
+            </th>
+            <th pSortableColumn="cantidadFaltante" class="col-number">
+              <div class="column-header column-header-center">
+                <span>Faltante</span>
+                <div class="column-controls">
+                  <p-sortIcon field="cantidadFaltante" />
+                  <p-columnFilter type="numeric" field="cantidadFaltante" display="menu" />
+                </div>
+              </div>
+            </th>
+            <th class="col-state">
+              <div class="column-header column-header-center">
+                <span>Estado</span>
+                <div class="column-controls">
+                  <p-columnFilter type="text" field="estadoSurtido" display="menu" />
+                </div>
+              </div>
+            </th>
+            <th pSortableColumn="localizacionDestino" class="col-destino">
+              <div class="column-header">
+                <span>Destino</span>
+                <div class="column-controls">
+                  <p-sortIcon field="localizacionDestino" />
+                  <p-columnFilter type="text" field="localizacionDestino" display="menu" />
+                </div>
+              </div>
+            </th>
+            <th pSortableColumn="existeEnMaestra" class="col-maestra">
+              <div class="column-header column-header-center">
+                <span>Maestra</span>
+                <div class="column-controls">
+                  <p-sortIcon field="existeEnMaestra" />
+                  <p-columnFilter type="boolean" field="existeEnMaestra" display="menu" />
+                </div>
+              </div>
+            </th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-row>
+          <tr [class.row-needs-restock]="row.cantidadARestockear > 0">
+            <td class="col-sku">
+              <strong>{{ row.sku }}</strong>
+            </td>
+            <td class="desc-cell">{{ row.descripcion }}</td>
+            <td class="text-center col-number">
+              {{ row.cantidadVendida | number }}
+              <small *ngIf="row.proyeccion" class="projection-chip"
+                >({{ row.proyeccionDias }}d)</small
+              >
+            </td>
+            <td class="text-center col-number">{{ row.cantidadDisponiblePicking | number }}</td>
+            <td class="text-center col-number">{{ row.cantidadEnReserva | number }}</td>
+            <td class="text-center col-number">
+              <span class="restock-value positive">{{ row.cantidadARestockear | number }}</span>
+            </td>
+            <td class="text-center col-number">
+              <span class="faltante-value">{{ row.cantidadFaltante | number }}</span>
+            </td>
+            <td class="text-center col-state">
+              <p-tag
+                [value]="row.estadoSurtido"
+                [severity]="row.cantidadARestockear > 0 ? 'warn' : 'success'"
+                [rounded]="true"
+              ></p-tag>
+            </td>
+            <td class="col-destino">
+              <span class="destino-value">{{ row.localizacionDestino || '-' }}</span>
+            </td>
+            <td class="text-center col-maestra">
+              <p-tag
+                [value]="row.existeEnMaestra ? 'En maestra' : 'Sin maestra'"
+                [severity]="row.existeEnMaestra ? 'secondary' : 'danger'"
+                [rounded]="true"
+              ></p-tag>
+            </td>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="10" class="empty-message">
+              <i class="pi pi-check-circle"></i>
+              <p>No hay sugerencias de surtido</p>
+              <small>Todos los SKU tienen cobertura suficiente</small>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+
     <div class="table-wrapper" *ngIf="activeTab === 'missing' && analysisResult()">
       <p-table
         #dt1
@@ -250,9 +453,9 @@
         [paginatorDropdownAppendTo]="'body'"
         [showCurrentPageReport]="true"
         currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} productos"
-        [globalFilterFields]="['sku', 'descripcion']"
+        [globalFilterFields]="['sku', 'descripcion', 'tipoFalta']"
         styleClass="p-datatable-sm custom-table"
-        [tableStyle]="{ 'min-width': '800px' }"
+        [tableStyle]="{ 'min-width': '1000px' }"
       >
         <ng-template pTemplate="header">
           <tr>
@@ -267,7 +470,7 @@
             </th>
             <th pSortableColumn="descripcion" class="col-description">
               <div class="column-header">
-                <span>Descripción</span>
+                <span>Descripcion</span>
                 <div class="column-controls">
                   <p-sortIcon field="descripcion" />
                   <p-columnFilter type="text" field="descripcion" display="menu" />
@@ -276,10 +479,28 @@
             </th>
             <th pSortableColumn="cantidadVendida" class="col-number">
               <div class="column-header column-header-center">
-                <span>Vendidas</span>
+                <span>Vendida</span>
                 <div class="column-controls">
                   <p-sortIcon field="cantidadVendida" />
                   <p-columnFilter type="numeric" field="cantidadVendida" display="menu" />
+                </div>
+              </div>
+            </th>
+            <th pSortableColumn="stockEnPicking" class="col-number">
+              <div class="column-header column-header-center">
+                <span>Picking</span>
+                <div class="column-controls">
+                  <p-sortIcon field="stockEnPicking" />
+                  <p-columnFilter type="numeric" field="stockEnPicking" display="menu" />
+                </div>
+              </div>
+            </th>
+            <th pSortableColumn="stockEnReserva" class="col-number">
+              <div class="column-header column-header-center">
+                <span>Reserva</span>
+                <div class="column-controls">
+                  <p-sortIcon field="stockEnReserva" />
+                  <p-columnFilter type="numeric" field="stockEnReserva" display="menu" />
                 </div>
               </div>
             </th>
@@ -304,23 +525,24 @@
           </tr>
         </ng-template>
 
-        <ng-template pTemplate="body" let-missing>
+        <ng-template pTemplate="body" let-row>
           <tr>
             <td class="col-sku">
-              <strong>{{ missing.sku }}</strong>
+              <strong>{{ row.sku }}</strong>
             </td>
-            <td class="desc-cell">{{ missing.descripcion }}</td>
-            <td class="text-center col-number">{{ missing.cantidadVendida | number }}</td>
-            <td class="text-center col-number">{{ missing.cantidadFaltante | number }}</td>
+            <td class="desc-cell">{{ row.descripcion }}</td>
+            <td class="text-center col-number">{{ row.cantidadVendida | number }}</td>
+            <td class="text-center col-number">{{ row.stockEnPicking | number }}</td>
+            <td class="text-center col-number">{{ row.stockEnReserva | number }}</td>
+            <td class="text-center col-number">
+              <span class="faltante-value">{{ row.cantidadFaltante | number }}</span>
+            </td>
             <td class="text-center col-state">
               <p-tag
-                [value]="getTipoFaltaLabel(missing.tipoFalta)"
-                [severity]="getTipoFaltaSeverity(missing.tipoFalta)"
-                [styleClass]="getTipoFaltaClass(missing.tipoFalta)"
+                [value]="getTipoFaltaLabel(row.tipoFalta)"
+                [severity]="getTipoFaltaSeverity(row.tipoFalta)"
                 [rounded]="true"
-                [icon]="getTipoFaltaIcon(missing.tipoFalta)"
-              >
-              </p-tag>
+              ></p-tag>
             </td>
           </tr>
         </ng-template>
@@ -329,246 +551,8 @@
           <tr>
             <td colspan="7" class="empty-message">
               <i class="pi pi-check-circle"></i>
-              <p>✅ No hay productos faltantes</p>
-              <small>Todos los productos tienen inventario suficiente</small>
-            </td>
-          </tr>
-        </ng-template>
-      </p-table>
-    </div>
-
-    <!-- TABLA DE SUGERENCIAS DE SURTIDO (sin expansión ni título) -->
-    <div class="table-wrapper" *ngIf="activeTab === 'suggestions' && analysisResult()">
-      <p-table
-        #dt2
-        [value]="filteredRestockSuggestions"
-        [loading]="loading()"
-        [paginator]="true"
-        [rows]="10"
-        [rowsPerPageOptions]="[10, 25, 50, 100]"
-        [paginatorDropdownAppendTo]="'body'"
-        [showCurrentPageReport]="true"
-        currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} productos"
-        [globalFilterFields]="['sku', 'descripcion']"
-        styleClass="p-datatable-sm custom-table"
-        [tableStyle]="{ 'min-width': '800px' }"
-      >
-        <ng-template pTemplate="header">
-          <tr>
-            <th pSortableColumn="sku" class="col-sku">
-              <div class="column-header">
-                <span>SKU</span>
-                <div class="column-controls">
-                  <p-sortIcon field="sku" />
-                  <p-columnFilter type="text" field="sku" display="menu" />
-                </div>
-              </div>
-            </th>
-            <th pSortableColumn="descripcion" class="col-description">
-              <div class="column-header">
-                <span>Descripción</span>
-                <div class="column-controls">
-                  <p-sortIcon field="descripcion" />
-                  <p-columnFilter type="text" field="descripcion" display="menu" />
-                </div>
-              </div>
-            </th>
-            <th pSortableColumn="cantidadVendida" class="col-number">
-              <div class="column-header column-header-center">
-                <span>Vendidas</span>
-                <div class="column-controls">
-                  <p-sortIcon field="cantidadVendida" />
-                  <p-columnFilter type="numeric" field="cantidadVendida" display="menu" />
-                </div>
-              </div>
-            </th>
-            <th pSortableColumn="cantidadDisponible" class="col-number">
-              <div class="column-header column-header-center">
-                <span>En Picking</span>
-                <div class="column-controls">
-                  <p-sortIcon field="cantidadDisponible" />
-                  <p-columnFilter type="numeric" field="cantidadDisponible" display="menu" />
-                </div>
-              </div>
-            </th>
-            <th pSortableColumn="cantidadARestockear" class="col-number">
-              <div class="column-header column-header-center">
-                <span>A Surtir</span>
-                <div class="column-controls">
-                  <p-sortIcon field="cantidadARestockear" />
-                  <p-columnFilter type="numeric" field="cantidadARestockear" display="menu" />
-                </div>
-              </div>
-            </th>
-            <th pSortableColumn="cantidadFaltante" class="col-number">
-              <div class="column-header column-header-center">
-                <span>Faltante</span>
-                <div class="column-controls">
-                  <p-sortIcon field="cantidadFaltante" />
-                  <p-columnFilter type="numeric" field="cantidadFaltante" display="menu" />
-                </div>
-              </div>
-            </th>
-            <th class="col-locations">
-              <div class="column-header column-header-center">
-                <span>Ubicaciones Sugeridas</span>
-              </div>
-            </th>
-          </tr>
-        </ng-template>
-
-        <ng-template pTemplate="body" let-suggestion>
-          <tr [class.row-needs-restock]="suggestion.cantidadARestockear > 0">
-            <td class="col-sku">
-              <strong>{{ suggestion.sku }}</strong>
-            </td>
-            <td class="desc-cell">
-              {{ suggestion.descripcion | slice: 0 : 80
-              }}{{ suggestion.descripcion.length > 80 ? '...' : '' }}
-            </td>
-            <td class="text-center col-number">{{ suggestion.cantidadVendida | number }}</td>
-            <td class="text-center col-number">{{ suggestion.cantidadDisponible | number }}</td>
-            <td class="text-center col-number">
-              <span class="restock-value" [class.positive]="suggestion.cantidadARestockear > 0">
-                {{ suggestion.cantidadARestockear | number }}
-              </span>
-            </td>
-            <td class="text-center col-number">
-              <span class="faltante-value" [class.positive]="suggestion.cantidadFaltante > 0">
-                {{ suggestion.cantidadFaltante | number }}
-              </span>
-            </td>
-            <td class="locations-cell col-locations">
-              <div class="locations-list">
-                <div
-                  *ngFor="let loc of suggestion.ubicacionesSugeridas.slice(0, 3)"
-                  class="location-chip"
-                  [class.full-pallet]="loc.esEstibaCompleta"
-                  pTooltip="{{ loc.localizacion }} - {{ loc.cantidad }} unidades"
-                  tooltipPosition="top"
-                >
-                  <span class="location-code">{{ loc.localizacion }}</span>
-                  <span class="location-qty">{{ loc.cantidad }}u</span>
-                  <span
-                    *ngIf="loc.diasFPC !== undefined && loc.diasFPC !== null"
-                    class="location-fpc"
-                    [class.critical]="loc.diasFPC < 30"
-                  >
-                    {{ loc.diasFPC }}d
-                  </span>
-                </div>
-                <div *ngIf="suggestion.ubicacionesSugeridas.length > 3" class="more-locations">
-                  +{{ suggestion.ubicacionesSugeridas.length - 3 }} más
-                </div>
-              </div>
-            </td>
-          </tr>
-        </ng-template>
-
-        <ng-template pTemplate="rowexpansion" let-suggestion>
-          <tr class="expansion-row">
-            <td colspan="8">
-              <div class="expansion-content">
-                <div class="expansion-header">
-                  <i class="pi pi-info-circle"></i>
-                  <strong>Detalle de Surtido: {{ suggestion.sku }}</strong>
-                </div>
-
-                <div class="expansion-grid">
-                  <!-- Resumen -->
-                  <div class="summary-box">
-                    <div class="summary-item">
-                      <span class="summary-label">📊 Vendido</span>
-                      <span class="summary-value">{{ suggestion.cantidadVendida | number }}</span>
-                    </div>
-                    <div class="summary-item">
-                      <span class="summary-label">📍 Stock Picking</span>
-                      <span class="summary-value">{{
-                        suggestion.cantidadDisponible | number
-                      }}</span>
-                    </div>
-                    <div class="summary-item">
-                      <span class="summary-label">🚚 A surtir</span>
-                      <span class="summary-value highlight">{{
-                        suggestion.cantidadARestockear | number
-                      }}</span>
-                    </div>
-                    <div class="summary-item">
-                      <span class="summary-label">⚠️ Faltante</span>
-                      <span class="summary-value danger">{{
-                        suggestion.cantidadFaltante | number
-                      }}</span>
-                    </div>
-                  </div>
-
-                  <!-- Ubicaciones detalladas -->
-                  <div class="locations-detail" *ngIf="suggestion.ubicacionesSugeridas.length > 0">
-                    <div class="locations-title">
-                      <i class="pi pi-map-marker"></i>
-                      Ubicaciones de Reserva (orden FEFO)
-                    </div>
-                    <div class="locations-grid">
-                      <div
-                        *ngFor="let loc of suggestion.ubicacionesSugeridas"
-                        class="location-card"
-                        [class.full-pallet]="loc.esEstibaCompleta"
-                      >
-                        <div class="card-header">
-                          <span class="location-name">{{ loc.localizacion }}</span>
-                          <span
-                            class="card-badge"
-                            [class]="loc.esEstibaCompleta ? 'badge-primary' : 'badge-secondary'"
-                          >
-                            {{ loc.esEstibaCompleta ? 'Estiba completa' : 'Parcial' }}
-                          </span>
-                        </div>
-                        <div class="card-body">
-                          <div class="row">
-                            <span class="label">LPN:</span>
-                            <span class="value">{{ loc.lpn || 'N/A' }}</span>
-                          </div>
-                          <div class="row">
-                            <span class="label">Cantidad:</span>
-                            <span class="value highlight"
-                              >{{ loc.cantidad | number }} unidades</span
-                            >
-                          </div>
-                          <div
-                            class="row"
-                            *ngIf="loc.diasFPC !== undefined && loc.diasFPC !== null"
-                          >
-                            <span class="label">Días FPC:</span>
-                            <span class="value" [class.critical]="loc.diasFPC < 30"
-                              >{{ loc.diasFPC }} días</span
-                            >
-                          </div>
-                          <div class="row" *ngIf="loc.fechaVencimiento">
-                            <span class="label">Vencimiento:</span>
-                            <span class="value">{{
-                              loc.fechaVencimiento | date: 'dd/MM/yyyy'
-                            }}</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="no-locations" *ngIf="suggestion.ubicacionesSugeridas.length === 0">
-                    <i class="pi pi-info-circle"></i>
-                    <span>No hay ubicaciones de reserva disponibles</span>
-                  </div>
-                </div>
-              </div>
-            </td>
-          </tr>
-        </ng-template>
-
-        <ng-template pTemplate="emptymessage">
-          <tr>
-            <td colspan="8" class="empty-message">
-              <i class="pi pi-check-circle"></i>
-              <p>✅ No hay sugerencias de surtido</p>
-              <small>Todos los productos tienen stock suficiente</small>
+              <p>No hay SKU faltantes</p>
+              <small>Todos los SKU pueden cubrirse con el stock disponible</small>
             </td>
           </tr>
         </ng-template>
@@ -576,18 +560,17 @@
     </div>
 
     <div class="empty-state" *ngIf="!analysisResult() && !loading()">
-      <i class="pi pi-chart-line"></i>
-      <p>Sube ventas e inventario para ejecutar el análisis de surtido</p>
-      <small>Luego haz clic en Analizar</small>
+      <i class="pi pi-warehouse"></i>
+      <p>Sube ventas y stock para generar recomendaciones de surtido</p>
+      <small>La maestra de materiales es opcional para enriquecer el destino</small>
     </div>
 
-    <!-- LOADING OVERLAY -->
     <div *ngIf="loading()" class="loading-overlay">
       <div class="loading-content">
-        <p-progressSpinner
+        <p-progress-spinner
           strokeWidth="4"
           [style]="{ width: '60px', height: '60px' }"
-        ></p-progressSpinner>
+        ></p-progress-spinner>
         <p>Procesando archivos...</p>
         <small>Esto puede tomar unos segundos</small>
       </div>

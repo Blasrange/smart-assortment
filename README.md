@@ -150,4 +150,6 @@ Nota: el mapeo contempla multiples nombres de columna para cada campo (por ejemp
 
 ```bash
 git add .; git commit -m "Actualización del proyecto"; git push origin main
+
+ng g c sales
 ```

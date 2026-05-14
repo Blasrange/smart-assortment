@@ -1,0 +1,299 @@
+<div class="page-breadcrumb-fixed">
+  <p-breadcrumb
+    [model]="breadcrumbItems"
+    [home]="breadcrumbHome"
+    styleClass="app-breadcrumb"
+  ></p-breadcrumb>
+</div>
+
+<p-toast position="top-right"></p-toast>
+
+<section class="sales-module">
+  <div class="table-container">
+    <div class="table-header">
+      <div class="header-info">
+        <div class="logo-area">
+          <i class="pi pi-tag"></i>
+          <h2>Etiquetas Exito</h2>
+        </div>
+        <div class="summary" *ngIf="analysisResult()">{{ analysisResult()?.summary }}</div>
+      </div>
+
+      <div class="header-actions">
+        <div class="search-wrapper">
+          <i class="pi pi-search search-icon"></i>
+          <input
+            type="text"
+            pInputText
+            [(ngModel)]="searchValue"
+            (input)="dt1.filterGlobal($any($event.target).value, 'contains')"
+            placeholder="Buscar tienda, codigo o descripcion..."
+            class="search-input"
+          />
+          <i
+            class="pi pi-times clear-icon"
+            *ngIf="searchValue"
+            (click)="searchValue = ''; clearFilters()"
+          ></i>
+        </div>
+
+        <button
+          pButton
+          icon="pi pi-filter-slash"
+          label="Limpiar"
+          class="p-button-outlined p-button-sm clear-btn"
+          (click)="clearFilters()"
+          pTooltip="Limpiar todos los filtros"
+          tooltipPosition="top"
+        ></button>
+
+        <button
+          pButton
+          icon="pi pi-cog"
+          label="Analizar"
+          class="p-button-outlined p-button-sm analyze-btn"
+          (click)="processLabels()"
+          [disabled]="!sourceFile()"
+          pTooltip="Procesar archivo para generar etiquetas"
+          tooltipPosition="top"
+        ></button>
+
+        <button
+          *ngIf="sourceFile()"
+          pButton
+          icon="pi pi-print"
+          label="Imprimir"
+          class="p-button-outlined p-button-sm analyze-btn"
+          (click)="openPrintModal()"
+          [disabled]="!analysisResult()"
+          pTooltip="Abrir panel de impresión de etiquetas ZPL"
+          tooltipPosition="top"
+        ></button>
+      </div>
+    </div>
+
+    <div class="upload-area">
+      <div
+        class="drop-zone"
+        [class.dragging]="isDragging()"
+        [class.has-file]="sourceFile()"
+        (dragover)="onDragOver($event)"
+        (dragleave)="onDragLeave($event)"
+        (drop)="onDrop($event)"
+      >
+        <ng-container *ngIf="sourceFile() as file; else noSourceFile">
+          <div class="drop-zone-content">
+            <i class="pi" [class.pi-file-excel]="file"></i>
+            <div class="drop-zone-text">
+              <span class="title">{{ file.name }}</span>
+              <span class="subtitle"
+                >{{ formatFileSize(file.size || 0) }} • {{ file.uploadDate | date: 'short' }}</span
+              >
+            </div>
+            <div class="drop-zone-actions">
+              <button
+                pButton
+                type="button"
+                icon="pi pi-times"
+                class="p-button-rounded p-button-danger p-button-text p-button-sm"
+                (click)="removeFile(); $event.stopPropagation()"
+                pTooltip="Eliminar archivo"
+              ></button>
+            </div>
+          </div>
+        </ng-container>
+        <ng-template #noSourceFile>
+          <div class="drop-zone-content">
+            <i class="pi pi-file-import"></i>
+            <div class="drop-zone-text">
+              <span class="title">📊 Archivo Pedido Exito</span>
+              <span class="subtitle">Arrastra o haz clic para subir (CSV, Excel)</span>
+            </div>
+          </div>
+        </ng-template>
+
+        <input
+          type="file"
+          (change)="onFileUpload($event)"
+          accept=".csv,.xlsx,.xls,.txt"
+          hidden
+          #sourceInput
+        />
+        <button class="hidden-button" type="button" (click)="sourceInput.click()"></button>
+      </div>
+    </div>
+
+    <div class="results-header" *ngIf="analysisResult()">
+      <div class="stats-cards">
+        <div class="stat-card">
+          <div class="stat-icon blue"><i class="pi pi-list"></i></div>
+          <div class="stat-info">
+            <div class="stat-value">{{ analysisResult()?.stats?.sourceRows || 0 }}</div>
+            <div class="stat-label">Filas Fuente</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon green"><i class="pi pi-tag"></i></div>
+          <div class="stat-info">
+            <div class="stat-value">{{ analysisResult()?.stats?.labelsCount || 0 }}</div>
+            <div class="stat-label">Etiquetas</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon orange"><i class="pi pi-shop"></i></div>
+          <div class="stat-info">
+            <div class="stat-value">{{ analysisResult()?.stats?.uniqueStores || 0 }}</div>
+            <div class="stat-label">Tiendas</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon red"><i class="pi pi-exclamation-triangle"></i></div>
+          <div class="stat-info">
+            <div class="stat-value">{{ warningCount }}</div>
+            <div class="stat-label">Advertencias</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="table-wrapper" *ngIf="analysisResult()">
+      <p-table
+        #dt1
+        [value]="filteredLabels"
+        [loading]="loading()"
+        [paginator]="true"
+        [rows]="10"
+        [rowsPerPageOptions]="[10, 25, 50, 100]"
+        [paginatorDropdownAppendTo]="'body'"
+        [showCurrentPageReport]="true"
+        currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} etiquetas"
+        [globalFilterFields]="['ct', 'tienda', 'codigoBarra', 'orden', 'descrispcion']"
+        styleClass="p-datatable-sm custom-table"
+        [tableStyle]="{ 'min-width': '1480px' }"
+      >
+        <ng-template pTemplate="header">
+          <tr>
+            <th pSortableColumn="ct" class="col-sku">
+              <div class="column-header">
+                <span>Cod. Tienda</span>
+                <div class="column-controls">
+                  <p-sortIcon field="ct" />
+                  <p-columnFilter type="text" field="ct" display="menu" />
+                </div>
+              </div>
+            </th>
+            <th pSortableColumn="tienda" class="col-description">
+              <div class="column-header">
+                <span>Tienda</span>
+                <div class="column-controls">
+                  <p-sortIcon field="tienda" />
+                  <p-columnFilter type="text" field="tienda" display="menu" />
+                </div>
+              </div>
+            </th>
+            <th pSortableColumn="codigoBarra" class="col-description">
+              <div class="column-header">
+                <span>Codigo Barra</span>
+                <div class="column-controls">
+                  <p-sortIcon field="codigoBarra" />
+                  <p-columnFilter type="text" field="codigoBarra" display="menu" />
+                </div>
+              </div>
+            </th>
+            <th pSortableColumn="orden" class="col-sku">
+              <div class="column-header">
+                <span>Orden</span>
+                <div class="column-controls">
+                  <p-sortIcon field="orden" />
+                  <p-columnFilter type="text" field="orden" display="menu" />
+                </div>
+              </div>
+            </th>
+            <th pSortableColumn="numeroCaja" class="col-number">
+              <div class="column-header">
+                <span>Caja</span>
+                <div class="column-controls">
+                  <p-sortIcon field="numeroCaja" />
+                  <p-columnFilter type="numeric" field="numeroCaja" display="menu" />
+                </div>
+              </div>
+            </th>
+            <th pSortableColumn="totalCajas" class="col-number">
+              <div class="column-header">
+                <span>Total</span>
+                <div class="column-controls">
+                  <p-sortIcon field="totalCajas" />
+                  <p-columnFilter type="numeric" field="totalCajas" display="menu" />
+                </div>
+              </div>
+            </th>
+            <th pSortableColumn="descripcion" class="col-number">
+              <div class="column-header">
+                <span>Descripcion</span>
+                <div class="column-controls">
+                  <p-sortIcon field="descripcion" />
+                  <p-columnFilter type="text" field="descripcion" display="menu" />
+                </div>
+              </div>
+            </th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-label>
+          <tr>
+            <td class="col-sku">
+              <strong>{{ label.ct }}</strong>
+            </td>
+            <td class="desc-cell" pTooltip="{{ label.tienda }}" tooltipPosition="top">
+              {{ label.tienda }}
+            </td>
+            <td class="desc-cell" pTooltip="{{ label.codigoBarra }}" tooltipPosition="top">
+              {{ label.codigoBarra }}
+            </td>
+            <td class="col-sku">{{ label.orden || 'N/A' }}</td>
+            <td class="col-number">{{ label.numeroCaja }}</td>
+            <td class="col-number">{{ label.totalCajas }}</td>
+            <td class="desc-cell" pTooltip="{{ label.descripcion }}" tooltipPosition="top">
+              {{ label.descripcion }}
+            </td>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="7" class="empty-message">
+              <i class="pi pi-inbox"></i>
+              <p>No hay etiquetas para mostrar</p>
+              <small>Procesa un archivo para generar resultados</small>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+
+    <div class="empty-state" *ngIf="!analysisResult() && !loading()">
+      <i class="pi pi-tag"></i>
+      <p>Sube el archivo de Exito y pulsa Analizar</p>
+      <small>El sistema genera etiquetas y permite descargar ZPL</small>
+    </div>
+
+    <div *ngIf="loading()" class="loading-overlay">
+      <div class="loading-content">
+        <p-progressSpinner
+          strokeWidth="4"
+          [style]="{ width: '60px', height: '60px' }"
+        ></p-progressSpinner>
+        <p>Procesando archivo...</p>
+        <small>Esto puede tomar unos segundos</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-print-modal
+  [(visible)]="showPrintModal"
+  [totalLabels]="analysisResult()?.stats?.labelsCount ?? 0"
+  [zplBatch]="printZplBatch"
+  [labels]="analysisResult()?.labels ?? []"
+  (printDone)="onPrintDone($event)"
+></app-print-modal>

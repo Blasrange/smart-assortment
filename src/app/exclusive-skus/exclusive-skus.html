@@ -1,0 +1,377 @@
+<div class="page-breadcrumb-fixed">
+  <p-breadcrumb
+    [model]="breadcrumbItems"
+    [home]="breadcrumbHome"
+    styleClass="app-breadcrumb"
+  ></p-breadcrumb>
+</div>
+
+<p-toast position="top-right"></p-toast>
+
+<section class="exclusive-skus-module">
+  <div class="table-container">
+    <!-- HEADER PRINCIPAL -->
+    <div class="table-header">
+      <div class="header-info">
+        <div class="logo-area">
+          <i class="pi pi-sitemap"></i>
+          <h2>SKUs Exclusivos - Validación Pasillo P10</h2>
+        </div>
+        <div class="summary" *ngIf="analysisResult()">
+          Análisis de ubicación de productos en pasillo destino
+        </div>
+      </div>
+      <div class="header-actions">
+        <!-- Búsqueda Global -->
+        <div class="search-wrapper">
+          <i class="pi pi-search search-icon"></i>
+          <input
+            type="text"
+            pInputText
+            [(ngModel)]="searchValue"
+            (input)="onSearch()"
+            placeholder="Buscar código o referencia..."
+            class="search-input"
+          />
+          <i
+            class="pi pi-times clear-icon"
+            *ngIf="searchValue"
+            (click)="searchValue = ''; onSearch()"
+          ></i>
+        </div>
+
+        <button
+          pButton
+          icon="pi pi-filter-slash"
+          label="Limpiar"
+          class="p-button-outlined p-button-sm clear-btn"
+          (click)="clearFilters()"
+          pTooltip="Limpiar todos los filtros"
+          tooltipPosition="top"
+        ></button>
+
+        <button
+          pButton
+          icon="pi pi-cog"
+          label="Analizar"
+          class="p-button-outlined p-button-sm analyze-btn"
+          (click)="generateAnalysis()"
+          [disabled]="!maestraFile() || !inventarioFile()"
+          pTooltip="Analizar ubicación de SKUs en pasillo P10"
+          tooltipPosition="top"
+        ></button>
+
+        <button
+          pButton
+          *ngIf="analysisResult()"
+          icon="pi pi-file-excel"
+          label="Exportar Excel"
+          class="p-button-outlined p-button-sm export-btn"
+          (click)="exportToExcel()"
+          pTooltip="Exportar a Excel con resumen y detalle"
+          tooltipPosition="top"
+        ></button>
+      </div>
+    </div>
+
+    <!-- ÁREA DE SUBIDA DE ARCHIVOS CON DRAG & DROP -->
+    <div class="upload-area">
+      <!-- Archivo Maestra Drop Zone -->
+      <div
+        class="drop-zone"
+        [class.dragging]="isDraggingMaestra()"
+        [class.has-file]="maestraFile()"
+        (dragover)="onDragOver($event, 'maestra')"
+        (dragleave)="onDragLeave($event, 'maestra')"
+        (drop)="onDrop($event, 'maestra')"
+      >
+        <ng-container *ngIf="maestraFile() as file; else noMaestraFile">
+          <div class="drop-zone-content">
+            <i class="pi" [class.pi-upload]="!file" [class.pi-file-excel]="file"></i>
+            <div class="drop-zone-text">
+              <span class="title">{{ file.name }}</span>
+              <span class="subtitle"
+                >{{ formatFileSize(file.size || 0) }} • {{ file.uploadDate | date: 'short' }}</span
+              >
+            </div>
+            <div class="drop-zone-actions">
+              <button
+                pButton
+                type="button"
+                icon="pi pi-times"
+                class="p-button-rounded p-button-danger p-button-text p-button-sm"
+                (click)="removeFile('maestra'); $event.stopPropagation()"
+                pTooltip="Eliminar archivo"
+                tooltipPosition="left"
+              ></button>
+            </div>
+          </div>
+        </ng-container>
+        <ng-template #noMaestraFile>
+          <div class="drop-zone-content">
+            <i class="pi pi-file-edit"></i>
+            <div class="drop-zone-text">
+              <span class="title">📋 Archivo Maestra</span>
+              <span class="subtitle">Arrastra o haz clic para subir (CSV, Excel)</span>
+            </div>
+          </div>
+        </ng-template>
+        <input
+          type="file"
+          (change)="onFileUpload('maestra', $event)"
+          accept=".csv,.xlsx,.xls,.txt"
+          hidden
+          #maestraInput
+        />
+        <button class="hidden-button" type="button" (click)="maestraInput.click()"></button>
+      </div>
+
+      <!-- Inventario Drop Zone -->
+      <div
+        class="drop-zone"
+        [class.dragging]="isDraggingInventario()"
+        [class.has-file]="inventarioFile()"
+        (dragover)="onDragOver($event, 'inventario')"
+        (dragleave)="onDragLeave($event, 'inventario')"
+        (drop)="onDrop($event, 'inventario')"
+      >
+        <ng-container *ngIf="inventarioFile() as invFile; else noInventarioFile">
+          <div class="drop-zone-content">
+            <i class="pi" [class.pi-upload]="!invFile" [class.pi-database]="invFile"></i>
+            <div class="drop-zone-text">
+              <span class="title">{{ invFile.name }}</span>
+              <span class="subtitle"
+                >{{ formatFileSize(invFile.size || 0) }} •
+                {{ invFile.uploadDate | date: 'short' }}</span
+              >
+            </div>
+            <div class="drop-zone-actions">
+              <button
+                pButton
+                type="button"
+                icon="pi pi-times"
+                class="p-button-rounded p-button-danger p-button-text p-button-sm"
+                (click)="removeFile('inventario'); $event.stopPropagation()"
+                pTooltip="Eliminar archivo"
+                tooltipPosition="left"
+              ></button>
+            </div>
+          </div>
+        </ng-container>
+        <ng-template #noInventarioFile>
+          <div class="drop-zone-content">
+            <i class="pi pi-database"></i>
+            <div class="drop-zone-text">
+              <span class="title">📦 Archivo Inventario</span>
+              <span class="subtitle">Arrastra o haz clic para subir (CSV, Excel)</span>
+            </div>
+          </div>
+        </ng-template>
+        <input
+          type="file"
+          (change)="onFileUpload('inventario', $event)"
+          accept=".csv,.xlsx,.xls,.txt"
+          hidden
+          #inventarioInput
+        />
+        <button class="hidden-button" type="button" (click)="inventarioInput.click()"></button>
+      </div>
+    </div>
+
+    <!-- TABS DE RESULTADOS -->
+    <div class="results-header" *ngIf="analysisResult() as result">
+      <!-- Stats Cards -->
+      <div class="stats-cards">
+        <div class="stat-card stat-total">
+          <div class="stat-icon blue"><i class="pi pi-inbox"></i></div>
+          <div class="stat-info">
+            <div class="stat-value">{{ result.stats.totalRegistros || 0 }}</div>
+            <div class="stat-label">Total SKUs</div>
+          </div>
+        </div>
+        <div class="stat-card stat-ok">
+          <div class="stat-icon green"><i class="pi pi-check-circle"></i></div>
+          <div class="stat-info">
+            <div class="stat-value">{{ getConteoOK() }}</div>
+            <div class="stat-label">Correctos (P10)</div>
+          </div>
+        </div>
+        <div class="stat-card stat-restock">
+          <div class="stat-icon orange"><i class="pi pi-truck"></i></div>
+          <div class="stat-info">
+            <div class="stat-value">{{ getConteoMovimientos() }}</div>
+            <div class="stat-label">Requieren Movimiento</div>
+          </div>
+        </div>
+        <div class="stat-card stat-coverage">
+          <div class="stat-icon green"><i class="pi pi-chart-pie"></i></div>
+          <div class="stat-info">
+            <div class="stat-value">{{ getPorcentajeOK() }}%</div>
+            <div class="stat-label">% Correctos</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TABLA DE RESULTADOS - PROTAGONISTA PRINCIPAL -->
+    <div class="table-wrapper" *ngIf="analysisResult()">
+      <p-table
+        #dt1
+        [value]="filteredResultados()"
+        [loading]="loading()"
+        [paginator]="true"
+        [rows]="10"
+        [rowsPerPageOptions]="[10, 25, 50, 100]"
+        [paginatorDropdownAppendTo]="'body'"
+        [showCurrentPageReport]="true"
+        currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+        [globalFilterFields]="['codigo', 'referencia']"
+        styleClass="p-datatable-sm custom-table"
+        [tableStyle]="{ 'min-width': '800px' }"
+      >
+        <ng-template pTemplate="header">
+          <tr>
+            <th pSortableColumn="codigo" class="col-sku">
+              <div class="column-header column-header-left">
+                <span>SKU</span>
+                <div class="column-controls">
+                  <p-sortIcon field="codigo" />
+                  <p-columnFilter type="text" field="codigo" display="menu" />
+                </div>
+              </div>
+            </th>
+            <th pSortableColumn="referencia" class="col-description">
+              <div class="column-header column-header-left">
+                <span>Descripción</span>
+                <div class="column-controls">
+                  <p-sortIcon field="referencia" />
+                  <p-columnFilter type="text" field="referencia" display="menu" />
+                </div>
+              </div>
+            </th>
+            <th pSortableColumn="localizacionActual" class="col-location">
+              <div class="column-header column-header-center">
+                <span>Ubicación Actual</span>
+                <div class="column-controls">
+                  <p-sortIcon field="localizacionActual" />
+                  <p-columnFilter type="text" field="localizacionActual" display="menu" />
+                </div>
+              </div>
+            </th>
+            <th pSortableColumn="localizacionSugerida" class="col-location">
+              <div class="column-header column-header-center">
+                <span>Ubicación Sugerida</span>
+                <div class="column-controls">
+                  <p-sortIcon field="localizacionSugerida" />
+                  <p-columnFilter type="text" field="localizacionSugerida" display="menu" />
+                </div>
+              </div>
+            </th>
+            <th pSortableColumn="estado" class="col-state">
+              <div class="column-header column-header-center">
+                <span>Estado</span>
+                <div class="column-controls">
+                  <p-sortIcon field="estado" />
+                  <p-columnFilter type="text" field="estado" display="menu" />
+                </div>
+              </div>
+            </th>
+            <th pSortableColumn="sugerencia" class="col-suggestion">
+              <div class="column-header column-header-center">
+                <span>Sugerencia / Acción</span>
+                <div class="column-controls">
+                  <p-sortIcon field="sugerencia" />
+                  <p-columnFilter type="text" field="sugerencia" display="menu" />
+                </div>
+              </div>
+            </th>
+            <th pSortableColumn="lpn" class="col-lpn">
+              <div class="column-header column-header-center">
+                <span>LPN</span>
+                <div class="column-controls">
+                  <p-sortIcon field="lpn" />
+                  <p-columnFilter type="text" field="lpn" display="menu" />
+                </div>
+              </div>
+            </th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-row>
+          <tr [class.row-needs-restock]="row.estado !== 'OK'">
+            <td class="col-sku text-left">
+              <strong>{{ row.codigo }}</strong>
+            </td>
+            <td class="desc-cell">{{ row.referencia }}</td>
+            <td class="text-center col-location">
+              <span
+                class="location-chip"
+                [class.invalid-location]="!esPasilloDestino(row.localizacionActual)"
+              >
+                <span class="location-code">{{ row.localizacionActual || '-' }}</span>
+              </span>
+            </td>
+            <td class="text-center col-location">
+              <span
+                class="location-chip suggested"
+                *ngIf="row.localizacionSugerida; else noSuggested"
+              >
+                <i class="pi pi-arrow-right"></i>
+                <span class="location-code">{{ row.localizacionSugerida }}</span>
+              </span>
+              <ng-template #noSuggested>
+                <span class="text-muted">-</span>
+              </ng-template>
+            </td>
+            <td class="text-center col-state">
+              <p-tag
+                [value]="row.estado === 'OK' ? 'OK - P10' : 'Movimiento Requerido'"
+                [severity]="row.estado === 'OK' ? 'success' : 'warn'"
+                [rounded]="true"
+                [icon]="row.estado === 'OK' ? 'pi pi-check-circle' : 'pi pi-truck'"
+              >
+              </p-tag>
+            </td>
+            <td class="desc-cell col-suggestion">
+              <span class="suggestion-text" [class.warning-text]="row.estado !== 'OK'">
+                {{ row.sugerencia }}
+              </span>
+            </td>
+            <td class="text-center col-lpn">
+              <span class="monospace text-muted">{{ row.lpn || '-' }}</span>
+            </td>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="7" class="empty-message">
+              <i class="pi pi-check-circle"></i>
+              <p>✅ No hay registros para mostrar</p>
+              <small>Sube ambos archivos y haz clic en "Validar"</small>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+
+    <!-- ESTADO VACÍO SIN ANÁLISIS -->
+    <div class="empty-state" *ngIf="!analysisResult() && !loading()">
+      <i class="pi pi-sitemap"></i>
+      <p>Sube los archivos de Maestra e Inventario</p>
+      <small>y haz clic en "Validar" para comenzar el análisis</small>
+    </div>
+
+    <!-- LOADING OVERLAY -->
+    <div *ngIf="loading()" class="loading-overlay">
+      <div class="loading-content">
+        <p-progressSpinner
+          strokeWidth="4"
+          [style]="{ width: '60px', height: '60px' }"
+        ></p-progressSpinner>
+        <p>Procesando archivos...</p>
+        <small>Validando ubicaciones de SKUs</small>
+      </div>
+    </div>
+  </div>
+</section>

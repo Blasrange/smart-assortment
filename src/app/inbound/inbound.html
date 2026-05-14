@@ -1,0 +1,319 @@
+<div class="page-breadcrumb-fixed">
+  <p-breadcrumb
+    [model]="breadcrumbItems"
+    [home]="breadcrumbHome"
+    styleClass="app-breadcrumb"
+  ></p-breadcrumb>
+</div>
+
+<p-toast position="top-right"></p-toast>
+
+<section class="inbound-module">
+  <div class="table-container">
+    <!-- HEADER PRINCIPAL -->
+    <div class="table-header">
+      <div class="header-info">
+        <div class="logo-area">
+          <i class="pi pi-truck"></i>
+          <h2>Entrada de Mercancía Inbound</h2>
+        </div>
+        <div class="summary" *ngIf="analysisResult()">{{ analysisResult()?.summary }}</div>
+      </div>
+
+      <div class="header-actions">
+        <div class="search-wrapper">
+          <i class="pi pi-search search-icon"></i>
+          <input
+            type="text"
+            pInputText
+            [(ngModel)]="searchValue"
+            (input)="applySearchFilter()"
+            placeholder="Buscar en resultados..."
+            class="search-input"
+          />
+          <i
+            class="pi pi-times clear-icon"
+            *ngIf="searchValue"
+            (click)="searchValue = ''; clearFilters()"
+          ></i>
+        </div>
+
+        <button
+          pButton
+          icon="pi pi-filter-slash"
+          label="Limpiar"
+          class="p-button-outlined p-button-sm clear-btn"
+          (click)="clearFilters()"
+          pTooltip="Limpiar búsqueda y filtros"
+          tooltipPosition="top"
+        ></button>
+
+        <button
+          pButton
+          [icon]="useManualMapping ? 'pi pi-check-circle' : 'pi pi-refresh'"
+          [label]="useManualMapping ? 'Calcular con mapeo' : 'Calcular automático'"
+          class="p-button-outlined p-button-sm analyze-btn"
+          [disabled]="!sourceFile() || (useManualMapping && !hasMappedRequiredFields())"
+          (click)="calculateInbound()"
+          [pTooltip]="
+            useManualMapping
+              ? 'Calcula usando tu mapeo manual'
+              : 'Calcula usando el auto mapeo del sistema'
+          "
+          tooltipPosition="top"
+        ></button>
+
+        <button
+          pButton
+          icon="pi pi-sliders-h"
+          label="Mapeo avanzado"
+          class="p-button-outlined p-button-sm clear-btn"
+          [disabled]="!sourceFile() || !useManualMapping"
+          (click)="showMapping = !showMapping"
+          pTooltip="Ver/ocultar mapeo de columnas"
+          tooltipPosition="top"
+        ></button>
+
+        <button
+          pButton
+          icon="pi pi-file-excel"
+          label="Exportar Excel"
+          class="p-button-outlined p-button-sm export-btn"
+          *ngIf="analysisResult()"
+          (click)="exportToExcel()"
+          pTooltip="Descargar estructura final de entrada"
+          tooltipPosition="top"
+        ></button>
+      </div>
+    </div>
+
+    <div class="mode-selector">
+      <span class="mode-label">Modo de agrupacion:</span>
+      <button
+        type="button"
+        class="mode-btn"
+        [class.active]="!useManualMapping"
+        (click)="setCalculationMode(false)"
+      >
+        Sistema
+      </button>
+      <button
+        type="button"
+        class="mode-btn"
+        [class.active]="useManualMapping"
+        (click)="setCalculationMode(true)"
+      >
+        Mapeo manual
+      </button>
+    </div>
+
+    <!-- ÁREA DE SUBIDA DE ARCHIVOS -->
+    <div class="upload-area">
+      <div
+        class="drop-zone"
+        [class.dragging]="isDraggingSource()"
+        [class.has-file]="sourceFile()"
+        (dragover)="onDragOver($event)"
+        (dragleave)="onDragLeave($event)"
+        (drop)="onDrop($event)"
+      >
+        <ng-container *ngIf="sourceFile() as file; else noSourceFile">
+          <div class="drop-zone-content">
+            <i class="pi" [class.pi-upload]="!file" [class.pi-file-excel]="file"></i>
+            <div class="drop-zone-text">
+              <span class="title">{{ file.name }}</span>
+              <span class="subtitle"
+                >{{ formatFileSize(file.size || 0) }} • {{ file.uploadDate | date: 'short' }}</span
+              >
+            </div>
+            <div class="drop-zone-actions">
+              <button
+                pButton
+                type="button"
+                icon="pi pi-times"
+                class="p-button-rounded p-button-danger p-button-text p-button-sm"
+                (click)="removeFile(); $event.stopPropagation()"
+                pTooltip="Eliminar archivo"
+                tooltipPosition="left"
+              ></button>
+            </div>
+          </div>
+        </ng-container>
+
+        <ng-template #noSourceFile>
+          <div class="drop-zone-content">
+            <i class="pi pi-file-import"></i>
+            <div class="drop-zone-text">
+              <span class="title">📥 Archivo de Entrada</span>
+              <span class="subtitle">Arrastra o haz clic para subir (CSV, Excel)</span>
+            </div>
+          </div>
+        </ng-template>
+
+        <input
+          type="file"
+          (change)="onFileUpload($event)"
+          accept=".csv,.xlsx,.xls,.txt"
+          hidden
+          #sourceInput
+        />
+        <button class="hidden-button" type="button" (click)="sourceInput.click()"></button>
+      </div>
+    </div>
+
+    <!-- PANEL DE MAPEO -->
+    <div class="mapping-panel" *ngIf="sourceFile() && availableHeaders().length > 0 && showMapping">
+      <div class="mapping-header">
+        <h3>Mapeo dinámico y valores fijos</h3>
+        <div class="mapping-actions">
+          <button
+            pButton
+            type="button"
+            icon="pi pi-sparkles"
+            label="Auto mapear"
+            class="p-button-sm p-button-outlined"
+            (click)="autoMapHeaders()"
+          ></button>
+          <button
+            pButton
+            type="button"
+            icon="pi pi-eraser"
+            label="Limpiar"
+            class="p-button-sm p-button-outlined"
+            (click)="clearMappings()"
+          ></button>
+        </div>
+      </div>
+
+      <div class="mapping-grid">
+        <div class="mapping-row mapping-row-head">
+          <span>Campo destino</span>
+          <span>Columna origen</span>
+          <span>Valor fijo (opcional)</span>
+        </div>
+
+        <div class="mapping-row" *ngFor="let field of targetFields">
+          <span class="field-label">{{ field.label }}</span>
+
+          <select [(ngModel)]="mapping[field.key]" class="mapping-select">
+            <option value="">Sin mapear</option>
+            <option *ngFor="let header of availableHeaders()" [value]="header">{{ header }}</option>
+          </select>
+
+          <input
+            pInputText
+            type="text"
+            [(ngModel)]="fixedValues[field.key]"
+            class="fixed-input"
+            [placeholder]="
+              field.type === 'number' ? '0' : field.type === 'date' ? 'YYYY-MM-DD' : 'Texto fijo'
+            "
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- STATS CARDS -->
+    <div class="results-header" *ngIf="analysisResult()">
+      <div class="stats-cards">
+        <div class="stat-card stat-total">
+          <div class="stat-icon blue"><i class="pi pi-list"></i></div>
+          <div class="stat-info">
+            <div class="stat-value">{{ analysisResult()?.stats?.sourceRows || 0 }}</div>
+            <div class="stat-label">Filas Fuente</div>
+          </div>
+        </div>
+        <div class="stat-card stat-ok">
+          <div class="stat-icon green"><i class="pi pi-cog"></i></div>
+          <div class="stat-info">
+            <div class="stat-value">{{ analysisResult()?.stats?.processedRows || 0 }}</div>
+            <div class="stat-label">Procesadas</div>
+          </div>
+        </div>
+        <div class="stat-card stat-diferente">
+          <div class="stat-icon orange"><i class="pi pi-sitemap"></i></div>
+          <div class="stat-info">
+            <div class="stat-value">{{ analysisResult()?.stats?.groupedRows || 0 }}</div>
+            <div class="stat-label">Agrupadas SKU+LOTE</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TABLA DE RESULTADOS -->
+    <div class="table-wrapper" *ngIf="analysisResult()">
+      <p-table
+        #dtResults
+        [value]="filteredResults"
+        [loading]="loading()"
+        [paginator]="true"
+        [rows]="10"
+        [rowsPerPageOptions]="[10, 25, 50, 100]"
+        [paginatorDropdownAppendTo]="'body'"
+        [showCurrentPageReport]="true"
+        currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+        [globalFilterFields]="['N_ORDER', 'PURCHASE_ORDER', 'SKU', 'LOTE', 'SERIAL', 'NOTE']"
+        styleClass="p-datatable-sm custom-table"
+        [tableStyle]="{ 'min-width': '1900px' }"
+      >
+        <ng-template pTemplate="header">
+          <tr>
+            <th
+              *ngFor="let field of targetFields"
+              [pSortableColumn]="field.key"
+              [class.col-number]="isNumberField(field.key)"
+            >
+              <div class="column-header" [class.column-header-center]="isNumberField(field.key)">
+                <span>{{ field.label }}</span>
+                <div class="column-controls">
+                  <p-sortIcon [field]="field.key" />
+                  <p-columnFilter
+                    [type]="field.type === 'number' ? 'numeric' : 'text'"
+                    [field]="field.key"
+                    display="menu"
+                  />
+                </div>
+              </div>
+            </th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-row>
+          <tr>
+            <td *ngFor="let field of targetFields" [class.text-center]="isNumberField(field.key)">
+              <span *ngIf="!isNumberField(field.key)">{{ row[field.key] || '—' }}</span>
+              <span *ngIf="isNumberField(field.key)">{{ row[field.key] | number: '1.0-2' }}</span>
+            </td>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td [attr.colspan]="targetFields.length" class="empty-message">
+              <i class="pi pi-inbox"></i>
+              <p>No hay registros que coincidan con los filtros</p>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+
+    <!-- ESTADO VACÍO -->
+    <div class="empty-state" *ngIf="!analysisResult() && !loading()">
+      <i class="pi pi-file-import"></i>
+      <p>Sube un archivo, configura el mapeo y ejecuta el proceso de entrada</p>
+      <small>El resultado se agrupa automáticamente por SKU + LOTE</small>
+    </div>
+
+    <!-- LOADING OVERLAY -->
+    <div *ngIf="loading()" class="loading-overlay">
+      <div class="loading-content">
+        <p-progressSpinner
+          strokeWidth="4"
+          [style]="{ width: '60px', height: '60px' }"
+        ></p-progressSpinner>
+        <p>Procesando archivo...</p>
+      </div>
+    </div>
+  </div>
+</section>

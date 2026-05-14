@@ -1,25 +1,113 @@
 <div class="home-container">
-  <!-- Layout principal -->
-  <div class="hero">
-    <aside class="table-sidebar">
-      <p class="sidebar-label">Tablas del sistema</p>
-      <ul class="table-name-list">
-        <li *ngFor="let section of tableSections" class="table-name-item">
-          <span class="table-name">{{ section.name }}</span>
-          <span class="table-detail">{{ section.description }}</span>
-        </li>
-      </ul>
-    </aside>
-
+  <div class="hero-section">
     <div class="hero-content">
-      <div class="table-card">
-        <h1 class="hero-title">
-          Gestion inteligente<br>de inventario
-        </h1>
-        <p class="hero-description">
-          Analiza ventas, optimiza tu surtido y maximiza tu rentabilidad
-        </p>
+      <div class="badge-container">
+        <div class="badge">
+          <i class="pi pi-sparkles"></i>
+          <span>✨ Plataforma Inteligente</span>
+        </div>
+      </div>
+
+      <h1 class="hero-title">
+        Centro de Operaciones
+        <span class="gradient-text">Logísticas</span>
+      </h1>
+
+      <p class="hero-description">
+        Ejecuta análisis de surtido, cruces de inventario, transformación de entradas, exportación
+        de inventario y generación de etiquetas en un flujo modular, rápido y listo para operación
+        diaria.
+      </p>
+
+      <div class="steps-card">
+        <div class="steps-header">
+          <div class="steps-icon">
+            <i class="pi pi-rocket"></i>
+          </div>
+          <span class="steps-title">Comienza en 3 pasos</span>
+        </div>
+        <ol class="steps-list">
+          <li class="step-item">
+            <div class="step-number purple">1</div>
+            <span>Selecciona un módulo de análisis.</span>
+          </li>
+          <li class="step-item">
+            <div class="step-number green">2</div>
+            <span>Carga tus archivos en la vista.</span>
+          </li>
+          <li class="step-item">
+            <div class="step-number orange">3</div>
+            <span>Actualiza y descarga resultados.</span>
+          </li>
+        </ol>
       </div>
     </div>
+
+    <div class="hero-visual">
+      <!-- Módulos como tarjetas flotantes - Lado izquierdo -->
+      <div class="floating-card module-card-floating" (click)="navigateTo('inbound')">
+        <div class="floating-icon blue">
+          <i class="pi pi-download"></i>
+        </div>
+        <div class="floating-info">
+          <span class="floating-title">Entrada</span>
+          <span class="floating-sub">Inbound</span>
+        </div>
+        <i class="pi pi-arrow-right"></i>
+      </div>
+
+      <div class="floating-card module-card-floating" (click)="navigateTo('outbound')">
+        <div class="floating-icon green">
+          <i class="pi pi-upload"></i>
+        </div>
+        <div class="floating-info">
+          <span class="floating-title">Salida</span>
+          <span class="floating-sub">Outbound</span>
+        </div>
+        <i class="pi pi-arrow-right"></i>
+      </div>
+
+      <div class="floating-card module-card-floating" (click)="navigateTo('sales')">
+        <div class="floating-icon purple">
+          <i class="pi pi-chart-line"></i>
+        </div>
+        <div class="floating-info">
+          <span class="floating-title">Ventas</span>
+          <span class="floating-sub">Análisis</span>
+        </div>
+        <i class="pi pi-arrow-right"></i>
+      </div>
+
+      <div class="floating-card module-card-floating" (click)="navigateTo('cross-inventory')">
+        <div class="floating-icon orange">
+          <i class="pi pi-box"></i>
+        </div>
+        <div class="floating-info">
+          <span class="floating-title">Cruce de Inventario</span>
+          <span class="floating-sub">Catálogo</span>
+        </div>
+        <i class="pi pi-arrow-right"></i>
+      </div>
+
+      <!-- Tarjetas flotantes originales - Lado derecho -->
+      <div class="floating-card card-1">
+        <i class="pi pi-chart-line"></i>
+        <span>Análisis en tiempo real</span>
+      </div>
+      <div class="floating-card card-2">
+        <i class="pi pi-file-excel"></i>
+        <span>Exportación Excel</span>
+      </div>
+      <div class="floating-card card-3">
+        <i class="pi pi-link"></i>
+        <span>Cruce inteligente</span>
+      </div>
+
+      <!-- Orbes decorativos -->
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+    </div>
   </div>
+  <p-toast position="top-right"></p-toast>
 </div>

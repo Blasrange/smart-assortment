@@ -17,33 +17,61 @@ import * as XLSX from 'xlsx';
 // ============================================================
 // CONFIGURACIÓN DE ANÁLISIS
 // ============================================================
-const VALID_STATUSES = ["STOCK EN ALMACEN LIBRE", "DISPONIBLE", "13 - CCL  DISPONIBLE"];
-const IGNORED_LOCATIONS = ["PDIF-INV-1-10", "DEV-1-10", "PDIF-RES-1-10", "DEV-RES-1-10",];
-const PICKING_LEVELS = ["0", "2", "3", "4", "5", "6", "7", "8", "9", "10", "15"];
+const VALID_STATUSES = ['STOCK EN ALMACEN LIBRE', 'DISPONIBLE', '13 - CCL  DISPONIBLE'];
+const IGNORED_LOCATIONS = ['PDIF-INV-1-10', 'DEV-1-10', 'PDIF-RES-1-10', 'DEV-RES-1-10'];
+const PICKING_LEVELS = ['0', '2', '3', '4', '5', '6', '7', '8', '9', '10', '15'];
 const RESERVE_LEVELS = ['20', '30', '40', '50', '60', '70'];
-const ADDITIONAL_RESERVE_LOCATIONS = ["MUELLE ENTRADA"];
+const ADDITIONAL_RESERVE_LOCATIONS = ['MUELLE ENTRADA'];
 const THRESHOLD_VENTAS_ALTAS = 10;
 
 // ============================================================
 // MAPPINGS DE COLUMNAS
 // ============================================================
 export const salesColumnMapping = {
-  material: ["Material", "ID de Producto", "codigo", "Material", "SKU", "Código", "CODIGO", "CODE"],
-  descripcion: ["Descripción", "Nombre de Artículo", "Descripcion", "Producto", "DESCRIPCION", "PRODUCTO"],
-  cantidadConfirmada: ["cantidad confirmada", "Cant. Facturada", "Cantidad", "Qty", "Unidades", "CANTIDAD", "QTY"],
+  material: ['Material', 'ID de Producto', 'codigo', 'Material', 'SKU', 'Código', 'CODIGO', 'CODE'],
+  descripcion: [
+    'Descripción',
+    'Nombre de Artículo',
+    'Descripcion',
+    'Producto',
+    'DESCRIPCION',
+    'PRODUCTO',
+  ],
+  cantidadConfirmada: [
+    'cantidad confirmada',
+    'Cant. Facturada',
+    'Cantidad',
+    'Qty',
+    'Unidades',
+    'CANTIDAD',
+    'QTY',
+  ],
 };
 
 export const inventoryColumnMapping = {
-  sku: ["SKU", "Item Code", "Codigo", "Código", "Material", "CODIGO", "CODE"],
-  lpn: ["LPN", "Pallet ID", "Lpn", "License Plate", "LOTE"],
-  descripcion: ["Descripcion", "Description", "Descripción", "Producto", "DESCRIPCION"],
-  localizacion: ["Localizacion", "Location", "Ubicación", "Posición", "LOCATION"],
-  disponible: ["Disponible", "Available", "Cantidad", "Unidades", "Stock", "DISPO", "STOCK"],
-  estado: ["Estado", "Status", "Condición", "Situación", "ESTADO"],
-  fechaEntrada: ["Fecha de entrada", "Fecha Entrada", "Fecha ingreso", "Entry Date", "Receipt Date", "FECHA_ENTRADA"],
-  fechaVencimiento: ["Fecha de vencimiento", "Expiration", "fecha caducidad", "Expiry Date", "FECHA_VENC"],
-  diasFPC: ["FPC", "Days to Exp", "DIAS FPC", "Días FPC", "Fech. Porc. Cons.", "DIAS_RESTANTES"],
-  lote: ["Lote", "Batch", "Ce. Lote", "Lot", "LOTE"],
+  sku: ['SKU', 'Item Code', 'Codigo', 'Código', 'Material', 'CODIGO', 'CODE'],
+  lpn: ['LPN', 'Pallet ID', 'Lpn', 'License Plate', 'LOTE'],
+  descripcion: ['Descripcion', 'Description', 'Descripción', 'Producto', 'DESCRIPCION'],
+  localizacion: ['Localizacion', 'Location', 'Ubicación', 'Posición', 'LOCATION'],
+  disponible: ['Disponible', 'Available', 'Cantidad', 'Unidades', 'Stock', 'DISPO', 'STOCK'],
+  estado: ['Estado', 'Status', 'Condición', 'Situación', 'ESTADO'],
+  fechaEntrada: [
+    'Fecha de entrada',
+    'Fecha Entrada',
+    'Fecha ingreso',
+    'Entry Date',
+    'Receipt Date',
+    'FECHA_ENTRADA',
+  ],
+  fechaVencimiento: [
+    'Fecha de vencimiento',
+    'Expiration',
+    'fecha caducidad',
+    'Expiry Date',
+    'FECHA_VENC',
+  ],
+  diasFPC: ['FPC', 'Days to Exp', 'DIAS FPC', 'Días FPC', 'Fech. Porc. Cons.', 'DIAS_RESTANTES'],
+  lote: ['Lote', 'Batch', 'Ce. Lote', 'Lot', 'LOTE'],
 };
 
 // ============================================================
@@ -137,25 +165,25 @@ interface FileData {
     TagModule,
     BreadcrumbModule,
     ToastModule,
-],
+  ],
   providers: [MessageService],
   templateUrl: './sales.html',
-  styleUrls: ['./sales.css']
+  styleUrls: ['./sales.css'],
 })
 export class Sales {
-analizarArchivos() {
-throw new Error('Method not implemented.');
-}
+  analizarArchivos() {
+    throw new Error('Method not implemented.');
+  }
   @ViewChild('dt1') dt1!: Table;
   @ViewChild('dt2') dt2!: Table;
-  
+
   // Signals
   salesFile = signal<FileData | null>(null);
   inventoryFile = signal<FileData | null>(null);
   analysisResult = signal<AnalysisResult | null>(null);
   loading = signal(false);
   error = signal<string | null>(null);
-  
+
   // Properties
   activeTab: 'missing' | 'suggestions' = 'missing';
   searchValue: string = '';
@@ -163,15 +191,15 @@ throw new Error('Method not implemented.');
   isExpandedAll: boolean = false;
   readonly breadcrumbItems: MenuItem[] = [{ label: 'Ventas', routerLink: '/sales' }];
   readonly breadcrumbHome: MenuItem = { icon: 'pi pi-home', label: 'Inicio', routerLink: '/' };
-  
+
   // Header maps
   salesHeaderMap: Record<string, string> = {};
   inventoryHeaderMap: Record<string, string> = {};
-  
+
   // Drag and drop
   isDraggingSales = signal(false);
   isDraggingInventory = signal(false);
-  
+
   // Column visibility
   visibleColumns: Record<string, boolean> = {
     sku: true,
@@ -180,27 +208,27 @@ throw new Error('Method not implemented.');
     cantidadDisponible: true,
     cantidadARestockear: true,
     cantidadFaltante: true,
-    ubicaciones: true
+    ubicaciones: true,
   };
 
   // Getters para separar la lógica de filtrado por cada pestaña
   get filteredMissingProducts() {
-    return (this.analysisResult()?.missingProducts || []).filter(m => m.cantidadFaltante > 0);
+    return (this.analysisResult()?.missingProducts || []).filter((m) => m.cantidadFaltante > 0);
   }
 
   get filteredRestockSuggestions() {
     return (this.analysisResult()?.suggestions || []).filter(
-      s => s.cantidadARestockear > 0 && s.tipoFalta !== 'SIN_INVENTARIO'
+      (s) => s.cantidadARestockear > 0 && s.tipoFalta !== 'SIN_INVENTARIO',
     );
   }
 
   get missingSkusSummary(): string {
-    const skus = this.filteredMissingProducts.map(item => String(item.sku).trim());
+    const skus = this.filteredMissingProducts.map((item) => String(item.sku).trim());
     return skus.length ? skus.join(', ') : 'Sin SKUs faltantes';
   }
 
   get restockSkusSummary(): string {
-    const skus = this.filteredRestockSuggestions.map(item => String(item.sku).trim());
+    const skus = this.filteredRestockSuggestions.map((item) => String(item.sku).trim());
     return skus.length ? skus.join(', ') : 'Sin SKUs para surtido';
   }
 
@@ -208,7 +236,7 @@ throw new Error('Method not implemented.');
 
   constructor(
     @Inject(PLATFORM_ID) platformId: Object,
-    private messageService: MessageService, 
+    private messageService: MessageService,
     private primeng: PrimeNG,
   ) {
     this.isBrowser = isPlatformBrowser(platformId);
@@ -246,11 +274,11 @@ throw new Error('Method not implemented.');
   // ============================================================
   // MÉTODOS DE UI
   // ============================================================
-  
+
   toggleColumn(column: string) {
     this.visibleColumns[column] = !this.visibleColumns[column];
   }
-  
+
   toggleExpandAll() {
     if (!this.dt2) return;
 
@@ -260,7 +288,7 @@ throw new Error('Method not implemented.');
     } else {
       const suggestions = this.analysisResult()?.suggestions || [];
       const allExpanded: { [key: string]: boolean } = {};
-      suggestions.forEach(s => {
+      suggestions.forEach((s) => {
         if (s && s.sku) {
           allExpanded[s.sku] = true;
         }
@@ -270,7 +298,7 @@ throw new Error('Method not implemented.');
       this.isExpandedAll = true;
     }
   }
-  
+
   clearFilters() {
     if (this.dt1) {
       this.dt1.clear();
@@ -281,63 +309,75 @@ throw new Error('Method not implemented.');
       this.dt2.filterGlobal('', 'contains');
     }
     this.searchValue = '';
-    this.messageService.add({ 
-      severity: 'info', 
-      summary: 'Filtros limpiados', 
-      detail: 'Se han eliminado todos los filtros', 
-      life: 3000 
+    this.messageService.add({
+      severity: 'info',
+      summary: 'Filtros limpiados',
+      detail: 'Se han eliminado todos los filtros',
+      life: 3000,
     });
   }
-  
+
   // ============================================================
   // MÉTODOS DE ESTADÍSTICAS
   // ============================================================
-  
+
   getTotalProducts(): number {
     return this.analysisResult()?.suggestions?.length || 0;
   }
-  
+
   getProductsToRestock(): number {
     return this.filteredRestockSuggestions.length;
   }
-  
+
   getMissingProductsCount(): number {
     return this.filteredMissingProducts.length;
   }
-  
+
   getTotalUnitsToRestock(): number {
-    return this.analysisResult()?.suggestions?.reduce((sum, s) => sum + s.cantidadARestockear, 0) || 0;
+    return (
+      this.analysisResult()?.suggestions?.reduce((sum, s) => sum + s.cantidadARestockear, 0) || 0
+    );
   }
-  
+
   getTotalMissingUnits(): number {
-    return this.analysisResult()?.missingProducts?.reduce((sum, m) => sum + m.cantidadFaltante, 0) || 0;
+    return (
+      this.analysisResult()?.missingProducts?.reduce((sum, m) => sum + m.cantidadFaltante, 0) || 0
+    );
   }
-  
+
   getCoberturaPorcentaje(): number {
     const result = this.analysisResult();
     if (!result) return 0;
     const totalVendido = result.suggestions.reduce((sum, s) => sum + s.cantidadVendida, 0);
-    const totalCubierto = result.suggestions.reduce((sum, s) => sum + (s.cantidadDisponible + s.cantidadARestockear), 0);
+    const totalCubierto = result.suggestions.reduce(
+      (sum, s) => sum + (s.cantidadDisponible + s.cantidadARestockear),
+      0,
+    );
     if (totalVendido === 0) return 100;
     return Math.round((totalCubierto / totalVendido) * 100);
   }
-  
-  getTipoFaltaSeverity(tipoFalta: string): 'success' | 'info' | 'warn' | 'danger' | 'secondary' | 'contrast' {
-    const severities: Record<string, 'success' | 'info' | 'warn' | 'danger' | 'secondary' | 'contrast'> = {
-      'SIN_INVENTARIO': 'danger',
-      'SIN_RESERVA': 'danger',
-      'RESERVA_INSUFICIENTE': 'warn',
-      'OK': 'success'
+
+  getTipoFaltaSeverity(
+    tipoFalta: string,
+  ): 'success' | 'info' | 'warn' | 'danger' | 'secondary' | 'contrast' {
+    const severities: Record<
+      string,
+      'success' | 'info' | 'warn' | 'danger' | 'secondary' | 'contrast'
+    > = {
+      SIN_INVENTARIO: 'danger',
+      SIN_RESERVA: 'danger',
+      RESERVA_INSUFICIENTE: 'warn',
+      OK: 'success',
     };
     return severities[tipoFalta] || 'info';
   }
-  
+
   getTipoFaltaIcon(tipoFalta: string): string {
     const icons: Record<string, string> = {
-      'SIN_INVENTARIO': 'pi-times-circle',
-      'SIN_RESERVA': 'pi-ban',
-      'RESERVA_INSUFICIENTE': 'pi-exclamation-triangle',
-      'OK': 'pi-check-circle'
+      SIN_INVENTARIO: 'pi-times-circle',
+      SIN_RESERVA: 'pi-ban',
+      RESERVA_INSUFICIENTE: 'pi-exclamation-triangle',
+      OK: 'pi-check-circle',
     };
     return icons[tipoFalta] || 'pi-info-circle';
   }
@@ -346,10 +386,10 @@ throw new Error('Method not implemented.');
     if (!tipoFalta) return '';
     const normalized = tipoFalta.toUpperCase();
     const labels: Record<string, string> = {
-      'SIN_INVENTARIO': 'Sin inventario',
-      'SIN_RESERVA': 'Sin reserva',
-      'RESERVA_INSUFICIENTE': 'Reserva insuficiente',
-      'OK': 'Ok'
+      SIN_INVENTARIO: 'Sin inventario',
+      SIN_RESERVA: 'Sin reserva',
+      RESERVA_INSUFICIENTE: 'Reserva insuficiente',
+      OK: 'Ok',
     };
 
     if (labels[normalized]) {
@@ -377,13 +417,17 @@ throw new Error('Method not implemented.');
       return 'status-insufficient';
     }
 
-    if (normalized === 'OK' || normalized.includes('COMPLETO') || normalized.includes('COBERTURA')) {
+    if (
+      normalized === 'OK' ||
+      normalized.includes('COMPLETO') ||
+      normalized.includes('COBERTURA')
+    ) {
       return 'status-ok';
     }
 
     return 'status-neutral';
   }
-  
+
   formatFileSize(bytes: number): string {
     if (bytes === 0) return '0 Bytes';
     const k = 1024;
@@ -395,7 +439,7 @@ throw new Error('Method not implemented.');
   // ============================================================
   // MANEJO DE ARCHIVOS
   // ============================================================
-  
+
   onDragOver(event: DragEvent, type: 'sales' | 'inventory') {
     event.preventDefault();
     event.stopPropagation();
@@ -405,7 +449,7 @@ throw new Error('Method not implemented.');
       this.isDraggingInventory.set(true);
     }
   }
-  
+
   onDragLeave(event: DragEvent, type: 'sales' | 'inventory') {
     event.preventDefault();
     event.stopPropagation();
@@ -415,33 +459,33 @@ throw new Error('Method not implemented.');
       this.isDraggingInventory.set(false);
     }
   }
-  
+
   onDrop(event: DragEvent, type: 'sales' | 'inventory') {
     event.preventDefault();
     event.stopPropagation();
-    
+
     if (type === 'sales') {
       this.isDraggingSales.set(false);
     } else {
       this.isDraggingInventory.set(false);
     }
-    
+
     const files = event.dataTransfer?.files;
     if (files && files.length > 0) {
       this.processFile(files[0], type);
     }
   }
-  
+
   onFileUpload(type: 'sales' | 'inventory', event: Event) {
     if (!this.isBrowser) return;
-    
+
     const input = event.target as HTMLInputElement;
     const file = input.files?.[0];
     if (!file) return;
-    
+
     this.processFile(file, type);
   }
-  
+
   private processFile(file: File, type: 'sales' | 'inventory') {
     if (!this.isBrowser) return;
 
@@ -452,7 +496,7 @@ throw new Error('Method not implemented.');
         severity: 'error',
         summary: 'Error',
         detail: 'Formato no soportado. Use CSV, Excel o TXT',
-        life: 5000
+        life: 5000,
       });
       return;
     }
@@ -478,16 +522,16 @@ throw new Error('Method not implemented.');
             severity: 'error',
             summary: 'Error',
             detail: 'No se pudo leer el archivo Excel',
-            life: 5000
+            life: 5000,
           });
           return;
         }
       } else if (typeof data === 'string') {
-        const lines = data.split(/\r?\n/).filter(l => l.trim().length > 0);
+        const lines = data.split(/\r?\n/).filter((l) => l.trim().length > 0);
         if (lines.length > 0) {
           let delimiter = ',';
           if (lines[0].includes(';')) delimiter = ';';
-          headers = lines[0].split(delimiter).map(h => h.trim().replace(/^['"]|['"]$/g, ''));
+          headers = lines[0].split(delimiter).map((h) => h.trim().replace(/^['"]|['"]$/g, ''));
         }
       }
 
@@ -501,11 +545,11 @@ throw new Error('Method not implemented.');
         mapping = inventoryColumnMapping;
         requiredKeys = ['sku', 'descripcion', 'localizacion', 'disponible', 'estado'];
       }
-      const headersLower = headers.map(h => h.toLowerCase().trim());
+      const headersLower = headers.map((h) => h.toLowerCase().trim());
       const missing: string[] = [];
       for (const key of requiredKeys) {
-        const aliases = mapping[key].map(a => a.toLowerCase().trim());
-        const found = headersLower.some(h => aliases.includes(h));
+        const aliases = mapping[key].map((a) => a.toLowerCase().trim());
+        const found = headersLower.some((h) => aliases.includes(h));
         if (!found) {
           // Mostrar el primer alias como nombre de columna esperada
           missing.push(mapping[key][0]);
@@ -516,7 +560,7 @@ throw new Error('Method not implemented.');
           severity: 'error',
           summary: 'Columnas faltantes',
           detail: `El archivo no contiene las columnas requeridas: ${missing.join(', ')}`,
-          life: 7000
+          life: 7000,
         });
         return;
       }
@@ -526,7 +570,7 @@ throw new Error('Method not implemented.');
         name: file.name,
         data: data,
         size: file.size,
-        uploadDate: new Date()
+        uploadDate: new Date(),
       };
 
       if (type === 'sales') {
@@ -540,7 +584,7 @@ throw new Error('Method not implemented.');
               severity: 'success',
               summary: 'Archivo cargado',
               detail: `Ventas: ${rows.length} registros encontrados`,
-              life: 3000
+              life: 3000,
             });
           }
         }
@@ -555,7 +599,7 @@ throw new Error('Method not implemented.');
               severity: 'success',
               summary: 'Archivo cargado',
               detail: `Inventario: ${rows.length} registros encontrados`,
-              life: 3000
+              life: 3000,
             });
           }
         }
@@ -567,7 +611,7 @@ throw new Error('Method not implemented.');
         severity: 'error',
         summary: 'Error',
         detail: 'No se pudo leer el archivo',
-        life: 5000
+        life: 5000,
       });
     };
 
@@ -578,7 +622,7 @@ throw new Error('Method not implemented.');
       reader.readAsText(file, 'UTF-8');
     }
   }
-  
+
   removeFile(type: 'sales' | 'inventory') {
     if (type === 'sales') {
       this.salesFile.set(null);
@@ -588,62 +632,62 @@ throw new Error('Method not implemented.');
       this.inventoryHeaderMap = {};
     }
     this.analysisResult.set(null);
-    this.messageService.add({ 
-      severity: 'info', 
-      summary: 'Archivo removido', 
-      detail: `Se ha eliminado el archivo de ${type === 'sales' ? 'ventas' : 'inventario'}`, 
-      life: 3000 
+    this.messageService.add({
+      severity: 'info',
+      summary: 'Archivo removido',
+      detail: `Se ha eliminado el archivo de ${type === 'sales' ? 'ventas' : 'inventario'}`,
+      life: 3000,
     });
   }
-  
+
   // ============================================================
   // ANÁLISIS PRINCIPAL
   // ============================================================
-  
+
   generateSalesAnalysis() {
     if (!this.salesFile() || !this.inventoryFile()) {
-      this.messageService.add({ 
-        severity: 'warn', 
-        summary: 'Archivos faltantes', 
-        detail: 'Debes subir ambos archivos (Ventas e Inventario) para analizar', 
-        life: 5000 
+      this.messageService.add({
+        severity: 'warn',
+        summary: 'Archivos faltantes',
+        detail: 'Debes subir ambos archivos (Ventas e Inventario) para analizar',
+        life: 5000,
       });
       return;
     }
-    
+
     this.loading.set(true);
     this.error.set(null);
-    
+
     setTimeout(() => {
       try {
         const result = this.processAnalysis();
         this.analysisResult.set(result);
         this.loading.set(false);
-        
-        this.messageService.add({ 
-          severity: 'success', 
-          summary: 'Análisis completado', 
-          detail: result.summary, 
-          life: 5000 
+
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Análisis completado',
+          detail: result.summary,
+          life: 5000,
         });
       } catch (err) {
         const errorMsg = 'Error al procesar los archivos: ' + (err as Error).message;
         this.error.set(errorMsg);
         this.loading.set(false);
-        this.messageService.add({ 
-          severity: 'error', 
-          summary: 'Error', 
-          detail: errorMsg, 
-          life: 7000 
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: errorMsg,
+          life: 7000,
         });
       }
     }, 100);
   }
-  
+
   // ============================================================
   // EXPORTAR RESULTADOS
   // ============================================================
-  
+
   exportToExcel() {
     const result = this.analysisResult();
     if (!result) return;
@@ -652,26 +696,46 @@ throw new Error('Method not implemented.');
 
     // ── Hoja 1: Surtido (una fila por ubicación origen) ──────
     const surtidoData: any[][] = [
-      ['SKU', 'Descripción', 'Vendido', 'Stock Picking', 'Cant. a Surtir',
-       'Ubicación Origen', 'LPN Origen', 'Tipo', 'Estiba', 'Cubierto', 'Faltante']
+      [
+        'SKU',
+        'Descripción',
+        'Vendido',
+        'Stock Picking',
+        'Cant. a Surtir',
+        'Ubicación Origen',
+        'LPN Origen',
+        'Tipo',
+        'Estiba',
+        'Cubierto',
+        'Faltante',
+      ],
     ];
     for (const s of this.filteredRestockSuggestions) {
       const locs = s.ubicacionesSugeridas;
       if (locs.length === 0) {
         surtidoData.push([
-          s.sku, s.descripcion, s.cantidadVendida, s.cantidadDisponible,
-          0, '', '', '', '', 0, s.cantidadFaltante
+          s.sku,
+          s.descripcion,
+          s.cantidadVendida,
+          s.cantidadDisponible,
+          0,
+          '',
+          '',
+          '',
+          '',
+          0,
+          s.cantidadFaltante,
         ]);
         continue;
       }
       locs.forEach((u, idx) => {
-        const esPallet = (u.esEstibaCompleta === true) || (u.cantidad > 10);
-        const tipo  = esPallet ? '✅ Pallet Completo'   : '🔄 Unidades Parciales';
+        const esPallet = u.esEstibaCompleta === true || u.cantidad > 10;
+        const tipo = esPallet ? '✅ Pallet Completo' : '🔄 Unidades Parciales';
         const estiba = esPallet ? '📦 SI' : '📦 NO';
         surtidoData.push([
           s.sku,
           s.descripcion,
-          idx === 0 ? s.cantidadVendida    : 0,
+          idx === 0 ? s.cantidadVendida : 0,
           idx === 0 ? s.cantidadDisponible : 0,
           u.cantidad,
           u.localizacion,
@@ -679,17 +743,17 @@ throw new Error('Method not implemented.');
           tipo,
           estiba,
           idx === 0 ? s.cantidadARestockear : 0,
-          idx === 0 ? s.cantidadFaltante    : 0
+          idx === 0 ? s.cantidadFaltante : 0,
         ]);
       });
     }
     const wsSurtido = XLSX.utils.aoa_to_sheet(surtidoData);
-    wsSurtido['!cols'] = [12, 50, 10, 14, 14, 14, 14, 22, 10, 10, 10].map(w => ({ wch: w }));
+    wsSurtido['!cols'] = [12, 50, 10, 14, 14, 14, 14, 22, 10, 10, 10].map((w) => ({ wch: w }));
     XLSX.utils.book_append_sheet(wb, wsSurtido, 'Surtido');
 
     // ── Hoja 2: Faltantes ────────────────────────────────────
     const faltantesData: any[][] = [
-      ['SKU', 'Descripción', 'Vendidas', 'Stock Picking', 'Stock Reserva', 'Faltante', 'Estado']
+      ['SKU', 'Descripción', 'Vendidas', 'Stock Picking', 'Stock Reserva', 'Faltante', 'Estado'],
     ];
     for (const m of this.filteredMissingProducts) {
       faltantesData.push([
@@ -699,11 +763,11 @@ throw new Error('Method not implemented.');
         m.stockEnPicking ?? 0,
         m.stockEnReserva ?? 0,
         m.cantidadFaltante,
-        m.tipoFalta
+        m.tipoFalta,
       ]);
     }
     const wsFaltantes = XLSX.utils.aoa_to_sheet(faltantesData);
-    wsFaltantes['!cols'] = [10, 45, 10, 14, 14, 10, 20].map(w => ({ wch: w }));
+    wsFaltantes['!cols'] = [10, 45, 10, 14, 14, 10, 20].map((w) => ({ wch: w }));
     XLSX.utils.book_append_sheet(wb, wsFaltantes, 'Faltantes');
 
     // ── Descargar ────────────────────────────────────────────
@@ -714,10 +778,10 @@ throw new Error('Method not implemented.');
       severity: 'success',
       summary: 'Exportado',
       detail: 'Archivo Excel generado con hojas Surtido y Faltantes',
-      life: 3000
+      life: 3000,
     });
   }
-  
+
   private escapeCSV(str: any): string {
     if (str === undefined || str === null) return '';
     const stringified = String(str);
@@ -726,20 +790,23 @@ throw new Error('Method not implemented.');
     }
     return stringified;
   }
-  
+
   // ============================================================
   // MÉTODOS PRIVADOS DE PROCESAMIENTO
   // ============================================================
-  
-  private mapHeadersToStandard(headers: string[], mapping: Record<string, string[]>): Record<string, string> {
+
+  private mapHeadersToStandard(
+    headers: string[],
+    mapping: Record<string, string[]>,
+  ): Record<string, string> {
     const result: Record<string, string> = {};
-    const headersLower = headers.map(h => h.toLowerCase().trim());
+    const headersLower = headers.map((h) => h.toLowerCase().trim());
 
     for (const key in mapping) {
       // Iterar aliases en orden de prioridad: el primer alias que coincida con
       // algún header gana. Así "SKU" tiene prioridad sobre "Codigo" aunque
       // "Codigo" aparezca antes en el archivo.
-      const aliases = mapping[key].map(a => a.toLowerCase().trim());
+      const aliases = mapping[key].map((a) => a.toLowerCase().trim());
       for (const alias of aliases) {
         const foundIndex = headersLower.indexOf(alias);
         if (foundIndex !== -1) {
@@ -750,37 +817,37 @@ throw new Error('Method not implemented.');
     }
     return result;
   }
-  
+
   private parseCSV(data: string): any[] {
-    const lines = data.split(/\r?\n/).filter(l => l.trim().length > 0);
+    const lines = data.split(/\r?\n/).filter((l) => l.trim().length > 0);
     if (lines.length < 2) return [];
-    
+
     let delimiter = ',';
     if (lines[0].includes(';')) {
       delimiter = ';';
     }
-    
-    const headers = lines[0].split(delimiter).map(h => h.trim().replace(/^["']|["']$/g, ''));
-    return lines.slice(1).map(line => {
+
+    const headers = lines[0].split(delimiter).map((h) => h.trim().replace(/^["']|["']$/g, ''));
+    return lines.slice(1).map((line) => {
       const values = line.split(delimiter);
       const obj: any = {};
-      headers.forEach((h, i) => { 
-        obj[h] = values[i] ? values[i].trim().replace(/^["']|["']$/g, '') : ''; 
+      headers.forEach((h, i) => {
+        obj[h] = values[i] ? values[i].trim().replace(/^["']|["']$/g, '') : '';
       });
       return obj;
     });
   }
-  
+
   private parseFileData(data: string | ArrayBuffer, fileName: string): any[] {
     const ext = fileName.split('.').pop()?.toLowerCase();
-    
+
     if (ext === 'csv' || ext === 'txt') {
       if (typeof data === 'string') {
         return this.parseCSV(data);
       }
       return [];
     }
-    
+
     if ((ext === 'xlsx' || ext === 'xls') && typeof data === 'string') {
       try {
         const workbook = XLSX.read(data, { type: 'binary' });
@@ -792,47 +859,47 @@ throw new Error('Method not implemented.');
         return [];
       }
     }
-    
+
     return typeof data === 'string' ? this.parseCSV(data) : [];
   }
-  
+
   private sortByFefo(a: LocationData, b: LocationData): number {
     const aFpc = a.diasFPC;
     const bFpc = b.diasFPC;
-    
+
     if (aFpc != null && bFpc != null && aFpc !== bFpc) {
       return aFpc - bFpc;
     }
     if (aFpc != null && bFpc == null) return -1;
     if (aFpc == null && bFpc != null) return 1;
-    
+
     const aDate = a.fechaVencimiento ? new Date(a.fechaVencimiento).getTime() : null;
     const bDate = b.fechaVencimiento ? new Date(b.fechaVencimiento).getTime() : null;
-    
+
     if (aDate && bDate && aDate !== bDate) return aDate - bDate;
     if (aDate && !bDate) return -1;
     if (!aDate && bDate) return 1;
-    
+
     return 0;
   }
-  
+
   private getNestedValue(obj: any, path: string, defaultValue: any = ''): any {
     if (!obj || !path) return defaultValue;
     const value = obj[path];
     if (value === undefined || value === null || value === '') return defaultValue;
     return value;
   }
-  
+
   private processAnalysis(): AnalysisResult {
     const salesRaw = this.salesFile()?.data;
     const inventoryRaw = this.inventoryFile()?.data;
     const salesName = this.salesFile()?.name || '';
     const inventoryName = this.inventoryFile()?.name || '';
-    
+
     if (typeof salesRaw !== 'string' || typeof inventoryRaw !== 'string') {
       throw new Error('Archivos no válidos');
     }
-    
+
     const salesRows = this.parseFileData(salesRaw, salesName);
     const inventoryRows = this.parseFileData(inventoryRaw, inventoryName);
     const salesMap = this.salesHeaderMap;
@@ -841,23 +908,28 @@ throw new Error('Method not implemented.');
     // 1. Filtrar inventario válido
     // Se acepta si el estado contiene algún valor válido O si no hay campo estado reconocible
     // para no descartar inventario por problema de mapeo de columna.
-    const freeStockInventory = inventoryRows.filter(item => {
+    const freeStockInventory = inventoryRows.filter((item) => {
       const estadoRaw = this.getNestedValue(item, invMap['estado'] || 'Estado', null);
       const estado = String(estadoRaw ?? '').toUpperCase();
-      const loc = String(this.getNestedValue(item, invMap['localizacion'] || 'Localizacion', '')).toUpperCase();
-      const isIgnoredLoc = IGNORED_LOCATIONS.some(iloc => loc.includes(iloc.toUpperCase()));
+      const loc = String(
+        this.getNestedValue(item, invMap['localizacion'] || 'Localizacion', ''),
+      ).toUpperCase();
+      const isIgnoredLoc = IGNORED_LOCATIONS.some((iloc) => loc.includes(iloc.toUpperCase()));
       // Si no se puede leer el estado, incluir el item (mejor tener de más que de menos)
-      const estadoOk = estado === '' || VALID_STATUSES.some(s => estado.includes(s.toUpperCase()));
+      const estadoOk =
+        estado === '' || VALID_STATUSES.some((s) => estado.includes(s.toUpperCase()));
       return estadoOk && !isIgnoredLoc;
     });
-    
+
     // 2. Agrupar inventario por SKU
     const inventoryBySku: Record<string, InventoryAggregate> = {};
-    
+
     for (const item of freeStockInventory) {
-      const sku = String(this.getNestedValue(item, invMap['sku'] || 'SKU', '')).toUpperCase().trim();
+      const sku = String(this.getNestedValue(item, invMap['sku'] || 'SKU', ''))
+        .toUpperCase()
+        .trim();
       if (!sku) continue;
-      
+
       if (!inventoryBySku[sku]) {
         inventoryBySku[sku] = {
           descripcion: this.getNestedValue(item, invMap['descripcion'] || 'Descripcion', ''),
@@ -869,21 +941,28 @@ throw new Error('Method not implemented.');
           additionalReserveLocations: [],
         };
       }
-      
+
       const loc = String(this.getNestedValue(item, invMap['localizacion'] || 'Localizacion', ''));
       const lastPart = loc.split('-').pop() || '';
       const isPicking = PICKING_LEVELS.includes(lastPart);
       const isReserveByLevel = RESERVE_LEVELS.includes(lastPart);
-      const isReserveByAdditional = ADDITIONAL_RESERVE_LOCATIONS.some(prefix => loc.toUpperCase().startsWith(prefix));
-      
+      const isReserveByAdditional = ADDITIONAL_RESERVE_LOCATIONS.some((prefix) =>
+        loc.toUpperCase().startsWith(prefix),
+      );
+
       const locationData: LocationData = {
         lpn: this.getNestedValue(item, invMap['lpn'] || 'LPN', ''),
         localizacion: loc,
-        disponible: parseFloat(this.getNestedValue(item, invMap['disponible'] || 'Disponible', '0')) || 0,
-        fechaVencimiento: this.getNestedValue(item, invMap['fechaVencimiento'] || 'Fecha de vencimiento', null),
+        disponible:
+          parseFloat(this.getNestedValue(item, invMap['disponible'] || 'Disponible', '0')) || 0,
+        fechaVencimiento: this.getNestedValue(
+          item,
+          invMap['fechaVencimiento'] || 'Fecha de vencimiento',
+          null,
+        ),
         diasFPC: this.getNestedValue(item, invMap['diasFPC'] || 'FPC', null),
       };
-      
+
       if (isPicking) {
         inventoryBySku[sku].totalEnPicking += locationData.disponible;
         inventoryBySku[sku].pickingLocations.push(locationData);
@@ -900,25 +979,29 @@ throw new Error('Method not implemented.');
         inventoryBySku[sku].additionalReserveLocations.push(locationData);
       }
     }
-    
+
     // 3. Agrupar ventas por SKU
     const salesBySku: Record<string, { descripcion: string; totalVendida: number }> = {};
-    
+
     for (const row of salesRows) {
-      const sku = String(this.getNestedValue(row, salesMap['material'] || 'Material', '')).toUpperCase().trim();
+      const sku = String(this.getNestedValue(row, salesMap['material'] || 'Material', ''))
+        .toUpperCase()
+        .trim();
       if (!sku) continue;
-      
+
       if (!salesBySku[sku]) {
         salesBySku[sku] = {
           descripcion: this.getNestedValue(row, salesMap['descripcion'] || 'Descripción', ''),
           totalVendida: 0,
         };
       }
-      
-      const cantidad = parseFloat(this.getNestedValue(row, salesMap['cantidadConfirmada'] || 'Cantidad', '0')) || 0;
+
+      const cantidad =
+        parseFloat(this.getNestedValue(row, salesMap['cantidadConfirmada'] || 'Cantidad', '0')) ||
+        0;
       salesBySku[sku].totalVendida += cantidad;
     }
-    
+
     // 4. Generar sugerencias y faltantes (misma lógica del sistema original)
     const suggestions: RestockSuggestion[] = [];
     const missingProducts: MissingProduct[] = [];
@@ -951,11 +1034,16 @@ throw new Error('Method not implemented.');
           ? [...inventario.primaryReserveLocations]
           : [...inventario.additionalReserveLocations];
 
-        const totalReserveDisponible = reserveLocationsToUse.reduce((sum, loc) => sum + (loc.disponible || 0), 0);
+        const totalReserveDisponible = reserveLocationsToUse.reduce(
+          (sum, loc) => sum + (loc.disponible || 0),
+          0,
+        );
 
         // Subcaso 2a: hay reserva para surtir
         if (totalReserveDisponible > 0) {
-          const sortedReserveLocations = reserveLocationsToUse.sort((a, b) => this.sortByFefo(a, b));
+          const sortedReserveLocations = reserveLocationsToUse.sort((a, b) =>
+            this.sortByFefo(a, b),
+          );
           const isHighTurnover = amountToRestock >= THRESHOLD_VENTAS_ALTAS;
           const ubicacionesSugeridas: UbicacionSugerida[] = [];
           let cantidadARestockear = 0;
@@ -1032,7 +1120,7 @@ throw new Error('Method not implemented.');
           cantidadARestockear: 0,
           cantidadTotalCubierta: 0,
           cantidadFaltante: 0,
-          ubicacionesSugeridas: inventario.pickingLocations.map(loc => ({
+          ubicacionesSugeridas: inventario.pickingLocations.map((loc) => ({
             lpn: loc.lpn,
             localizacion: loc.localizacion,
             fechaVencimiento: loc.fechaVencimiento,
@@ -1057,8 +1145,12 @@ throw new Error('Method not implemented.');
     const summary = `✅ Análisis completado: ${allSuggestions.length} productos analizados, ${missingProducts.length} con faltante.`;
 
     const totalVendido = allSuggestions.reduce((sum, s) => sum + s.cantidadVendida, 0);
-    const totalCubierto = allSuggestions.reduce((sum, s) => sum + (s.cantidadDisponible + s.cantidadARestockear), 0);
-    const porcentajeCobertura = totalVendido === 0 ? 100 : Math.round((totalCubierto / totalVendido) * 100);
+    const totalCubierto = allSuggestions.reduce(
+      (sum, s) => sum + (s.cantidadDisponible + s.cantidadARestockear),
+      0,
+    );
+    const porcentajeCobertura =
+      totalVendido === 0 ? 100 : Math.round((totalCubierto / totalVendido) * 100);
 
     return {
       summary,
@@ -1066,11 +1158,11 @@ throw new Error('Method not implemented.');
       missingProducts,
       stats: {
         totalProductos: allSuggestions.length,
-        productosConSurtido: allSuggestions.filter(s => s.cantidadARestockear > 0).length,
-        productosFaltantes: missingProducts.filter(m => m.cantidadFaltante > 0).length,
+        productosConSurtido: allSuggestions.filter((s) => s.cantidadARestockear > 0).length,
+        productosFaltantes: missingProducts.filter((m) => m.cantidadFaltante > 0).length,
         totalUnidadesSurtir: allSuggestions.reduce((sum, s) => sum + s.cantidadARestockear, 0),
-        porcentajeCobertura: porcentajeCobertura
-      }
+        porcentajeCobertura: porcentajeCobertura,
+      },
     };
   }
 }

@@ -567,11 +567,6 @@
   text-align: left;
 }
 
-:host ::ng-deep .p-paginator .p-dropdown-panel,
-:host ::ng-deep .p-paginator .p-select-overlay {
-  z-index: 1200 !important;
-}
-
 ::ng-deep .custom-table .p-datatable-tbody > tr.row-needs-restock {
   background: #fffbeb !important;
 }
@@ -1153,4 +1148,29 @@
 
 .table-container {
   animation: fadeInUp 0.3s ease-out;
+}
+
+.upload-area-triple .drop-zone {
+  min-width: 220px;
+}
+
+.projection-chip {
+  display: inline-block;
+  margin-left: 4px;
+  color: var(--warning);
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.col-destino {
+  min-width: 170px;
+}
+
+.col-maestra {
+  min-width: 130px;
+}
+
+.destino-value {
+  font-weight: 500;
+  color: var(--text-primary);
 }

@@ -1,0 +1,358 @@
+<div class="page-breadcrumb-fixed">
+  <p-breadcrumb
+    [model]="breadcrumbItems"
+    [home]="breadcrumbHome"
+    styleClass="app-breadcrumb"
+  ></p-breadcrumb>
+</div>
+
+<p-toast position="top-right"></p-toast>
+
+<section class="sales-module">
+  <div class="table-container">
+    <!-- HEADER PRINCIPAL -->
+    <div class="table-header">
+      <div class="header-info">
+        <div class="logo-area">
+          <i class="pi pi-sitemap"></i>
+          <h2>Análisis de Niveles Mín/Máx</h2>
+        </div>
+        <div class="summary" *ngIf="analysisResult()">
+          {{ analysisResult()?.summary }}
+        </div>
+      </div>
+      <div class="header-actions">
+        <div class="search-wrapper">
+          <i class="pi pi-search search-icon"></i>
+          <input
+            type="text"
+            pInputText
+            [(ngModel)]="searchValue"
+            (input)="dt1.filterGlobal($any($event.target).value, 'contains')"
+            placeholder="Buscar SKU o ubicación..."
+            class="search-input"
+          />
+          <i
+            class="pi pi-times clear-icon"
+            *ngIf="searchValue"
+            (click)="searchValue = ''; clearFilters()"
+          ></i>
+        </div>
+
+        <button
+          pButton
+          icon="pi pi-filter-slash"
+          label="Limpiar"
+          class="p-button-outlined p-button-sm clear-btn"
+          (click)="clearFilters()"
+          pTooltip="Limpiar todos los filtros"
+          tooltipPosition="top"
+        ></button>
+
+        <button
+          pButton
+          icon="pi pi-cog"
+          label="Analizar"
+          class="p-button-outlined p-button-sm analyze-btn"
+          (click)="generateLevelsAnalysis()"
+          [disabled]="!inventoryFile() || !levelsFile()"
+          pTooltip="Analizar archivos de inventario y niveles"
+          tooltipPosition="top"
+        ></button>
+
+        <button
+          pButton
+          *ngIf="analysisResult()"
+          icon="pi pi-file-excel"
+          label="Exportar Excel"
+          class="p-button-outlined p-button-sm export-btn"
+          (click)="exportToExcel()"
+          pTooltip="Exportar a Excel"
+          tooltipPosition="top"
+        ></button>
+      </div>
+    </div>
+
+    <!-- ÁREA DE SUBIDA DE ARCHIVOS -->
+    <div class="upload-area">
+      <!-- Inventario Drop Zone -->
+      <div
+        class="drop-zone"
+        [class.dragging]="isDraggingInventory()"
+        [class.has-file]="inventoryFile()"
+        (dragover)="onDragOver($event, 'inventory')"
+        (dragleave)="onDragLeave($event, 'inventory')"
+        (drop)="onDrop($event, 'inventory')"
+      >
+        <ng-container *ngIf="inventoryFile() as file; else noInventoryFile">
+          <div class="drop-zone-content">
+            <i class="pi" [class.pi-upload]="!file" [class.pi-database]="file"></i>
+            <div class="drop-zone-text">
+              <span class="title">{{ file.name }}</span>
+              <span class="subtitle"
+                >{{ formatFileSize(file.size || 0) }} • {{ file.uploadDate | date: 'short' }}</span
+              >
+            </div>
+            <div class="drop-zone-actions">
+              <button
+                pButton
+                type="button"
+                icon="pi pi-times"
+                class="p-button-rounded p-button-danger p-button-text p-button-sm"
+                (click)="removeFile('inventory'); $event.stopPropagation()"
+                pTooltip="Eliminar archivo"
+              ></button>
+            </div>
+          </div>
+        </ng-container>
+        <ng-template #noInventoryFile>
+          <div class="drop-zone-content">
+            <i class="pi pi-database"></i>
+            <div class="drop-zone-text">
+              <span class="title">📦 Archivo de Inventario</span>
+              <span class="subtitle">Arrastra o haz clic para subir (CSV, Excel)</span>
+            </div>
+          </div>
+        </ng-template>
+        <input
+          type="file"
+          (change)="onFileUpload('inventory', $event)"
+          accept=".csv,.xlsx,.xls,.txt"
+          hidden
+          #inventoryInput
+        />
+        <button class="hidden-button" type="button" (click)="inventoryInput.click()"></button>
+      </div>
+
+      <!-- Niveles Drop Zone -->
+      <div
+        class="drop-zone"
+        [class.dragging]="isDraggingLevels()"
+        [class.has-file]="levelsFile()"
+        (dragover)="onDragOver($event, 'levels')"
+        (dragleave)="onDragLeave($event, 'levels')"
+        (drop)="onDrop($event, 'levels')"
+      >
+        <ng-container *ngIf="levelsFile() as levFile; else noLevelsFile">
+          <div class="drop-zone-content">
+            <i class="pi" [class.pi-upload]="!levFile" [class.pi-sitemap]="levFile"></i>
+            <div class="drop-zone-text">
+              <span class="title">{{ levFile.name }}</span>
+              <span class="subtitle"
+                >{{ formatFileSize(levFile.size || 0) }} •
+                {{ levFile.uploadDate | date: 'short' }}</span
+              >
+            </div>
+            <div class="drop-zone-actions">
+              <button
+                pButton
+                type="button"
+                icon="pi pi-times"
+                class="p-button-rounded p-button-danger p-button-text p-button-sm"
+                (click)="removeFile('levels'); $event.stopPropagation()"
+                pTooltip="Eliminar archivo"
+              ></button>
+            </div>
+          </div>
+        </ng-container>
+        <ng-template #noLevelsFile>
+          <div class="drop-zone-content">
+            <i class="pi pi-sliders-h"></i>
+            <div class="drop-zone-text">
+              <span class="title">📊 Archivo de Niveles Mín/Máx</span>
+              <span class="subtitle">Arrastra o haz clic para subir (CSV, Excel)</span>
+            </div>
+          </div>
+        </ng-template>
+        <input
+          type="file"
+          (change)="onFileUpload('levels', $event)"
+          accept=".csv,.xlsx,.xls,.txt"
+          hidden
+          #levelsInput
+        />
+        <button class="hidden-button" type="button" (click)="levelsInput.click()"></button>
+      </div>
+    </div>
+
+    <!-- STATS CARDS -->
+    <div class="results-header" *ngIf="analysisResult()">
+      <div class="stats-cards">
+        <div class="stat-card stat-products">
+          <div class="stat-icon blue"><i class="pi pi-box"></i></div>
+          <div class="stat-info">
+            <div class="stat-value">{{ getTotalSkus() }}</div>
+            <div class="stat-label">SKUs Analizados</div>
+          </div>
+        </div>
+        <div class="stat-card stat-restock">
+          <div class="stat-icon orange"><i class="pi pi-truck"></i></div>
+          <div class="stat-info">
+            <div class="stat-value">{{ getSkusToRestock() }}</div>
+            <div class="stat-label">A Restockear</div>
+          </div>
+        </div>
+        <div class="stat-card stat-missing">
+          <div class="stat-icon green"><i class="pi pi-sort-numeric-down"></i></div>
+          <div class="stat-info">
+            <div class="stat-value">{{ getTotalUnitsToRestock() }}</div>
+            <div class="stat-label">Unidades Totales</div>
+          </div>
+        </div>
+        <div class="stat-card stat-coverage">
+          <div class="stat-icon green"><i class="pi pi-chart-line"></i></div>
+          <div class="stat-info">
+            <div class="stat-value">{{ getCoberturaPorcentaje() }}%</div>
+            <div class="stat-label">Cobertura</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TABLA DE SUGERENCIAS -->
+    <div class="table-wrapper" *ngIf="analysisResult()">
+      <p-table
+        #dt1
+        [value]="filteredSuggestions"
+        [loading]="loading()"
+        [paginator]="true"
+        [rows]="10"
+        [rowsPerPageOptions]="[10, 25, 50, 100]"
+        [paginatorDropdownAppendTo]="'body'"
+        [showCurrentPageReport]="true"
+        currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} productos"
+        [globalFilterFields]="['sku', 'descripcion', 'localizacionDestino']"
+        styleClass="p-datatable-sm custom-table"
+        [tableStyle]="{ 'min-width': '1480px' }"
+      >
+        <ng-template pTemplate="header">
+          <tr>
+            <th pSortableColumn="sku" class="col-sku">
+              <div class="column-header">
+                <span>SKU</span>
+                <div class="column-controls">
+                  <p-sortIcon field="sku" />
+                  <p-columnFilter type="text" field="sku" display="menu" />
+                </div>
+              </div>
+            </th>
+            <th pSortableColumn="descripcion" class="col-description">
+              <div class="column-header">
+                <span>Descripción</span>
+                <div class="column-controls">
+                  <p-sortIcon field="descripcion" />
+                  <p-columnFilter type="text" field="descripcion" display="menu" />
+                </div>
+              </div>
+            </th>
+            <th pSortableColumn="localizacionDestino" class="col-description">
+              <div class="column-header">
+                <span>Destino</span>
+                <div class="column-controls">
+                  <p-sortIcon field="localizacionDestino" />
+                  <p-columnFilter type="text" field="localizacionDestino" display="menu" />
+                </div>
+              </div>
+            </th>
+            <th pSortableColumn="cantidadActual" class="col-number">
+              <div class="column-header column-header-center">
+                <span>Cant. en Picking</span>
+                <div class="column-controls">
+                  <p-sortIcon field="cantidadActual" />
+                  <p-columnFilter type="numeric" field="cantidadActual" display="menu" />
+                </div>
+              </div>
+            </th>
+            <th pSortableColumn="cantidadARestockear" class="col-number">
+              <div class="column-header column-header-center">
+                <span>Cant. a Surtir</span>
+                <div class="column-controls">
+                  <p-sortIcon field="cantidadARestockear" />
+                  <p-columnFilter type="numeric" field="cantidadARestockear" display="menu" />
+                </div>
+              </div>
+            </th>
+            <th class="col-actions">
+              <div class="column-header column-header-center">
+                <span>Ubicaciones Sugeridas</span>
+              </div>
+            </th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-suggestion>
+          <tr [class.row-needs-restock]="suggestion.cantidadARestockear > 0">
+            <td class="col-sku">
+              <strong>{{ suggestion.sku }}</strong>
+            </td>
+            <td class="desc-cell" pTooltip="{{ suggestion.descripcion }}" tooltipPosition="top">
+              {{ suggestion.descripcion }}
+            </td>
+            <td class="desc-cell">
+              <div class="destination-block">
+                <span class="destination-location">{{ getDestinoTexto(suggestion) }}</span>
+                <small class="destination-lpn" *ngIf="suggestion.lpnDestino"
+                  >LPN: {{ suggestion.lpnDestino }}</small
+                >
+              </div>
+            </td>
+            <td class="text-center col-number">{{ suggestion.cantidadActual | number }}</td>
+            <td class="text-center col-number">
+              <span class="restock-value" [class.positive]="suggestion.cantidadARestockear > 0">
+                {{ suggestion.cantidadARestockear | number }}
+              </span>
+            </td>
+            <td class="locations-cell col-actions">
+              <div class="locations-list">
+                <div
+                  *ngFor="let loc of suggestion.ubicacionesSugeridas"
+                  class="location-chip"
+                  pTooltip="{{ loc.localizacion }} - LPN: {{ loc.lpn || '-' }} - Cant: {{
+                    loc.disponible
+                  }}"
+                  tooltipPosition="top"
+                >
+                  <span class="location-code">{{ loc.localizacion }}</span>
+                  <span class="location-qty">{{ loc.disponible }}u</span>
+                  <span
+                    class="location-fpc"
+                    *ngIf="loc.diasFPC !== undefined && loc.diasFPC !== null"
+                    >{{ loc.diasFPC }}d</span
+                  >
+                </div>
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="6" class="empty-message">
+              <i class="pi pi-check-circle"></i>
+              <p>✅ Sin requerimientos de resurtido</p>
+              <small>Todos los SKUs están dentro de los niveles configurados</small>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+
+    <div class="empty-state" *ngIf="!analysisResult() && !loading()">
+      <i class="pi pi-sitemap"></i>
+      <p>Sube inventario y niveles para calcular mínimos y máximos</p>
+      <small>Luego haz clic en Analizar</small>
+    </div>
+
+    <!-- LOADING OVERLAY -->
+    <div *ngIf="loading()" class="loading-overlay">
+      <div class="loading-content">
+        <p-progressSpinner
+          strokeWidth="4"
+          [style]="{ width: '60px', height: '60px' }"
+        ></p-progressSpinner>
+        <p>Procesando archivos...</p>
+        <small>Esto puede tomar unos segundos</small>
+      </div>
+    </div>
+  </div>
+</section>

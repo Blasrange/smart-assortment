@@ -1,36 +1,71 @@
 <div class="app-shell">
-	<header class="menu-wrapper">
-		<p-menubar [model]="items" styleClass="home-menubar">
-			<ng-template #start>
-				<div class="brand" routerLink="/">
-					<div class="brand-icon">
-						<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-							<path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-							<path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-						</svg>
-					</div>
-					<span class="brand-text">Surtidor</span>
-				</div>
-			</ng-template>
+  <header class="menu-wrapper">
+    <p-menubar [model]="items" styleClass="home-menubar">
+      <ng-template #start>
+        <div class="brand" routerLink="/">
+          <div class="brand-icon">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 2L2 7L12 12L22 7L12 2Z"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M2 17L12 22L22 17"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M2 12L12 17L22 12"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+          <span class="brand-text">Surtidor</span>
+          <span class="brand-badge">Logístico</span>
+        </div>
+      </ng-template>
 
-			<ng-template #item let-item>
-				<a
-					pRipple
-					class="menu-link"
-					[routerLink]="item.routerLink"
-					routerLinkActive="active"
-					[routerLinkActiveOptions]="{ exact: item.routerLink === '/' }"
-				>
-					<i *ngIf="item.icon" [class]="item.icon" class="menu-icon"></i>
-					<span>{{ item.label }}</span>
-					<i *ngIf="item.items" class="pi pi-chevron-down menu-chevron"></i>
-				</a>
-			</ng-template>
-		</p-menubar>
-	</header>
+      <ng-template #item let-item>
+        <a
+          pRipple
+          class="menu-link"
+          [class.active]="isMenuItemActive(item)"
+          [routerLink]="item.routerLink"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: item.routerLink === '/' }"
+        >
+          <i *ngIf="item.icon" [class]="item.icon" class="menu-icon"></i>
+          <span>{{ item.label }}</span>
+          <i *ngIf="item.items" class="pi pi-chevron-down menu-chevron"></i>
+        </a>
+      </ng-template>
 
-	<main class="app-content">
-		<router-outlet />
-	</main>
+      <ng-template #end>
+        <div class="menu-end">
+          <div class="version-badge">
+            <i class="pi pi-tag"></i>
+            <span>v2.0</span>
+          </div>
+        </div>
+      </ng-template>
+    </p-menubar>
+  </header>
+
+  <main class="app-content">
+    <router-outlet />
+  </main>
 </div>

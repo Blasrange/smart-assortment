@@ -1,17 +1,27 @@
 :host {
-	--text-primary: #1a1a1a;
-	--text-secondary: #666666;
-	--text-tertiary: #999999;
+	--text-primary: #1a3a2a;
+	--text-secondary: #4a6b5c;
+	--text-tertiary: #7c9a8a;
 	--bg-primary: #ffffff;
-	--bg-secondary: #f5f5f5;
-	--border: #e5e5e5;
-	--accent: #000000;
-	--shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.05);
+	--bg-secondary: #f5fbf8;
+	--border: #d4e8de;
+	--border-light: #e8f3ee;
+	--accent: #2d7a4b;
+	--accent-light: #4ca56e;
+	--accent-soft: #eaf6ef;
+	--shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+	--shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+	--shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.06);
 	--transition: all 0.2s ease;
+	--radius-sm: 6px;
+	--radius-md: 8px;
+	--radius-lg: 12px;
 }
 
 * {
 	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
 }
 
 .app-shell {
@@ -25,24 +35,32 @@
 	z-index: 1000;
 	background: var(--bg-primary);
 	border-bottom: 1px solid var(--border);
+	backdrop-filter: blur(8px);
 }
 
 ::ng-deep .home-menubar {
 	background: var(--bg-primary) !important;
 	border: none !important;
 	border-radius: 0 !important;
-	padding: 0.75rem 1.25rem !important;
+	padding: 0.5rem 1.5rem !important;
 	margin: 0 !important;
 	max-width: none !important;
 	width: 100% !important;
 }
 
+/* Marca / Logo */
 .brand {
 	display: flex;
 	align-items: center;
-	gap: 8px;
+	gap: 10px;
 	cursor: pointer;
 	text-decoration: none;
+	padding: 0.25rem 0;
+	transition: var(--transition);
+}
+
+.brand:hover {
+	transform: translateY(-1px);
 }
 
 .brand-icon {
@@ -52,19 +70,34 @@
 	transition: var(--transition);
 }
 
-.brand:hover .brand-icon {
+.brand-icon svg {
+	transition: var(--transition);
+}
+
+.brand:hover .brand-icon svg {
 	transform: scale(1.05);
 }
 
 .brand-text {
-	font-size: 1rem;
-	font-weight: 500;
+	font-size: 1.1rem;
+	font-weight: 600;
 	color: var(--text-primary);
-	letter-spacing: -0.01em;
+	letter-spacing: -0.02em;
 }
 
+.brand-badge {
+	font-size: 0.65rem;
+	font-weight: 500;
+	padding: 0.2rem 0.5rem;
+	background: var(--accent-soft);
+	color: var(--accent);
+	border-radius: 50px;
+	letter-spacing: 0.02em;
+}
+
+/* Menú principal */
 ::ng-deep .home-menubar .p-menubar-root-list {
-	gap: 0.5rem !important;
+	gap: 0.25rem !important;
 	margin-left: 2rem !important;
 }
 
@@ -79,11 +112,28 @@
 	padding: 0.5rem 1rem !important;
 	color: var(--text-secondary) !important;
 	font-size: 0.875rem;
-	font-weight: 450;
+	font-weight: 500;
 	text-decoration: none;
 	transition: var(--transition);
-	border-radius: 6px;
+	border-radius: var(--radius-md);
 	cursor: pointer;
+	position: relative;
+}
+
+.menu-link::before {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 0;
+	height: 2px;
+	background: var(--accent);
+	transition: var(--transition);
+}
+
+.menu-link:hover::before {
+	width: 30%;
 }
 
 .menu-icon {
@@ -93,9 +143,10 @@
 }
 
 .menu-chevron {
-	font-size: 0.75rem;
+	font-size: 0.7rem;
 	margin-left: 4px;
 	color: var(--text-tertiary);
+	transition: var(--transition);
 }
 
 .menu-link:hover {
@@ -104,36 +155,42 @@
 }
 
 .menu-link:hover .menu-icon {
-	color: var(--text-primary);
+	color: var(--accent);
 }
 
 ::ng-deep .menu-link.active {
 	color: var(--accent) !important;
-	font-weight: 500;
+	font-weight: 600;
 }
 
 ::ng-deep .menu-link.active .menu-icon {
 	color: var(--accent);
 }
 
+::ng-deep .menu-link.active::before {
+	width: 30%;
+}
+
+/* Submenú */
 ::ng-deep .home-menubar .p-submenu-list {
 	background: var(--bg-primary) !important;
 	border: 1px solid var(--border) !important;
-	border-radius: 8px !important;
+	border-radius: var(--radius-lg) !important;
 	box-shadow: var(--shadow-lg) !important;
 	padding: 0.5rem !important;
-	min-width: 200px !important;
+	min-width: 220px !important;
 	margin-top: 0.5rem !important;
 }
 
 ::ng-deep .home-menubar .p-submenu-list .p-menuitem-link {
 	display: flex !important;
 	align-items: center !important;
-	gap: 8px !important;
-	padding: 0.5rem 1rem !important;
+	gap: 10px !important;
+	padding: 0.6rem 1rem !important;
 	color: var(--text-secondary) !important;
-	border-radius: 6px !important;
+	border-radius: var(--radius-sm) !important;
 	transition: var(--transition) !important;
+	font-size: 0.85rem !important;
 }
 
 ::ng-deep .home-menubar .p-submenu-list .p-menuitem-link .pi {
@@ -147,19 +204,64 @@
 }
 
 ::ng-deep .home-menubar .p-submenu-list .p-menuitem-link:hover .pi {
-	color: var(--text-primary);
+	color: var(--accent);
 }
 
+/* Extremo derecho del menú */
+.menu-end {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}
+
+.version-badge {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	padding: 0.3rem 0.8rem;
+	background: var(--accent-soft);
+	border-radius: 50px;
+	font-size: 0.7rem;
+	font-weight: 500;
+	color: var(--accent);
+}
+
+.version-badge i {
+	font-size: 0.7rem;
+}
+
+/* Contenido principal */
 .app-content {
 	width: 100%;
+	min-height: calc(100dvh - 60px);
 }
 
-@media (max-width: 768px) {
+/* Responsive */
+@media (max-width: 960px) {
 	::ng-deep .home-menubar {
-		padding: 0.75rem 1rem !important;
+		padding: 0.5rem 1rem !important;
 	}
 
 	::ng-deep .home-menubar .p-menubar-root-list {
-		margin-left: 1rem !important;
+		margin-left: 0.5rem !important;
+	}
+
+	.brand-text {
+		font-size: 0.95rem;
+	}
+
+	.brand-badge {
+		display: none;
+	}
+
+	.menu-link {
+		padding: 0.4rem 0.75rem !important;
+		font-size: 0.8rem;
+	}
+}
+
+@media (max-width: 768px) {
+	.menu-end {
+		display: none;
 	}
 }

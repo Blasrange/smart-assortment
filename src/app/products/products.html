@@ -4,7 +4,7 @@
 
 <section class="products-page">
   <p-table #dt [value]="products()" [(selection)]="selectedProducts" dataKey="id" [rowHover]="true" [rows]="10"
-    [showCurrentPageReport]="true" [rowsPerPageOptions]="[10, 25, 50]" [loading]="loading()" [paginator]="true"
+    [showCurrentPageReport]="true" [rowsPerPageOptions]="[10, 25, 50]" [paginatorDropdownAppendTo]="'body'" [loading]="loading()" [paginator]="true"
     currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} productos" [filterDelay]="0"
     [globalFilterFields]="['id', 'title', 'price', 'quantity', 'total']" styleClass="p-datatable-sm">
 

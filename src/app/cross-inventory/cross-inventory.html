@@ -1,0 +1,278 @@
+<div class="page-breadcrumb-fixed">
+	<p-breadcrumb [model]="breadcrumbItems" [home]="breadcrumbHome" styleClass="app-breadcrumb"></p-breadcrumb>
+</div>
+
+<p-toast position="top-right"></p-toast>
+
+<section class="sales-module">
+	<div class="table-container">
+		<div class="table-header">
+			<div class="header-info">
+				<div class="logo-area">
+					<i class="pi pi-sort-alt"></i>
+					<h2>Cruce de Inventarios Cliente vs WMS</h2>
+				</div>
+				<div class="summary" *ngIf="analysisResult()">
+					{{ analysisResult()?.summary }}
+				</div>
+			</div>
+
+			<div class="header-actions">
+				<div class="search-wrapper">
+					<i class="pi pi-search search-icon"></i>
+					<input type="text" pInputText [(ngModel)]="searchValue"
+						(input)="dt1.filterGlobal($any($event.target).value, 'contains')"
+						placeholder="Buscar SKU, lote o descripcion..." class="search-input" />
+					<i class="pi pi-times clear-icon" *ngIf="searchValue"
+						(click)="searchValue = ''; clearFilters()"></i>
+				</div>
+
+				<button pButton icon="pi pi-filter-slash" label="Limpiar"
+					class="p-button-outlined p-button-sm clear-btn" (click)="clearFilters()"
+					pTooltip="Limpiar todos los filtros" tooltipPosition="top"></button>
+
+				<button pButton icon="pi pi-cog" label="Analizar" class="p-button-outlined p-button-sm analyze-btn"
+					(click)="generateCrossAnalysis()" [disabled]="!clientFile() || !wmsFile()"
+					pTooltip="Cruzar inventario Cliente contra inventario WMS" tooltipPosition="top"></button>
+
+				<button pButton *ngIf="analysisResult()" icon="pi pi-file-excel" label="Exportar Excel"
+					class="p-button-outlined p-button-sm export-btn" (click)="exportToExcel()"
+					pTooltip="Exportar resultado del cruce a Excel" tooltipPosition="top"></button>
+			</div>
+		</div>
+
+		<div class="mode-selector">
+			<span class="mode-label">Modo de agrupacion:</span>
+			<button type="button" class="mode-btn" [class.active]="groupByLot()" (click)="setGroupMode(true)">
+				SKU + Lote
+			</button>
+			<button type="button" class="mode-btn" [class.active]="!groupByLot()" (click)="setGroupMode(false)">
+				Solo SKU
+			</button>
+		</div>
+
+		<div class="upload-area">
+			<div class="drop-zone" [class.dragging]="isDraggingClient()" [class.has-file]="clientFile()"
+				(dragover)="onDragOver($event, 'client')" (dragleave)="onDragLeave($event, 'client')"
+				(drop)="onDrop($event, 'client')">
+				<ng-container *ngIf="clientFile() as file; else noClientFile">
+					<div class="drop-zone-content">
+						<i class="pi" [class.pi-file]="file"></i>
+						<div class="drop-zone-text">
+							<span class="title">{{ file.name }}</span>
+							<span class="subtitle">{{ formatFileSize(file.size || 0) }} • {{ file.uploadDate | date :
+								'short' }}</span>
+						</div>
+						<div class="drop-zone-actions">
+							<button pButton type="button" icon="pi pi-times"
+								class="p-button-rounded p-button-danger p-button-text p-button-sm"
+								(click)="removeFile('client'); $event.stopPropagation()" pTooltip="Eliminar archivo"
+								tooltipPosition="left"></button>
+						</div>
+					</div>
+				</ng-container>
+
+				<ng-template #noClientFile>
+					<div class="drop-zone-content">
+						<i class="pi pi-briefcase"></i>
+						<div class="drop-zone-text">
+							<span class="title">📦 Archivo Inventario Cliente</span>
+							<span class="subtitle">Arrastra o haz clic para subir (CSV, Excel)</span>
+						</div>
+					</div>
+				</ng-template>
+
+				<input type="file" (change)="onFileUpload('client', $event)" accept=".csv,.xlsx,.xls,.txt" hidden
+					#clientInput />
+				<button class="hidden-button" type="button" (click)="clientInput.click()"></button>
+			</div>
+
+			<div class="drop-zone" [class.dragging]="isDraggingWms()" [class.has-file]="wmsFile()"
+				(dragover)="onDragOver($event, 'wms')" (dragleave)="onDragLeave($event, 'wms')"
+				(drop)="onDrop($event, 'wms')">
+				<ng-container *ngIf="wmsFile() as file; else noWmsFile">
+					<div class="drop-zone-content">
+						<i class="pi" [class.pi-database]="file"></i>
+						<div class="drop-zone-text">
+							<span class="title">{{ file.name }}</span>
+							<span class="subtitle">{{ formatFileSize(file.size || 0) }} • {{ file.uploadDate | date :
+								'short' }}</span>
+						</div>
+						<div class="drop-zone-actions">
+							<button pButton type="button" icon="pi pi-times"
+								class="p-button-rounded p-button-danger p-button-text p-button-sm"
+								(click)="removeFile('wms'); $event.stopPropagation()" pTooltip="Eliminar archivo"
+								tooltipPosition="left"></button>
+						</div>
+					</div>
+				</ng-container>
+
+				<ng-template #noWmsFile>
+					<div class="drop-zone-content">
+						<i class="pi pi-database"></i>
+						<div class="drop-zone-text">
+							<span class="title">📦 Archivo de Inventario</span>
+							<span class="subtitle">Arrastra o haz clic para subir (CSV, Excel)</span>
+						</div>
+					</div>
+				</ng-template>
+
+				<input type="file" (change)="onFileUpload('wms', $event)" accept=".csv,.xlsx,.xls,.txt" hidden
+					#wmsInput />
+				<button class="hidden-button" type="button" (click)="wmsInput.click()"></button>
+			</div>
+		</div>
+
+		<div class="results-header" *ngIf="analysisResult()">
+			<div class="stats-cards">
+				<div class="stat-card stat-products">
+					<div class="stat-icon blue"><i class="pi pi-box"></i></div>
+					<div class="stat-info">
+						<div class="stat-value">{{ getTotalItems() }}</div>
+						<div class="stat-label">Registros comparados</div>
+					</div>
+				</div>
+				<div class="stat-card stat-restock">
+					<div class="stat-icon red"><i class="pi pi-exclamation-triangle"></i></div>
+					<div class="stat-info">
+						<div class="stat-value">{{ getItemsConDiferencia() }}</div>
+						<div class="stat-label">Con diferencia</div>
+					</div>
+				</div>
+				<div class="stat-card stat-missing">
+					<div class="stat-icon green"><i class="pi pi-check-circle"></i></div>
+					<div class="stat-info">
+						<div class="stat-value">{{ getCoincidencias() }}</div>
+						<div class="stat-label">Coincidencias</div>
+					</div>
+				</div>
+				<div class="stat-card stat-coverage">
+					<div class="stat-icon orange"><i class="pi pi-percentage"></i></div>
+					<div class="stat-info">
+						<div class="stat-value">{{ getPorcentajeCoincidencia() }}%</div>
+						<div class="stat-label">Match</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="table-wrapper" *ngIf="analysisResult()">
+			<p-table #dt1 [value]="analysisResult()?.results || []" [loading]="loading()" [paginator]="true" [rows]="10"
+				[rowsPerPageOptions]="[10, 25, 50, 100]" [paginatorDropdownAppendTo]="'body'"
+				[showCurrentPageReport]="true"
+				currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+				[globalFilterFields]="['sku', 'lote', 'descripcion']" styleClass="p-datatable-sm custom-table"
+				[tableStyle]="{'min-width': '800px'}">
+				<ng-template pTemplate="header">
+					<tr>
+						<th pSortableColumn="sku" class="col-sku">
+							<div class="column-header">
+								<span>SKU</span>
+								<div class="column-controls">
+									<p-sortIcon field="sku" />
+									<p-columnFilter type="text" field="sku" display="menu" />
+								</div>
+							</div>
+						</th>
+						<th pSortableColumn="lote" class="col-lote">
+							<div class="column-header">
+								<span>Lote</span>
+								<div class="column-controls">
+									<p-sortIcon field="lote" />
+									<p-columnFilter type="text" field="lote" display="menu" />
+								</div>
+							</div>
+						</th>
+						<th pSortableColumn="descripcion" class="col-description">
+							<div class="column-header">
+								<span>Descripcion</span>
+								<div class="column-controls">
+									<p-sortIcon field="descripcion" />
+									<p-columnFilter type="text" field="descripcion" display="menu" />
+								</div>
+							</div>
+						</th>
+						<th pSortableColumn="cantidadCliente" class="col-number">
+							<div class="column-header column-header-center">
+								<span>Cant. Cliente</span>
+								<div class="column-controls">
+									<p-sortIcon field="cantidadCliente" />
+									<p-columnFilter type="numeric" field="cantidadCliente" display="menu" />
+								</div>
+							</div>
+						</th>
+						<th pSortableColumn="cantidadWms" class="col-number">
+							<div class="column-header column-header-center">
+								<span>Cant. WMS</span>
+								<div class="column-controls">
+									<p-sortIcon field="cantidadWms" />
+									<p-columnFilter type="numeric" field="cantidadWms" display="menu" />
+								</div>
+							</div>
+						</th>
+						<th pSortableColumn="diferencia" class="col-number">
+							<div class="column-header column-header-center">
+								<span>Diferencia</span>
+								<div class="column-controls">
+									<p-sortIcon field="diferencia" />
+									<p-columnFilter type="numeric" field="diferencia" display="menu" />
+								</div>
+							</div>
+						</th>
+						<th class="col-state">
+							<div class="column-header column-header-center">
+								<span>Estado</span>
+							</div>
+						</th>
+					</tr>
+				</ng-template>
+
+				<ng-template pTemplate="body" let-row>
+					<tr [class.row-needs-restock]="row.diferencia !== 0">
+						<td class="col-sku"><strong>{{ row.sku }}</strong></td>
+						<td class="col-lote">{{ row.lote || 'SIN LOTE' }}</td>
+						<td class="desc-cell" pTooltip="{{ row.descripcion }}" tooltipPosition="top">{{ row.descripcion
+							}}</td>
+						<td class="text-center col-number">{{ row.cantidadCliente | number }}</td>
+						<td class="text-center col-number">{{ row.cantidadWms | number }}</td>
+						<td class="text-center col-number">
+							<span class="difference-value" [class.positive]="row.diferencia > 0"
+								[class.negative]="row.diferencia < 0">
+								{{ row.diferencia | number }}
+							</span>
+						</td>
+						<td class="text-center col-state">
+							<p-tag [value]="getDifferenceLabel(row.diferencia)"
+								[severity]="getDifferenceSeverity(row.diferencia)" [rounded]="true"></p-tag>
+						</td>
+					</tr>
+				</ng-template>
+
+				<ng-template pTemplate="emptymessage">
+					<tr>
+						<td colspan="10" class="empty-message">
+							<i class="pi pi-info-circle"></i>
+							<p>Sin datos para mostrar</p>
+							<small>Sube los archivos Cliente y WMS para ejecutar el cruce</small>
+						</td>
+					</tr>
+				</ng-template>
+			</p-table>
+		</div>
+
+		<div class="empty-state" *ngIf="!analysisResult() && !loading()">
+			<i class="pi pi-sort-alt"></i>
+			<p>Sube archivos Cliente y WMS para comparar inventarios</p>
+			<small>Luego haz clic en Analizar</small>
+		</div>
+
+		<!-- LOADING OVERLAY -->
+		<div *ngIf="loading()" class="loading-overlay">
+			<div class="loading-content">
+				<p-progressSpinner strokeWidth="4" [style]="{ width: '60px', height: '60px' }"></p-progressSpinner>
+				<p>Procesando archivos...</p>
+				<small>Esto puede tomar unos segundos</small>
+			</div>
+		</div>
+	</div>
+</section>

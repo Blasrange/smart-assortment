@@ -1,0 +1,452 @@
+<div class="page-breadcrumb-fixed">
+  <p-breadcrumb
+    [model]="breadcrumbItems"
+    [home]="breadcrumbHome"
+    styleClass="app-breadcrumb"
+  ></p-breadcrumb>
+</div>
+
+<p-toast position="top-right"></p-toast>
+
+<section class="fefo-module">
+  <div class="table-container">
+    <div class="table-header">
+      <div class="header-info">
+        <div class="logo-area">
+          <i class="pi pi-file-check"></i>
+          <h2>Reporte FEFO - Pedidos vs Inventario vs Reglas</h2>
+        </div>
+        <div class="summary" *ngIf="analysisResult().length">
+          Análisis FEFO y cumplimiento TVU por línea de pedido
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <div class="search-wrapper">
+          <i class="pi pi-search search-icon"></i>
+          <input
+            type="text"
+            pInputText
+            [(ngModel)]="searchValue"
+            (input)="onSearch()"
+            placeholder="Buscar SKU, descripción o estrategia..."
+            class="search-input"
+          />
+          <i
+            class="pi pi-times clear-icon"
+            *ngIf="searchValue"
+            (click)="searchValue = ''; onSearch()"
+          ></i>
+        </div>
+
+        <button
+          pButton
+          icon="pi pi-filter-slash"
+          label="Limpiar"
+          class="p-button-outlined p-button-sm clear-btn"
+          (click)="clearFilters()"
+        ></button>
+
+        <button
+          pButton
+          icon="pi pi-cog"
+          label="Analizar"
+          class="p-button-outlined p-button-sm analyze-btn"
+          (click)="generateReport()"
+          [disabled]="!pedidosFile() || !inventarioFile() || !reglasFile()"
+        ></button>
+
+        <button
+          pButton
+          icon="pi pi-file-excel"
+          label="Exportar Excel"
+          class="p-button-outlined p-button-sm export-btn"
+          *ngIf="analysisResult().length"
+          (click)="exportToExcel()"
+        ></button>
+      </div>
+    </div>
+
+    <div class="upload-area">
+      <div
+        class="drop-zone"
+        [class.dragging]="isDraggingPedidos()"
+        [class.has-file]="pedidosFile()"
+        (dragover)="onDragOver($event, 'pedidos')"
+        (dragleave)="onDragLeave($event, 'pedidos')"
+        (drop)="onDrop($event, 'pedidos')"
+      >
+        <ng-container *ngIf="pedidosFile() as file; else noPedidosFile">
+          <div class="drop-zone-content">
+            <i class="pi pi-file"></i>
+            <div class="drop-zone-text">
+              <span class="title">{{ file.name }}</span>
+              <span class="subtitle"
+                >{{ formatFileSize(file.size || 0) }} - {{ file.uploadDate | date: 'short' }}</span
+              >
+            </div>
+            <div class="drop-zone-actions">
+              <button
+                pButton
+                type="button"
+                icon="pi pi-times"
+                class="p-button-rounded p-button-danger p-button-text p-button-sm"
+                (click)="removeFile('pedidos'); $event.stopPropagation()"
+              ></button>
+            </div>
+          </div>
+        </ng-container>
+        <ng-template #noPedidosFile>
+          <div class="drop-zone-content">
+            <i class="pi pi-shopping-cart"></i>
+            <div class="drop-zone-text">
+              <span class="title">📊 Archivo Pedidos</span>
+              <span class="subtitle">Carga CSV, Excel o TXT con columnas de pedidos</span>
+            </div>
+          </div>
+        </ng-template>
+        <input
+          type="file"
+          (change)="onFileUpload('pedidos', $event)"
+          accept=".csv,.xlsx,.xls,.txt"
+          hidden
+          #pedidosInput
+        />
+        <button class="hidden-button" type="button" (click)="pedidosInput.click()"></button>
+      </div>
+
+      <div
+        class="drop-zone"
+        [class.dragging]="isDraggingInventario()"
+        [class.has-file]="inventarioFile()"
+        (dragover)="onDragOver($event, 'inventario')"
+        (dragleave)="onDragLeave($event, 'inventario')"
+        (drop)="onDrop($event, 'inventario')"
+      >
+        <ng-container *ngIf="inventarioFile() as file; else noInventarioFile">
+          <div class="drop-zone-content">
+            <i class="pi pi-database"></i>
+            <div class="drop-zone-text">
+              <span class="title">{{ file.name }}</span>
+              <span class="subtitle"
+                >{{ formatFileSize(file.size || 0) }} - {{ file.uploadDate | date: 'short' }}</span
+              >
+            </div>
+            <div class="drop-zone-actions">
+              <button
+                pButton
+                type="button"
+                icon="pi pi-times"
+                class="p-button-rounded p-button-danger p-button-text p-button-sm"
+                (click)="removeFile('inventario'); $event.stopPropagation()"
+              ></button>
+            </div>
+          </div>
+        </ng-container>
+        <ng-template #noInventarioFile>
+          <div class="drop-zone-content">
+            <i class="pi pi-database"></i>
+            <div class="drop-zone-text">
+              <span class="title">📦 Archivo Inventario</span>
+              <span class="subtitle">Carga CSV, Excel o TXT con lote y vencimiento</span>
+            </div>
+          </div>
+        </ng-template>
+        <input
+          type="file"
+          (change)="onFileUpload('inventario', $event)"
+          accept=".csv,.xlsx,.xls,.txt"
+          hidden
+          #inventarioInput
+        />
+        <button class="hidden-button" type="button" (click)="inventarioInput.click()"></button>
+      </div>
+
+      <div
+        class="drop-zone"
+        [class.dragging]="isDraggingReglas()"
+        [class.has-file]="reglasFile()"
+        (dragover)="onDragOver($event, 'reglas')"
+        (dragleave)="onDragLeave($event, 'reglas')"
+        (drop)="onDrop($event, 'reglas')"
+      >
+        <ng-container *ngIf="reglasFile() as file; else noReglasFile">
+          <div class="drop-zone-content">
+            <i class="pi pi-list-check"></i>
+            <div class="drop-zone-text">
+              <span class="title">{{ file.name }}</span>
+              <span class="subtitle"
+                >{{ formatFileSize(file.size || 0) }} - {{ file.uploadDate | date: 'short' }}</span
+              >
+            </div>
+            <div class="drop-zone-actions">
+              <button
+                pButton
+                type="button"
+                icon="pi pi-times"
+                class="p-button-rounded p-button-danger p-button-text p-button-sm"
+                (click)="removeFile('reglas'); $event.stopPropagation()"
+              ></button>
+            </div>
+          </div>
+        </ng-container>
+        <ng-template #noReglasFile>
+          <div class="drop-zone-content">
+            <i class="pi pi-list-check"></i>
+            <div class="drop-zone-text">
+              <span class="title">📝 Archivo Reglas</span>
+              <span class="subtitle">Carga reglas por estrategia y TVU</span>
+            </div>
+          </div>
+        </ng-template>
+        <input
+          type="file"
+          (change)="onFileUpload('reglas', $event)"
+          accept=".csv,.xlsx,.xls,.txt"
+          hidden
+          #reglasInput
+        />
+        <button class="hidden-button" type="button" (click)="reglasInput.click()"></button>
+      </div>
+    </div>
+
+    <div class="results-header" *ngIf="analysisResult().length">
+      <div class="summary-badges">
+        <span class="badge">Registros: {{ filteredResultados().length }}</span>
+      </div>
+    </div>
+
+    <div class="table-wrapper" *ngIf="analysisResult().length">
+      <p-table
+        #dt1
+        [value]="filteredResultados()"
+        [loading]="loading()"
+        [paginator]="true"
+        [rows]="10"
+        [rowsPerPageOptions]="[10, 25, 50, 100]"
+        [paginatorDropdownAppendTo]="'body'"
+        [showCurrentPageReport]="true"
+        currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+        [globalFilterFields]="['sku', 'descripcion', 'lote', 'strategyName', 'decisionFinal']"
+        styleClass="p-datatable-sm custom-table"
+        [tableStyle]="{ 'min-width': '2200px' }"
+      >
+        <ng-template pTemplate="header">
+          <tr>
+            <th pSortableColumn="sku" class="col-sku">
+              <div class="column-header">
+                <span>SKU</span>
+                <div class="column-controls">
+                  <p-sortIcon field="sku" />
+                  <p-columnFilter type="text" field="sku" display="menu" />
+                </div>
+              </div>
+            </th>
+            <th pSortableColumn="descripcion" class="col-description">
+              <div class="column-header">
+                <span>Descripción</span>
+                <div class="column-controls">
+                  <p-sortIcon field="descripcion" />
+                  <p-columnFilter type="text" field="descripcion" display="menu" />
+                </div>
+              </div>
+            </th>
+            <th pSortableColumn="lote" class="col-lote">
+              <div class="column-header">
+                <span>Lote</span>
+                <div class="column-controls">
+                  <p-sortIcon field="lote" />
+                  <p-columnFilter type="text" field="lote" display="menu" />
+                </div>
+              </div>
+            </th>
+            <th pSortableColumn="fechaVencimientoPedido" class="col-date">
+              <div class="column-header">
+                <span>Venc. Pedido</span>
+                <div class="column-controls">
+                  <p-sortIcon field="fechaVencimientoPedido" />
+                  <p-columnFilter type="text" field="fechaVencimientoPedido" display="menu" />
+                </div>
+              </div>
+            </th>
+            <th pSortableColumn="fechaMasProximaVencer" class="col-date">
+              <div class="column-header">
+                <span>Más Próxima</span>
+                <div class="column-controls">
+                  <p-sortIcon field="fechaMasProximaVencer" />
+                  <p-columnFilter type="text" field="fechaMasProximaVencer" display="menu" />
+                </div>
+              </div>
+            </th>
+            <th pSortableColumn="cumplimientoFefo" class="col-status">
+              <div class="column-header column-header-center">
+                <span>FEFO</span>
+                <div class="column-controls">
+                  <p-sortIcon field="cumplimientoFefo" />
+                  <p-columnFilter type="text" field="cumplimientoFefo" display="menu" />
+                </div>
+              </div>
+            </th>
+            <th pSortableColumn="justificacionFefo" class="col-justification">
+              <div class="column-header">
+                <span>Justificación FEFO</span>
+                <div class="column-controls">
+                  <p-sortIcon field="justificacionFefo" />
+                  <p-columnFilter type="text" field="justificacionFefo" display="menu" />
+                </div>
+              </div>
+            </th>
+            <th pSortableColumn="strategyName" class="col-strategy">
+              <div class="column-header">
+                <span>Estrategia</span>
+                <div class="column-controls">
+                  <p-sortIcon field="strategyName" />
+                  <p-columnFilter type="text" field="strategyName" display="menu" />
+                </div>
+              </div>
+            </th>
+            <th pSortableColumn="diffDays" class="col-number">
+              <div class="column-header column-header-center">
+                <span>Diff Días</span>
+                <div class="column-controls">
+                  <p-sortIcon field="diffDays" />
+                  <p-columnFilter type="numeric" field="diffDays" display="menu" />
+                </div>
+              </div>
+            </th>
+            <th pSortableColumn="cruceConcatena" class="col-cruce">
+              <div class="column-header">
+                <span>Cruce Concatena</span>
+                <div class="column-controls">
+                  <p-sortIcon field="cruceConcatena" />
+                  <p-columnFilter type="text" field="cruceConcatena" display="menu" />
+                </div>
+              </div>
+            </th>
+            <th pSortableColumn="tvuRegla" class="col-number">
+              <div class="column-header column-header-center">
+                <span>TVU Regla</span>
+                <div class="column-controls">
+                  <p-sortIcon field="tvuRegla" />
+                  <p-columnFilter type="text" field="tvuRegla" display="menu" />
+                </div>
+              </div>
+            </th>
+            <th pSortableColumn="fechaMinDespacho" class="col-date">
+              <div class="column-header">
+                <span>Fecha Min Despacho</span>
+                <div class="column-controls">
+                  <p-sortIcon field="fechaMinDespacho" />
+                  <p-columnFilter type="text" field="fechaMinDespacho" display="menu" />
+                </div>
+              </div>
+            </th>
+            <th pSortableColumn="cumpleTvuValor" class="col-number">
+              <div class="column-header column-header-center">
+                <span>Diferencia TVU</span>
+                <div class="column-controls">
+                  <p-sortIcon field="cumpleTvuValor" />
+                  <p-columnFilter type="text" field="cumpleTvuValor" display="menu" />
+                </div>
+              </div>
+            </th>
+            <th pSortableColumn="comentariosMdlz" class="col-status">
+              <div class="column-header column-header-center">
+                <span>Cumple TVU</span>
+                <div class="column-controls">
+                  <p-sortIcon field="comentariosMdlz" />
+                  <p-columnFilter type="text" field="comentariosMdlz" display="menu" />
+                </div>
+              </div>
+            </th>
+            <th pSortableColumn="decisionFinal" class="col-status">
+              <div class="column-header column-header-center">
+                <span>Decisión Final</span>
+                <div class="column-controls">
+                  <p-sortIcon field="decisionFinal" />
+                  <p-columnFilter type="text" field="decisionFinal" display="menu" />
+                </div>
+              </div>
+            </th>
+            <th class="col-observation">
+              <div class="column-header">
+                <span>Observación</span>
+                <div class="column-controls">
+                  <p-columnFilter type="text" field="observacion" display="menu" />
+                </div>
+              </div>
+            </th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-row>
+          <tr>
+            <td class="col-sku">
+              <strong>{{ row.sku }}</strong>
+            </td>
+            <td class="desc-cell" pTooltip="{{ row.descripcion }}" tooltipPosition="top">
+              {{ row.descripcion | slice: 0 : 80 }}{{ row.descripcion.length > 80 ? '...' : '' }}
+            </td>
+            <td class="col-lote">{{ row.lote }}</td>
+            <td class="col-date">{{ row.fechaVencimientoPedido }}</td>
+            <td class="col-date">{{ row.fechaMasProximaVencer || '-' }}</td>
+            <td class="col-status">
+              <p-tag
+                [value]="row.cumplimientoFefo"
+                [severity]="getDecisionSeverity(row.cumplimientoFefo)"
+                [rounded]="true"
+              ></p-tag>
+            </td>
+            <td class="col-justification">{{ row.justificacionFefo || '-' }}</td>
+            <td class="col-strategy">{{ row.strategyName }}</td>
+            <td class="col-number text-center">{{ row.diffDays }}</td>
+            <td class="col-cruce">{{ row.cruceConcatena }}</td>
+            <td class="col-number text-center">{{ row.tvuRegla }}</td>
+            <td class="col-date">{{ row.fechaMinDespacho }}</td>
+            <td class="col-number text-center">{{ row.cumpleTvuValor }}</td>
+            <td class="col-status">
+              <p-tag
+                [value]="row.comentariosMdlz"
+                [severity]="getTvuSeverity(row.comentariosMdlz)"
+                [rounded]="true"
+              ></p-tag>
+            </td>
+            <td class="col-status">
+              <p-tag
+                [value]="row.decisionFinal"
+                [severity]="getDecisionSeverity(row.decisionFinal)"
+                [rounded]="true"
+              ></p-tag>
+            </td>
+            <td class="col-observation">{{ row.observacion || '-' }}</td>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="16" class="empty-message">
+              <i class="pi pi-inbox"></i>
+              <p>No hay registros que coincidan con los filtros</p>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+
+    <div class="empty-state" *ngIf="!analysisResult().length && !loading()">
+      <i class="pi pi-file-check"></i>
+      <p>Sube Pedidos, Inventario y Reglas para generar el reporte FEFO</p>
+      <small>Luego haz clic en Analizar</small>
+    </div>
+
+    <div *ngIf="loading()" class="loading-overlay">
+      <div class="loading-content">
+        <p-progressSpinner
+          strokeWidth="4"
+          [style]="{ width: '60px', height: '60px' }"
+        ></p-progressSpinner>
+        <p>Procesando archivos...</p>
+      </div>
+    </div>
+  </div>
+</section>

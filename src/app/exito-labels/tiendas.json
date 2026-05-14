@@ -1,0 +1,3614 @@
+[
+  {
+    "Codigo": "0217",
+    "Tienda": "217B GUITA S MAX SAN LUIS SUBA",
+    "Dirección": "TRANSVERSAL 91 # 128D - 34",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0224",
+    "Tienda": "224B GUITA S MAX BRITALIA",
+    "Dirección": "CALLE 46 # 81 - 102SUR",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0225",
+    "Tienda": "225B GUITA S MAX SANTA ANA MOSQUERA",
+    "Dirección": "CARRERA 10 # 10 - 04",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0226",
+    "Tienda": "226B GUITA S MAX TABORA",
+    "Dirección": "AV CALLE 72 # 78 A -88",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0027",
+    "Tienda": "227B GUITA S MAX SAN MARCOS",
+    "Dirección": "CARRERA 77 A # 65 A - 84",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0333",
+    "Tienda": "333B GUITA S MAX LA CEJA",
+    "Dirección": "CALLE 19 # 19-20",
+    "Ciudad": "LA CEJA",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "0398",
+    "Tienda": "398B GUITA S MAX SUBA",
+    "Dirección": "CL 14093 10",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0434",
+    "Tienda": "434B GUITA S MAX CASA BLANCA",
+    "Dirección": "CR 80 55 A 20 SUR CIUDAD ROMA",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0449",
+    "Tienda": "449B GUITA S MAX LA ESPAÒOLA",
+    "Dirección": "DG 84A 77 52",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0451",
+    "Tienda": "451B GUITA S MAX LA MESA",
+    "Dirección": "CALLE 4A # 25 - 184",
+    "Ciudad": "LA MESA",
+    "Departamento": "CUNDINAMARCA"
+  },
+  {
+    "Codigo": "0463",
+    "Tienda": "463B GUITA S MAX PUERTO BERRIO",
+    "Dirección": "CALLE 7 # 7 - 15",
+    "Ciudad": "PUERTO BERRIO",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "0464",
+    "Tienda": "464B GUITA S MAX SAN JAVIER",
+    "Dirección": "CARRERA 101# 42-17",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "0467",
+    "Tienda": "467B GUITA S MAX BARRANCAS",
+    "Dirección": "CL 1567D 61",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0470",
+    "Tienda": "470B GUITA S MAX NUEVA ROMA",
+    "Dirección": "CL 57A79I 51 SUR LC 45",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0471",
+    "Tienda": "471B GUITA S MAX CRA 51 PRADO VERANIEGO",
+    "Dirección": "CR 41A128A 30",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0472",
+    "Tienda": "472B GUITA S MAX SAN JORGE",
+    "Dirección": "DG 4518 20 SUR",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0473",
+    "Tienda": "473B GUITA S MAX TIBABUYES",
+    "Dirección": "CL139112 34",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0474",
+    "Tienda": "474B GUITA S MAX TRINITARIA",
+    "Dirección": "CL 139101 13",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0503",
+    "Tienda": "503B GUITA S MAX VILLA GLADYS",
+    "Dirección": "RA 111C # 67B -40",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0506",
+    "Tienda": "506B GUITA S MAX PATIO BONITO",
+    "Dirección": "AV CIUDAD DE CALI # 37A SUR 55 PATIO BONITO",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0507",
+    "Tienda": "507B GUITA S MAX BELEN",
+    "Dirección": "CALLE 30A # 76 - 57",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "0511",
+    "Tienda": "511BGUITA S MAX SAN FERNANDO",
+    "Dirección": "CLL 68 # 56B - 44",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0513",
+    "Tienda": "513B GUITA S MAX VERSALLES",
+    "Dirección": "CR 100 # 23F -17",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0515",
+    "Tienda": "515B GUITA S MAX CASTILLA",
+    "Dirección": "CRA 68 # 96 - 68",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "0516",
+    "Tienda": "516B GUITA S MAX CENTRO DE LA MODA",
+    "Dirección": "CARRERA 52 D # 80 - 29",
+    "Ciudad": "ITAGUI",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "0521",
+    "Tienda": "521B GUITA S MAX MARINILLA",
+    "Dirección": "CALLE 29 # 29 - 15",
+    "Ciudad": "MARINILLA",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "0523",
+    "Tienda": "523B GUITA S MAX BUENOS AIRES",
+    "Dirección": "CALLE 49 # 33 - 49",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "0571",
+    "Tienda": "571B GUITA S MAX GACHANCIPA",
+    "Dirección": "CRA 5 # 3 - 64",
+    "Ciudad": "GACHANCIPA",
+    "Departamento": "CUNDINAMARCA"
+  },
+  {
+    "Codigo": "0573",
+    "Tienda": "573B GUITA S MAX TOCANCIPA",
+    "Dirección": "CR 7 # 11 -43",
+    "Ciudad": "TOCANCIPA",
+    "Departamento": "CUNDINAMARCA"
+  },
+  {
+    "Codigo": "0575",
+    "Tienda": "575B GUITA S MAX SAN MATEO",
+    "Dirección": "CR 7 ESTE # 31A - 13",
+    "Ciudad": "SOACHA",
+    "Departamento": "CUNDINAMARCA"
+  },
+  {
+    "Codigo": "0576",
+    "Tienda": "576B GUITA S MAX CAJICA",
+    "Dirección": "CR 6 # 5A - 20",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0577",
+    "Tienda": "577B GUITA S MAX SOPO",
+    "Dirección": "CLL 4 # 2 - 27",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0579",
+    "Tienda": "579B GUITA S MAX COMPARTIR SOACHA",
+    "Dirección": "CR 13 # 3C - 10",
+    "Ciudad": "SOACHA",
+    "Departamento": "CUNDINAMARCA"
+  },
+  {
+    "Codigo": "0606",
+    "Tienda": "606B GUITA S MAX CARBONEL",
+    "Dirección": "CLL 71A SUR # 771 - 90",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0613",
+    "Tienda": "613B GUITA S MAX GARDEL",
+    "Dirección": "CRA 45 CON CALLE 72 ESQUINA",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "0623",
+    "Tienda": "623B GUITA S MAX SANTA RITA",
+    "Dirección": "CARRERA 39A # 34 - 24SUR",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0646",
+    "Tienda": "646B GUITA S MAX SANTA CECILIA",
+    "Dirección": "CRA 6 B #163 A -04",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0686",
+    "Tienda": "686B GUITA S MAX CAMPANELA",
+    "Dirección": "CALLE 15A # 94 - 91",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0703",
+    "Tienda": "703B GUITA S MAX LA CALERA",
+    "Dirección": "AVD 2B # 7 - 33",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0709",
+    "Tienda": "709B GUITA S MAX YANGUAS",
+    "Dirección": "CL 13 9 73 SOACHA",
+    "Ciudad": "SOACHA",
+    "Departamento": "CUNDINAMARCA"
+  },
+  {
+    "Codigo": "0718",
+    "Tienda": "718B GUITA S MAX EL AZAFRAN",
+    "Dirección": "TRANSVERSAL 85 # 64 A 10 BRR VILLA LUZ",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0759",
+    "Tienda": "759B GUITA S MAX AMAGA",
+    "Dirección": "CARRERA 50 # 50 - 68 AMAGA",
+    "Ciudad": "AMAGA",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "0765",
+    "Tienda": "765B GUITA S MAX ZAMORA",
+    "Dirección": "CALLE 53 # 78 - 105",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "0781",
+    "Tienda": "781B GUITA S MAX EL RECREO BOSA",
+    "Dirección": "CARRERA 98B # 73 - 12SUR BOSA VIZCAYA EL RECREO",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0376",
+    "Tienda": "ALMACENES EXITO BOSA 376",
+    "Dirección": "CL 65 SUR78H 54",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0020",
+    "Tienda": "ALMACENES EXITO S.A.",
+    "Dirección": "CRA 24A # 163A -28",
+    "Ciudad": "ENVIGADO",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "4381",
+    "Tienda": "ALMACENES EXITO SA SURTIMAX CAMINO VERDE",
+    "Dirección": "CLL 39 SUR # 25 B 200",
+    "Ciudad": "ENVIGADO",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "4382",
+    "Tienda": "ALMACENES EXITO SA SURTIMAX LOS COLORES",
+    "Dirección": "CR 74 # 53-15 MALL NUEVO MUNDO",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "0053",
+    "Tienda": "ALMACENES EXITO SIMON BOLIVAR 053",
+    "Dirección": "CL 70 AV SIMON BOLIVAR CON CR 28 D",
+    "Ciudad": "CALI",
+    "Departamento": "VALLE DEL CAUCA"
+  },
+  {
+    "Codigo": "0745",
+    "Tienda": "BOD SURTIMAX TRIANON 745",
+    "Dirección": "CALLE 46 SUR # 42B-05",
+    "Ciudad": "ENVIGADO",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "0453",
+    "Tienda": "BODEG STMAX SANTA FE DE ANTIOQUIA 453",
+    "Dirección": "CALLE 9 # 10 - 48",
+    "Ciudad": "ANTIOQUIA",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "4821",
+    "Tienda": "CARULA EXPRESS CALLE MONEDA 4821",
+    "Dirección": "CRA 7 # 35-89",
+    "Ciudad": "CARTAGENA",
+    "Departamento": "BOLIVAR"
+  },
+  {
+    "Codigo": "0546",
+    "Tienda": "CARULLA ALHAMBRA 546",
+    "Dirección": "CALLE 114 # 45-78",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0629",
+    "Tienda": "CARULLA ARRECIFE 629",
+    "Dirección": "CR 4 # 11 A - 119 CTRO CIAOL ARRECIFE",
+    "Ciudad": "SANTA MARTA",
+    "Departamento": "MAGDALENA"
+  },
+  {
+    "Codigo": "4803",
+    "Tienda": "CARULLA AUTOPISTA 116 4803",
+    "Dirección": "AVENIDA CARRERA 45 # 116 - 34",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4219",
+    "Tienda": "CARULLA AV COLOMBIA 4219",
+    "Dirección": "CRA 1 OESTE AV COLOMBIA # 1-50",
+    "Ciudad": "CALI",
+    "Departamento": "VALLE DEL CAUCA"
+  },
+  {
+    "Codigo": "4813",
+    "Tienda": "CARULLA BACATA 4813",
+    "Dirección": "CALLE 19 # 5 - 30EN EL REASCACIELOS BD",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0710",
+    "Tienda": "CARULLA BELLA SUIZA710",
+    "Dirección": "AVENIDA 9 # 127-06",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4804",
+    "Tienda": "CARULLA BELLAVISTA 4804",
+    "Dirección": "CALLE 24 # 1C - 19",
+    "Ciudad": "SANTA MARTA",
+    "Departamento": "MAGDALENA"
+  },
+  {
+    "Codigo": "0350",
+    "Tienda": "CARULLA BELMIRA 350",
+    "Dirección": "CRA 7 A # 140 26 INTERIOR 107 BELMIRA PLAZA",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0541",
+    "Tienda": "CARULLA BOCAGRANDE 541",
+    "Dirección": "AVD.SAN MARTIN CRA 2 # 14-91",
+    "Ciudad": "CARTAGENA",
+    "Departamento": "BOLIVAR"
+  },
+  {
+    "Codigo": "0713",
+    "Tienda": "CARULLA CALLE 102713",
+    "Dirección": "AV 19 # 101 - 66",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0548",
+    "Tienda": "CARULLA CALLE 140 548",
+    "Dirección": "CARRERA 11 # 140-29",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0549",
+    "Tienda": "CARULLA CALLE 147 549",
+    "Dirección": "CALLE 147 # 7-92",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0348",
+    "Tienda": "CARULLA CALLE 184 348",
+    "Dirección": "AVENIDA 13 # 183 86 LOCAL 1",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0582",
+    "Tienda": "CARULLA CALLE 47 582",
+    "Dirección": "CALLE 47 # 9-10",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0537",
+    "Tienda": "CARULLA CALLE 63 537",
+    "Dirección": "CALLE 63 # 7-09",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0599",
+    "Tienda": "CARULLA CALLE 82599",
+    "Dirección": "CALLE 82 # 50-73",
+    "Ciudad": "BARRANQUILLA",
+    "Departamento": "ATLANTICO"
+  },
+  {
+    "Codigo": "0534",
+    "Tienda": "CARULLA CALLE 86 BARRANQUILLA 534",
+    "Dirección": "CARRERA 64C # 86-20",
+    "Ciudad": "BARRANQUILLA",
+    "Departamento": "ATLANTICO"
+  },
+  {
+    "Codigo": "4783",
+    "Tienda": "CARULLA CASTILLA 4783",
+    "Dirección": "KM 10 VÍA CERRITO",
+    "Ciudad": "PEREIRA",
+    "Departamento": "RISARALDA"
+  },
+  {
+    "Codigo": "0634",
+    "Tienda": "CARULLA CASTILLO GRANDE 634",
+    "Dirección": "CR 4 6 12 BOCAGRANDE",
+    "Ciudad": "CARTAGENA",
+    "Departamento": "BOLIVAR"
+  },
+  {
+    "Codigo": "0468",
+    "Tienda": "CARULLA CEDRITOS 468",
+    "Dirección": "CALLE 147 # 12 35",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0550",
+    "Tienda": "CARULLA CEDRO BOLIVAR 550",
+    "Dirección": "TRANSVERSAL 28 # 150-28",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0518",
+    "Tienda": "CARULLA CENTRO CHIA518",
+    "Dirección": "AV PRADILLA 900 ESTE",
+    "Ciudad": "CHIA",
+    "Departamento": "CUNDINAMARCA"
+  },
+  {
+    "Codigo": "0633",
+    "Tienda": "CARULLA CITY PLAZADEP 633",
+    "Dirección": "CALLE 36 # 27A -105",
+    "Ciudad": "ENVIGADO",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "4800",
+    "Tienda": "CARULLA CIUDAD DEL MAR 4800",
+    "Dirección": "CALLE 3A CON CRA 26 LO 108",
+    "Ciudad": "BARRANQUILLA",
+    "Departamento": "ATLANTICO"
+  },
+  {
+    "Codigo": "0732",
+    "Tienda": "CARULLA CIUDAD JARDIN 732",
+    "Dirección": "CL 13 A # 103-120 CIUDAD JARDIN",
+    "Ciudad": "CALI",
+    "Departamento": "VALLE DEL CAUCA"
+  },
+  {
+    "Codigo": "0561",
+    "Tienda": "CARULLA COLINA 561",
+    "Dirección": "CALLE 138 # 47-27",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0585",
+    "Tienda": "CARULLA CORTIJO 585",
+    "Dirección": "CR 118 B #18-46",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0562",
+    "Tienda": "CARULLA COUNTRY 562",
+    "Dirección": "CALLE 85 # 15-29",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0406",
+    "Tienda": "CARULLA EL RETIRO",
+    "Dirección": "CL 85 9 67",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4663",
+    "Tienda": "CARULLA EXPRESS 106 SQUARE 4663",
+    "Dirección": "CALLE 106 # 57 - 23",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0557",
+    "Tienda": "CARULLA EXPRESS 167DEP 557",
+    "Dirección": "CALLE 167 # 73 - 51",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0670",
+    "Tienda": "CARULLA EXPRESS CALLA ROMAN 670",
+    "Dirección": "CALLE 34 # 5 - 19 LOCAL 521 CENTRO HISTORICO CATEDRAL",
+    "Ciudad": "CARTAGENA",
+    "Departamento": "BOLIVAR"
+  },
+  {
+    "Codigo": "4822",
+    "Tienda": "CARULLA EXPRESS CALLE 109 4822",
+    "Dirección": "CALLE 109 # 14-49",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4832",
+    "Tienda": "CARULLA EXPRESS CALLE 4TA 4832",
+    "Dirección": "AVENIDA SAN MARTIN # 4-66",
+    "Ciudad": "CARTAGENA",
+    "Departamento": "BOLIVAR"
+  },
+  {
+    "Codigo": "4828",
+    "Tienda": "CARULLA EXPRESS CALLE 90 4828",
+    "Dirección": "CALLE 90 # 12-65",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "BOLIVAR"
+  },
+  {
+    "Codigo": "0530",
+    "Tienda": "CARULLA EXPRESS CAMPIN 530",
+    "Dirección": "CALLE 57 # 21-34",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0531",
+    "Tienda": "CARULLA EXPRESS CAOBOS 531",
+    "Dirección": "TRANSVERSAL 30 # 145 44",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4869",
+    "Tienda": "CARULLA EXPRESS CARRERA 15 4869",
+    "Dirección": "CARRERA 15 NO 94 -71",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4837",
+    "Tienda": "CARULLA EXPRESS CIELO MAR 4837",
+    "Dirección": "CR 9 # 17 - 52 EDIFICIO MAGIST RAL",
+    "Ciudad": "CARTAGENA",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4876",
+    "Tienda": "CARULLA EXPRESS CORFERIAS 4876",
+    "Dirección": "CALLE 24 # 43 A 08",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4831",
+    "Tienda": "CARULLA EXPRESS COSTA AZUL 4831",
+    "Dirección": "VIA COVEÑAS TOLU A 1700 MTS DELANTE DE LA CAIMANERA",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4829",
+    "Tienda": "CARULLA EXPRESS DIVINA EUCARISTIA 4829",
+    "Dirección": "CR 36 # 7-27",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "4877",
+    "Tienda": "CARULLA EXPRESS EDS EL RETIRO 4877",
+    "Dirección": "VEDERA LOS SALDOS",
+    "Ciudad": "RETIRO",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4665",
+    "Tienda": "CARULLA EXPRESS EDS LA SIERRA 4665",
+    "Dirección": "AUTOPISTA NORTE VIA GIRARDOTA KM 11 + 80 MTS",
+    "Ciudad": "GIRARDOTA",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "4873",
+    "Tienda": "CARULLA EXPRESS GUATAPE 4873",
+    "Dirección": "CARRERA 31 # 28 - 55",
+    "Ciudad": "GUATAPE",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0532",
+    "Tienda": "CARULLA EXPRESS LA CAROLINA 532",
+    "Dirección": "CALLE 127 # 13 A 12",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "44826",
+    "Tienda": "CARULLA EXPRESS LAS VELAS 44826",
+    "Dirección": "CRA 1A #1A-10",
+    "Ciudad": "CARTAGENA",
+    "Departamento": "BOLIVAR"
+  },
+  {
+    "Codigo": "0543",
+    "Tienda": "CARULLA EXPRESS LAS VILLAS 543",
+    "Dirección": "CRA 58 # 128 92",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4878",
+    "Tienda": "CARULLA EXPRESS LOMA ESCOBERO 4878",
+    "Dirección": "KM 10 + 800 ALTO DE SAN LUIS",
+    "Ciudad": "ENVIGADO",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0138",
+    "Tienda": "CARULLA EXPRESS MALL 138",
+    "Dirección": "CRA 59A # 136 - 95LOCAL 18B",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4838",
+    "Tienda": "CARULLA EXPRESS MALL CABECERAS 4838",
+    "Dirección": "VIA VEREDA CABECERAS LLANOGRAN",
+    "Ciudad": "RIONEGRO",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4664",
+    "Tienda": "CARULLA EXPRESS MARIANITO 4664",
+    "Dirección": "CARRERA 29 B # 17 - 110",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "4669",
+    "Tienda": "CARULLA EXPRESS PARQUE POBLADO 4669",
+    "Dirección": "CARRERA 43 A # 8 - 16",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "0667",
+    "Tienda": "CARULLA EXPRESS PENALISA667",
+    "Dirección": "MUNICIPIO DE RICAURTEESQUINA VIA AGUA DE DIOS",
+    "Ciudad": "MELGAR",
+    "Departamento": "CUNDINAMARCA"
+  },
+  {
+    "Codigo": "4668",
+    "Tienda": "CARULLA EXPRESS PEÑON 4668",
+    "Dirección": "CC COMERCIAL LAGOS DE PEÑON LC 4",
+    "Ciudad": "GIRARDOT",
+    "Departamento": "TOLIMA"
+  },
+  {
+    "Codigo": "4814",
+    "Tienda": "CARULLA EXPRESS PONTEVEDRA 4836",
+    "Dirección": "CALLE 98C # 70-91",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4823",
+    "Tienda": "CARULLA EXPRESS PORTON RETIRO 4823",
+    "Dirección": "SOBRE AV CIRCUNVALAR Y CRA 20 ENTRE CALLE 25 Y 26 DIAG APURO",
+    "Ciudad": "RETIRO",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "4827",
+    "Tienda": "CARULLA EXPRESS PRESENTE SANTA MARTA",
+    "Dirección": "CALLE 88 # 1-37 POZOS COLORADO S",
+    "Ciudad": "CARTAGENA",
+    "Departamento": "MAGDALENA"
+  },
+  {
+    "Codigo": "0544",
+    "Tienda": "CARULLA EXPRESS PUENTE LARGO 544",
+    "Dirección": "AVENIDA SUBA # 106 28B",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4799",
+    "Tienda": "CARULLA EXPRESS PUNTO VERDE",
+    "Dirección": "CALLE 13 # 75 - 44",
+    "Ciudad": "CALI",
+    "Departamento": "VALLE DEL CAUCA"
+  },
+  {
+    "Codigo": "4824",
+    "Tienda": "CARULLA EXPRESS RICAURTE 4824",
+    "Dirección": "KILOMETRO 5 VIA SIBERIA COTA MALL CC ALLEGRO",
+    "Ciudad": "RICAURTE",
+    "Departamento": "CUNDINAMARCA"
+  },
+  {
+    "Codigo": "4875",
+    "Tienda": "CARULLA EXPRESS SALITRE",
+    "Dirección": "CLL 23 # 66 - 39",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4830",
+    "Tienda": "CARULLA EXPRESS SAN AGUSTIN 4830",
+    "Dirección": "CALLE SAN AGUSTIN # 6-33",
+    "Ciudad": "CARTAGENA",
+    "Departamento": "BOLIVAR"
+  },
+  {
+    "Codigo": "0661",
+    "Tienda": "CARULLA EXPRESS SAN MARTIN 661",
+    "Dirección": "AVENIDA SAN MARTIN CALLE 9",
+    "Ciudad": "CARTAGENA",
+    "Departamento": "BOLIVAR"
+  },
+  {
+    "Codigo": "4693",
+    "Tienda": "CARULLA EXPRESS SAN PATRICIO 4693",
+    "Dirección": "CALLE 109 # 16 - 57",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4825",
+    "Tienda": "CARULLA EXPRESS SIBERIA 4825",
+    "Dirección": "KILOMETRO 5 VIA SIBERIA COTA M ALL CC ALLEGRO",
+    "Ciudad": "COTA",
+    "Departamento": "CUNDINAMARCA"
+  },
+  {
+    "Codigo": "0452",
+    "Tienda": "CARULLA EXPRESS VILLA GRANGE 452",
+    "Dirección": "TANSV 27 SUR # 42B - 80",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "0563",
+    "Tienda": "CARULLA GALERIAS 563",
+    "Dirección": "CALLE 53 # 26-60",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0299",
+    "Tienda": "CARULLA GRANADA HILLS 299",
+    "Dirección": "AV 13 146 48 GRANADA HILLS",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4806",
+    "Tienda": "CARULLA ISLA NATURA 4806",
+    "Dirección": "KM 1 VIA CAJICA - TABIA VEREDA CANELON - LA PALMA",
+    "Ciudad": "CAJICA",
+    "Departamento": "CUNDINAMARCA"
+  },
+  {
+    "Codigo": "0886",
+    "Tienda": "CARULLA LA CALERA 886",
+    "Dirección": "KM 7 LA CALERA DESPUES DEL PEA JE",
+    "Ciudad": "LA CALERA",
+    "Departamento": "CUNDINAMARCA"
+  },
+  {
+    "Codigo": "0405",
+    "Tienda": "CARULLA LA CAROLINA 405",
+    "Dirección": "AC 127 14 A 30",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4781",
+    "Tienda": "CARULLA LA MARIA 4781",
+    "Dirección": "CALLE 18 # 127 - 36 AV. CAÑAS GORDAS",
+    "Ciudad": "CALIMA",
+    "Departamento": "VALLE DEL CAUCA"
+  },
+  {
+    "Codigo": "4780",
+    "Tienda": "CARULLA LA MESA 4780",
+    "Dirección": "CALLE 4 A # 25 - 184 LA MESA C UNDINAMARCA",
+    "Ciudad": "LA MESA",
+    "Departamento": "CUNDINAMARCA"
+  },
+  {
+    "Codigo": "0535",
+    "Tienda": "CARULLA LA MINA 535",
+    "Dirección": "ALBANIA GUAJIRA",
+    "Ciudad": "BARRANQUILLA",
+    "Departamento": "LA GUAJIRA"
+  },
+  {
+    "Codigo": "0540",
+    "Tienda": "CARULLA LA PORTADA PORTADA AL MAR 540",
+    "Dirección": "CALLE 7 OESTE 3 # 3-03",
+    "Ciudad": "CALI",
+    "Departamento": "VALLE DEL CAUCA"
+  },
+  {
+    "Codigo": "0729",
+    "Tienda": "CARULLA LAURELES 729",
+    "Dirección": "AVEN NUTIBARA CON CIRCULAR 73B LAURELES",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "0542",
+    "Tienda": "CARULLA LLANO GRANDE 542",
+    "Dirección": "KM 8.5 VIA LLANO GRANDE",
+    "Ciudad": "RIONEGRO",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "4816",
+    "Tienda": "CARULLA MALL PLAZA BUENAVISTA 4816",
+    "Dirección": "CR 53 # 99 - 148",
+    "Ciudad": "BARRANQUILLA",
+    "Departamento": "ATLANTICO"
+  },
+  {
+    "Codigo": "0533",
+    "Tienda": "CARULLA MANGA EXPRESS MANGA 533",
+    "Dirección": "AV CALIFORNIAED MARQUES DEL REAL",
+    "Ciudad": "CARTAGENA",
+    "Departamento": "BOLIVAR"
+  },
+  {
+    "Codigo": "0334",
+    "Tienda": "CARULLA MANIZALES 334",
+    "Dirección": "CR 23 # 65-149",
+    "Ciudad": "MANIZALES",
+    "Departamento": "CALDAS"
+  },
+  {
+    "Codigo": "0564",
+    "Tienda": "CARULLA NIZA 564",
+    "Dirección": "CALLE 125A # 53-86",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0702",
+    "Tienda": "CARULLA NOGAL702",
+    "Dirección": "CARRERA 11 # 76-79",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0338",
+    "Tienda": "CARULLA OVIEDO 338",
+    "Dirección": "CARRERA 43A # 6SUR-145",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "0727",
+    "Tienda": "CARULLA OVIEDO 727",
+    "Dirección": "CARRERA 43A 6S-15",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "0565",
+    "Tienda": "CARULLA PABLO VI 565",
+    "Dirección": "CRA 50 C # 53-50",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0594",
+    "Tienda": "CARULLA PANCE CALI 594",
+    "Dirección": "CL 18 # 122 ESQUINA",
+    "Ciudad": "CALI",
+    "Departamento": "VALLE DEL CAUCA"
+  },
+  {
+    "Codigo": "0297",
+    "Tienda": "CARULLA PASADENA 297",
+    "Dirección": "CR 53 102 A 77 PASADENA",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0566",
+    "Tienda": "CARULLA PASEO REAL 566",
+    "Dirección": "CALLE 121 # 6-46CENTRO EMPRESARIAL PASEO REAL",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0567",
+    "Tienda": "CARULLA PEPE SIERRA 567",
+    "Dirección": "CRA 15 # 114 A 33",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4811",
+    "Tienda": "CARULLA PEREIRA CERRITOS 4811",
+    "Dirección": "KM 5 COSTADO NTE VIA PEREIRA CERRITOS 4811",
+    "Ciudad": "PEREIRA",
+    "Departamento": "RISARALDA"
+  },
+  {
+    "Codigo": "4812",
+    "Tienda": "CARULLA PEREIRA PINARES 4812",
+    "Dirección": "CARRERA 17 ENTRE CALLES 9 Y 10 # 9- 47",
+    "Ciudad": "PEREIRA",
+    "Departamento": "RISARALDA"
+  },
+  {
+    "Codigo": "0340",
+    "Tienda": "CARULLA PINAR DEL RIO 340",
+    "Dirección": "CALLE 10 # 30-30",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "4817",
+    "Tienda": "CARULLA PLAZA CARO 4817",
+    "Dirección": "CRA 68 A # 24 - B- 10 BARRIO SALITRE",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0725",
+    "Tienda": "CARULLA POBLADO 725",
+    "Dirección": "CALLE 11 A # 42-49",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "0351",
+    "Tienda": "CARULLA POLO CLUB 351",
+    "Dirección": "TRANSVERSAL 24 # 83-39",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4818",
+    "Tienda": "CARULLA PRADERA DE POTOSI 4818",
+    "Dirección": "KM 20 VIA LA CALERA SOPO CCIAL POTOSI",
+    "Ciudad": "GUASCA",
+    "Departamento": "CUNDINAMARCA"
+  },
+  {
+    "Codigo": "4809",
+    "Tienda": "CARULLA PRIMAVERA URBANA 4809",
+    "Dirección": "AVEN 15 CON CRA 40",
+    "Ciudad": "VILLAVICENCIO",
+    "Departamento": "META"
+  },
+  {
+    "Codigo": "0568",
+    "Tienda": "CARULLA QUINTA CAMACHO 568",
+    "Dirección": "CALLE 70 # 10 A 37",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0647",
+    "Tienda": "CARULLA RAMBLAS 647",
+    "Dirección": "ANILLO VIAL KM 10 ENTRADA A MANZANILLO DEL MAR",
+    "Ciudad": "CARTAGENA",
+    "Departamento": "BOLIVAR"
+  },
+  {
+    "Codigo": "0569",
+    "Tienda": "CARULLA RINCON DE LA COLINA569",
+    "Dirección": "CARRERA 59 # 152 B 75 RINCON DE LA COLINA",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0525",
+    "Tienda": "CARULLA ROSALES 525",
+    "Dirección": "CR 6821 37",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0595",
+    "Tienda": "CARULLA SAN FERNANDO 595",
+    "Dirección": "CALLE 4B # 34-04",
+    "Ciudad": "CALI",
+    "Departamento": "VALLE DEL CAUCA"
+  },
+  {
+    "Codigo": "0728",
+    "Tienda": "CARULLA SAN LUCAS 728",
+    "Dirección": "CRA 43 TRANSV.INF. CALLE 18",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "4805",
+    "Tienda": "CARULLA SAN MARCEL 4805",
+    "Dirección": "VIA AEROPUERTO # 30 - 200",
+    "Ciudad": "MANIZALES",
+    "Departamento": "CALDAS"
+  },
+  {
+    "Codigo": "0526",
+    "Tienda": "CARULLA SAN NICOLAS 526",
+    "Dirección": "AVENIDA CALLE 116 # 70 F 43",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0294",
+    "Tienda": "CARULLA SAN RAFAEL294",
+    "Dirección": "AV CL 134 55 30 LC 105",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0581",
+    "Tienda": "CARULLA SANTA BARBARA 581",
+    "Dirección": "CALLE 125 BIS # 29-23",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0538",
+    "Tienda": "CARULLA SANTA LUCIA 538",
+    "Dirección": "DG 3154175 SANTA LUCIA",
+    "Ciudad": "CARTAGENA",
+    "Departamento": "BOLIVAR"
+  },
+  {
+    "Codigo": "0341",
+    "Tienda": "CARULLA SAO PAULO 341",
+    "Dirección": "CRA 43 A # 17 SUR 383",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "4814",
+    "Tienda": "CARULLA SMARTMARKET 4814",
+    "Dirección": "CALLE 92 CON CRA 11",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0527",
+    "Tienda": "CARULLA SOLEDAD 527",
+    "Dirección": "AVENIDA 22 # 41-43",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0726",
+    "Tienda": "CARULLA TESORO",
+    "Dirección": "CALLE 3 # 25-19 LOMA DEL TESOR",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "0596",
+    "Tienda": "CARULLA TRADE CENTER 596",
+    "Dirección": "CARRERA 100 # 11-60",
+    "Ciudad": "CALI",
+    "Departamento": "VALLE DEL CAUCA"
+  },
+  {
+    "Codigo": "0280",
+    "Tienda": "CARULLA VILLA COUNTRY 280",
+    "Dirección": "CARRERA 53 ENTRE CALLES 76Y78",
+    "Ciudad": "BARRANQUILLA",
+    "Departamento": "ATLANTICO"
+  },
+  {
+    "Codigo": "0517",
+    "Tienda": "CARULLA VILLA DEL PRADO 517",
+    "Dirección": "CR 52A # 170-75",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0539",
+    "Tienda": "CARULLA VILLA SUSANA 539",
+    "Dirección": "MANGA CALLE REAL# 24 A 31",
+    "Ciudad": "CARTAGENA",
+    "Departamento": "BOLIVAR"
+  },
+  {
+    "Codigo": "0552",
+    "Tienda": "CARULLA VISITACION 552",
+    "Dirección": "CR 322 SUR 55",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "4801",
+    "Tienda": "CARULLA VIVA PALMAS 4801",
+    "Dirección": "KM 17 VIA LAS PALMAS",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "0665",
+    "Tienda": "CARULLA ZAZUE 665",
+    "Dirección": "BRR POZOS COLORADOS CALLE 117 CON CRA 7",
+    "Ciudad": "SANTA MARTA",
+    "Departamento": "MAGDALENA"
+  },
+  {
+    "Codigo": "0707",
+    "Tienda": "CARULLACALLE 110",
+    "Dirección": "CALLE 110 # 9B-80",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4839",
+    "Tienda": "CARULLAEXPRESS CARRERA 74839",
+    "Dirección": "CARRERA7#56-51",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4874",
+    "Tienda": "CARULLAEXPRESS PASADENA4874",
+    "Dirección": "CALLE 106#51-19",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4833",
+    "Tienda": "CARULLAEXPRESSRODADERO SUR4833",
+    "Dirección": "CARRERA2#6-26ELRODA DERO",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "MAGDALENA"
+  },
+  {
+    "Codigo": "0339",
+    "Tienda": "CARULLAPALMAS 339",
+    "Dirección": "CALLE 18 # 35-69",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "0149",
+    "Tienda": "CEDI BUCARAMANGA 149",
+    "Dirección": "CRA 17# 59-51 VIA PALENQUE CHIMITA MUNICIP DE GIRON KM 1",
+    "Ciudad": "BUCARAMANGA",
+    "Departamento": "SANTANDER"
+  },
+  {
+    "Codigo": "0050",
+    "Tienda": "CEDI CALI 050",
+    "Dirección": "CR 36 A 16 79 ACOPI",
+    "Ciudad": "CALI",
+    "Departamento": "VALLE DEL CAUCA"
+  },
+  {
+    "Codigo": "0146",
+    "Tienda": "CEDI CARIBE 146",
+    "Dirección": "PARQUE INDUSTR MALAMBO PIMSA KILOMETRO 3 VIA MALAMBO",
+    "Ciudad": "BARRANQUILLA",
+    "Departamento": "ATLANTICO"
+  },
+  {
+    "Codigo": "0085",
+    "Tienda": "CEDI FUNZA 085",
+    "Dirección": "KM4 VIA FUNZA PARQ INDT SAN C",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0091",
+    "Tienda": "CEDI INSTALACION SAN ANDRES ISLAS 91",
+    "Dirección": "PARQUE INDUSTRIAL MALAMBO PIM KILOMETRO 3 VIA MALAMBO SABA",
+    "Ciudad": "MALAMBO",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0138",
+    "Tienda": "CEDI PLATAFORMA PEREIRA 0138",
+    "Dirección": "AV SIMON BOLIVAR CR 16 CL 34",
+    "Ciudad": "DOS QUEBRADAS",
+    "Departamento": "RISARALDA"
+  },
+  {
+    "Codigo": "0284",
+    "Tienda": "EXITO 20 DE JULIO 284",
+    "Dirección": "CL 21 SUR 5 A 34",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4081",
+    "Tienda": "EXITO ACACIAS",
+    "Dirección": "CALLE 11 # 33 - 16 ACACIAS MET A",
+    "Ciudad": "ACACIAS",
+    "Departamento": "META"
+  },
+  {
+    "Codigo": "4079",
+    "Tienda": "EXITO ACOPI",
+    "Dirección": "CL 11 A # 39 - 78 YUMBO VALLE DEL CAUCA",
+    "Ciudad": "CALI",
+    "Departamento": "VALLE DEL CAUCA"
+  },
+  {
+    "Codigo": "0357",
+    "Tienda": "EXITO ALAMEDAS DEL SINU MONTERIA 357",
+    "Dirección": "CL 48 CR 13 Y 14",
+    "Ciudad": "MONTERIA",
+    "Departamento": "CORDOBA"
+  },
+  {
+    "Codigo": "0084",
+    "Tienda": "EXITO AMERICAS 084",
+    "Dirección": "AVDA. DE LAS AMERICAS # 41-64",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0045",
+    "Tienda": "EXITO APARTADO 045",
+    "Dirección": "CL 103 CON CR 100",
+    "Ciudad": "APARTADO",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "4088",
+    "Tienda": "EXITO AQUARELA",
+    "Dirección": "CARRERA 80 # 13 A - 261",
+    "Ciudad": "CALI",
+    "Departamento": "VALLE DEL CAUCA"
+  },
+  {
+    "Codigo": "0073",
+    "Tienda": "EXITO ARANJUEZ073",
+    "Dirección": "CALLE 94 # 48 - 13",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "0628",
+    "Tienda": "EXITO ARMENIA 628",
+    "Dirección": "CALLE 19 # 17-27",
+    "Ciudad": "ARMENIA",
+    "Departamento": "QUINDIO"
+  },
+  {
+    "Codigo": "0325",
+    "Tienda": "EXITO AVENIDA QUINTA 325",
+    "Dirección": "AV 5 CALLE 12",
+    "Ciudad": "CUCUTA",
+    "Departamento": "NORTE DE SANTANDER"
+  },
+  {
+    "Codigo": "0482",
+    "Tienda": "EXITO AVENTURA 482",
+    "Dirección": "CARRERA 52 # 66 - 11",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "0180",
+    "Tienda": "EXITO BARRANCABERMEJA 180",
+    "Dirección": "C.CIAL IWANA ENTRE CR 10 11",
+    "Ciudad": "BARRANCABERMEJA",
+    "Departamento": "SANTANDER"
+  },
+  {
+    "Codigo": "0041",
+    "Tienda": "EXITO BARRANQUILLA 041",
+    "Dirección": "CARRERA 51B # 87-50",
+    "Ciudad": "BARRANQUILLA",
+    "Departamento": "ATLANTICO"
+  },
+  {
+    "Codigo": "0047",
+    "Tienda": "EXITO BARRANQUILLA SUR 047",
+    "Dirección": "CL AV CIRCUNVALAR CON CL MURIL LO",
+    "Ciudad": "BARRANQUILLA",
+    "Departamento": "ATLANTICO"
+  },
+  {
+    "Codigo": "0502",
+    "Tienda": "EXITO BELEN502",
+    "Dirección": "KRR 77# 28- 124",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "0030",
+    "Tienda": "EXITO BELLO 030",
+    "Dirección": "AVDA.38 CON DIAGONAL 51 EST.NI",
+    "Ciudad": "BELLO",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "0275",
+    "Tienda": "EXITO BELLO CENTRO 275",
+    "Dirección": "CARRERA 49 # 50-12",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "0322",
+    "Tienda": "EXITO BUCARAMANGA CENTRO 322",
+    "Dirección": "CL36 # 15 - 27",
+    "Ciudad": "BUCARAMANGA",
+    "Departamento": "SANTANDER"
+  },
+  {
+    "Codigo": "0071",
+    "Tienda": "EXITO BUCARAMANGA LA ROSITA 071",
+    "Dirección": "CR 17 # 45-77",
+    "Ciudad": "BUCARAMANGA",
+    "Departamento": "SANTANDER"
+  },
+  {
+    "Codigo": "0362",
+    "Tienda": "EXITO BUENA VISTA BARRANQUILLA 362",
+    "Dirección": "CR 53 CL 98 ESQ",
+    "Ciudad": "BARRANQUILLA",
+    "Departamento": "ATLANTICO"
+  },
+  {
+    "Codigo": "0363",
+    "Tienda": "EXITO BUENA VISTA SANTA MARTA 363",
+    "Dirección": "AV LIBERTADOR FRENTE A LA QUINTA DE SAN PEDRO ALEJANDRIN",
+    "Ciudad": "SANTA MARTA",
+    "Departamento": "MAGDALENA"
+  },
+  {
+    "Codigo": "0067",
+    "Tienda": "EXITO BUENAVENTURA 067",
+    "Dirección": "CL 2 66 86 KM 11 CARRETERA CABAL POMBO",
+    "Ciudad": "BUENAVENTURA",
+    "Departamento": "VALLE DEL CAUCA"
+  },
+  {
+    "Codigo": "0603",
+    "Tienda": "EXITO BUGA 603",
+    "Dirección": "CRA. 13 # 8-54",
+    "Ciudad": "BUGA",
+    "Departamento": "VALLE DEL CAUCA"
+  },
+  {
+    "Codigo": "0319",
+    "Tienda": "EXITO CABECERA 319",
+    "Dirección": "CR35A # 49-27",
+    "Ciudad": "BUCARAMANGA",
+    "Departamento": "SANTANDER"
+  },
+  {
+    "Codigo": "4053",
+    "Tienda": "EXITO CALLE 28 4053",
+    "Dirección": "CRA 5 CON CALLE 28 ESQUINA",
+    "Ciudad": "IBAGUE",
+    "Departamento": "TOLIMA"
+  },
+  {
+    "Codigo": "0369",
+    "Tienda": "EXITO CALLE 30 BARRANQUILLA 369",
+    "Dirección": "CL 31 6 B 135",
+    "Ciudad": "BARRANQUILLA",
+    "Departamento": "ATLANTICO"
+  },
+  {
+    "Codigo": "0364",
+    "Tienda": "EXITO CALLE 77 BARRANQUILLA 364",
+    "Dirección": "CL 77 71 72 ESQ",
+    "Ciudad": "BARRANQUILLA",
+    "Departamento": "ATLANTICO"
+  },
+  {
+    "Codigo": "0086",
+    "Tienda": "EXITO CALLE 80 086",
+    "Dirección": "CRA 59A # 79-30",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0176",
+    "Tienda": "EXITO CAREPA176",
+    "Dirección": "CENTRO CCIAL LAS PLAYAS COMUNA EL SILENCIO",
+    "Ciudad": "CAREPA",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "4087",
+    "Tienda": "EXITO CARRERA 10 JAMUNDI",
+    "Dirección": "CRA 10 # 17 - 21 CIRO VELAZCO",
+    "Ciudad": "CALI",
+    "Departamento": "VALLE DEL CAUCA"
+  },
+  {
+    "Codigo": "0044",
+    "Tienda": "EXITO CARTAGENA 044",
+    "Dirección": "AV PEDRO HEREDIA CR 69",
+    "Ciudad": "CARTAGENA",
+    "Departamento": "BOLIVAR"
+  },
+  {
+    "Codigo": "0370",
+    "Tienda": "EXITO CASTELLANA CARTAGENA 370",
+    "Dirección": "AV PEDRO DE HEREDIA SECTOR VILLA SANDRA 30 14",
+    "Ciudad": "CARTAGENA",
+    "Departamento": "BOLIVAR"
+  },
+  {
+    "Codigo": "0265",
+    "Tienda": "EXITO CAUCASIA 265",
+    "Dirección": "CR 20 28 12 BR LA Y",
+    "Ciudad": "CAUCASIA",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "0320",
+    "Tienda": "EXITO CAÒAVERAL 320",
+    "Dirección": "CENTRO CIAL.AV.FLORIDABLANCA",
+    "Ciudad": "BUCARAMANGA",
+    "Departamento": "SANTANDER"
+  },
+  {
+    "Codigo": "0290",
+    "Tienda": "EXITO CENTENARIO 290",
+    "Dirección": "CL 27 SUR 26 24",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0430",
+    "Tienda": "EXITO CENTRO 430",
+    "Dirección": "CRA 5 #6-45",
+    "Ciudad": "POPAYAN",
+    "Departamento": "CAUCA"
+  },
+  {
+    "Codigo": "0258",
+    "Tienda": "EXITO CENTRO SANTA MARTA 258",
+    "Dirección": "AVDA. 5 CALLE 19",
+    "Ciudad": "SANTA MARTA",
+    "Departamento": "MAGDALENA"
+  },
+  {
+    "Codigo": "0094",
+    "Tienda": "EXITO CHAPINERO 094",
+    "Dirección": "CALLE 52 # 13-70",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0402",
+    "Tienda": "EXITO CHIPICHAPE 402",
+    "Dirección": "AV 6NORTE # 135-47",
+    "Ciudad": "CALI",
+    "Departamento": "VALLE DEL CAUCA"
+  },
+  {
+    "Codigo": "4047",
+    "Tienda": "EXITO CHIQUINQUIRA 4047",
+    "Dirección": "CARRERA 8 # 17 - 33",
+    "Ciudad": "CHIQUINQUIRA",
+    "Departamento": "BOYACA"
+  },
+  {
+    "Codigo": "0584",
+    "Tienda": "EXITO CIUDAD JARDIN 584",
+    "Dirección": "CARRERA 13 # 16-48 SUR",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0302",
+    "Tienda": "EXITO CIUDAD TUNAL 302",
+    "Dirección": "CL 47B SUR 24B 33",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4082",
+    "Tienda": "EXITO CIUDADELA 4082",
+    "Dirección": "TRANSVERSAL 113 # 142 A 98",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0088",
+    "Tienda": "EXITO COLINA 088",
+    "Dirección": "TRANSV. 46 # 146-A-25",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0031",
+    "Tienda": "EXITO COLOMBIA 031",
+    "Dirección": "CARRERA 66 # 49-01",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "0081",
+    "Tienda": "EXITO COUNTRY 081",
+    "Dirección": "CALLE 134 # 14-51",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0650",
+    "Tienda": "EXITO CR 8 CALI 650",
+    "Dirección": "CRA. 8A # 13-68",
+    "Ciudad": "CALI",
+    "Departamento": "VALLE DEL CAUCA"
+  },
+  {
+    "Codigo": "4057",
+    "Tienda": "EXITO CRESPO 4057",
+    "Dirección": "CALLE 70 AV 1 ESQUINA",
+    "Ciudad": "CARTAGENA",
+    "Departamento": "BOLIVAR"
+  },
+  {
+    "Codigo": "0060",
+    "Tienda": "EXITO CRISTAL ARMENIA 060",
+    "Dirección": "CR 14 # 10 - 20",
+    "Ciudad": "ARMENIA",
+    "Departamento": "QUINDIO"
+  },
+  {
+    "Codigo": "0505",
+    "Tienda": "EXITO DE LA 70 505",
+    "Dirección": "CARRERA 70 # 43-31",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "0028",
+    "Tienda": "EXITO DEL ESTE 028",
+    "Dirección": "CR 25 3 01 POBLADO",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "0355",
+    "Tienda": "EXITO DIVERPLAZA 0355",
+    "Dirección": "TV 96 # 70 A-85 BARRIO LOS ALAMOS",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0385",
+    "Tienda": "EXITO DUAL RIOACHA 385",
+    "Dirección": "CALLE 15 CON CARRERA 21",
+    "Ciudad": "RIOHACHA",
+    "Departamento": "LA GUAJIRA"
+  },
+  {
+    "Codigo": "4036",
+    "Tienda": "EXITO DUAL SABANALARGA 4036",
+    "Dirección": "CALLE 21 CON CRA 19 # 21 - 50 21-43",
+    "Ciudad": "SABANALARGA",
+    "Departamento": "ATLANTICO"
+  },
+  {
+    "Codigo": "0574",
+    "Tienda": "EXITO DUITAMA 574",
+    "Dirección": "AV. TADEO PRIETO",
+    "Ciudad": "DUITAMA",
+    "Departamento": "BOYACA"
+  },
+  {
+    "Codigo": "0257",
+    "Tienda": "EXITO EJECUTIVOS 257",
+    "Dirección": "CALLE 31 # 57-106 BUENOS AIRES",
+    "Ciudad": "CARTAGENA",
+    "Departamento": "BOLIVAR"
+  },
+  {
+    "Codigo": "4050",
+    "Tienda": "EXITO ENSUENO 4050",
+    "Dirección": "CALLE 59 SUR # 51 - 21",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0035",
+    "Tienda": "EXITO ENVIGADO 035",
+    "Dirección": "CARRERA 48 # 34S-29",
+    "Ciudad": "ENVIGADO",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "0512",
+    "Tienda": "EXITO ENVIGADO CENTRO512",
+    "Dirección": "CALLE 36 SUR # 43-40",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "0586",
+    "Tienda": "EXITO ESPERANZA 586",
+    "Dirección": "CALLE 35A # 73-02",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4167",
+    "Tienda": "EXITO EXPRESS CALLE JARDIN 4167",
+    "Dirección": "CARRERA 46 # 29 SUR 100",
+    "Ciudad": "ENVIGADO",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "0497",
+    "Tienda": "EXITO EXPRESS CARRERA 12 CON 44497",
+    "Dirección": "CRA 12 # 144-77",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0638",
+    "Tienda": "EXITO EXPRESS CHILACOS638",
+    "Dirección": "CARRERA 3A # 20B - 35",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "CUNDINAMARCA"
+  },
+  {
+    "Codigo": "0197",
+    "Tienda": "EXITO EXPRESS CIUDAD DEL RIO 197",
+    "Dirección": "CALLE 19 # 43 G - 80",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "0636",
+    "Tienda": "EXITO EXPRESS LAS AMERICAS 636",
+    "Dirección": "CR 9 # 17 - 52",
+    "Ciudad": "CARTAGENA",
+    "Departamento": "BOLIVAR"
+  },
+  {
+    "Codigo": "4102",
+    "Tienda": "EXITO EXPRESS MINI YERBABUENA 4102",
+    "Dirección": "CALLE 35 CON CRA 18",
+    "Ciudad": "VILLAVICENCIO",
+    "Departamento": "META"
+  },
+  {
+    "Codigo": "0183",
+    "Tienda": "EXITO EXPRESS VARIANTE CALDAS 183",
+    "Dirección": "VARIANTE VIA CALDAS",
+    "Ciudad": "CALDAS",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "0090",
+    "Tienda": "EXITO FACATATIVA 090",
+    "Dirección": "CR 5 # N 13.50",
+    "Ciudad": "FACATATIVA",
+    "Departamento": "CUNDINAMARCA"
+  },
+  {
+    "Codigo": "4099",
+    "Tienda": "EXITO FERIA DE LOS PLATANOS 4099",
+    "Dirección": "CALLE 50 # 25 - 00",
+    "Ciudad": "ARMENIA",
+    "Departamento": "QUINDIO"
+  },
+  {
+    "Codigo": "4044",
+    "Tienda": "EXITO FLORENCIA CENTRO 4044",
+    "Dirección": "CALLE 15 # 10 -23",
+    "Ciudad": "FLORENCIA",
+    "Departamento": "CAQUETA"
+  },
+  {
+    "Codigo": "0175",
+    "Tienda": "EXITO FLORENCIA175",
+    "Dirección": "CRA 3A BIS # 21A - 14 / D 22 C.C. GRAN PLAZA FLORENCIA",
+    "Ciudad": "FLORENCIA",
+    "Departamento": "CAQUETA"
+  },
+  {
+    "Codigo": "0281",
+    "Tienda": "EXITO FLORESTA 281",
+    "Dirección": "AK 68 90 88",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0483",
+    "Tienda": "EXITO FONTANA CHIA 483",
+    "Dirección": "CM 2.5 VIA CHIA",
+    "Ciudad": "CHIA",
+    "Departamento": "CUNDINAMARCA"
+  },
+  {
+    "Codigo": "0089",
+    "Tienda": "EXITO FONTIBON 089",
+    "Dirección": "AV CENTENARIO # 106-104",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0096",
+    "Tienda": "EXITO FUSAGASUGA 096",
+    "Dirección": "CA 22 TV 12",
+    "Ciudad": "FUSAGASUGA",
+    "Departamento": "CUNDINAMARCA"
+  },
+  {
+    "Codigo": "4070",
+    "Tienda": "EXITO GARDEL 4070",
+    "Dirección": "CARRERA 45 # 72 ESQUINA",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "0444",
+    "Tienda": "EXITO GIRARDOT444",
+    "Dirección": "CR 10 25 53",
+    "Ciudad": "GIRARDOT",
+    "Departamento": "CUNDINAMARCA"
+  },
+  {
+    "Codigo": "0356",
+    "Tienda": "EXITO GRAN ESTACION 356",
+    "Dirección": "AV LA ESPERANZA # 62-49",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0029",
+    "Tienda": "EXITO GRAN VIA 029",
+    "Dirección": "DG 75B # 6-105",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "4767",
+    "Tienda": "EXITO GRANADA 4767",
+    "Dirección": "CARRERA 12 # 14 - 67 C",
+    "Ciudad": "GRANADA",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4090",
+    "Tienda": "EXITO GUADALUPE",
+    "Dirección": "CRA 56 # 13 C - 103",
+    "Ciudad": "CALI",
+    "Departamento": "VALLE DEL CAUCA"
+  },
+  {
+    "Codigo": "0156",
+    "Tienda": "EXITO IBAGUE 156",
+    "Dirección": "AVDA.EL JORDAN # 80-60 F.MONU",
+    "Ciudad": "IBAGUE",
+    "Departamento": "TOLIMA"
+  },
+  {
+    "Codigo": "4042",
+    "Tienda": "EXITO INDIANA MALL 4042",
+    "Dirección": "KM 17 VIA LAS PALMAS INDIANA MALL LOC 101 Y 104",
+    "Ciudad": "ENVIGADO",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "0415",
+    "Tienda": "EXITO IPIALES 415",
+    "Dirección": "AVENIDA PANAMERICANA",
+    "Ciudad": "IPIALES",
+    "Departamento": "NARINO"
+  },
+  {
+    "Codigo": "4064",
+    "Tienda": "EXITO ISLA AEROPUERTO 4064",
+    "Dirección": "CRA 10 # 9A-15",
+    "Ciudad": "PROVIDENCIA",
+    "Departamento": "SAN ANDRES"
+  },
+  {
+    "Codigo": "4061",
+    "Tienda": "EXITO ISLA SAN LUIS 4061",
+    "Dirección": "CRA 4 # 17-27",
+    "Ciudad": "PROVIDENCIA",
+    "Departamento": "SAN ANDRES"
+  },
+  {
+    "Codigo": "4062",
+    "Tienda": "EXITO ISLA ZONA ROSA 4062",
+    "Dirección": "CALLE 1 # 1A-15",
+    "Ciudad": "PROVIDENCIA",
+    "Departamento": "SAN ANDRES"
+  },
+  {
+    "Codigo": "0040",
+    "Tienda": "EXITO ITAGUI 040",
+    "Dirección": "CL 39 Y CR 50 A",
+    "Ciudad": "ITAGUI",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "4049",
+    "Tienda": "EXITO JAMUNDI 4049",
+    "Dirección": "GLORIETA CALLE 02 # 22-175 LC 1-16 CCIAL ALFAGUARA",
+    "Ciudad": "CALI",
+    "Departamento": "VALLE DEL CAUCA"
+  },
+  {
+    "Codigo": "0276",
+    "Tienda": "EXITO JUNIN 276",
+    "Dirección": "CALLE 50 # 49-33",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "0504",
+    "Tienda": "EXITO LA 33 504",
+    "Dirección": "CARRERA 66B # 32D-36",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "0384",
+    "Tienda": "EXITO LA CEJA 384",
+    "Dirección": "CARRERA 13 # 26B - 56",
+    "Ciudad": "LA CEJA",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "4040",
+    "Tienda": "EXITO LA CENTRAL 4040",
+    "Dirección": "CALLE 49 # 20 - 90",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "4048",
+    "Tienda": "EXITO LA DORADA 4048",
+    "Dirección": "CARRERA 3 # 14 - 02",
+    "Ciudad": "LA DORADA",
+    "Departamento": "CALDAS"
+  },
+  {
+    "Codigo": "4029",
+    "Tienda": "EXITO LA FELICIDAD 4029",
+    "Dirección": "CRA 72A # 18 - 90AV BOYACA CON CLL 13 C.C. LA FELICIDAD",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0054",
+    "Tienda": "EXITO LA FLORA 054",
+    "Dirección": "AVDA. 3FN # 52N-46",
+    "Ciudad": "CALI",
+    "Departamento": "VALLE DEL CAUCA"
+  },
+  {
+    "Codigo": "0554",
+    "Tienda": "EXITO LA NIEVES 554",
+    "Dirección": "CARRERA 7 # 22-36",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0354",
+    "Tienda": "EXITO LAS FLORES VALLEDUPAR 354",
+    "Dirección": "CR 19 CL 16 ESQ",
+    "Ciudad": "VALLEDUPAR",
+    "Departamento": "CESAR"
+  },
+  {
+    "Codigo": "0037",
+    "Tienda": "EXITO LAURELES 037",
+    "Dirección": "CARRERA 81 # 37-100",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "0259",
+    "Tienda": "EXITO LIBERTADOR 259",
+    "Dirección": "AV EL LIBERTADOR CR 20 ESQ",
+    "Ciudad": "SANTA MARTA",
+    "Departamento": "MAGDALENA"
+  },
+  {
+    "Codigo": "4054",
+    "Tienda": "EXITO LLANOGRANDE PALMIRA 4054",
+    "Dirección": "CALLE 31 #44-239 LOCAL 326 CCIAL LLANOGRANDE PALMIRA",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "VALLE DEL CAUCA"
+  },
+  {
+    "Codigo": "4033",
+    "Tienda": "EXITO LORICA",
+    "Dirección": "CARRERA 21 A # 17 B - 72",
+    "Ciudad": "LORICA",
+    "Departamento": "CORDOBA"
+  },
+  {
+    "Codigo": "4089",
+    "Tienda": "EXITO LOS PATIOS 4089",
+    "Dirección": "CARRERA 4 # 34 - 78",
+    "Ciudad": "CUCUTILLA",
+    "Departamento": "NORTE DE SANTANDER"
+  },
+  {
+    "Codigo": "0172",
+    "Tienda": "EXITO MAGANGUE 172",
+    "Dirección": "CR 10 10 201",
+    "Ciudad": "MAGANGUE",
+    "Departamento": "BOLIVAR"
+  },
+  {
+    "Codigo": "4084",
+    "Tienda": "EXITO MALAMBO CALLE 10 4084",
+    "Dirección": "CALLE 10 # 14 - 4 MALAMBO ATLA NTICO",
+    "Ciudad": "MALAMBO",
+    "Departamento": "ATLANTICO"
+  },
+  {
+    "Codigo": "4043",
+    "Tienda": "EXITO MALL PLAZA NQS 4043",
+    "Dirección": "CALLE 19 # 18 - 80 C.C. CALIMA",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0383",
+    "Tienda": "EXITO MANIZALES 383",
+    "Dirección": "CR 20 34 18 FUNDADORES",
+    "Ciudad": "MANIZALES",
+    "Departamento": "CALDAS"
+  },
+  {
+    "Codigo": "0508",
+    "Tienda": "EXITO MARACAIBO 508",
+    "Dirección": "CARRERA 49 # 52-165",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "0371",
+    "Tienda": "EXITO MATUNA CARTAGENA 371",
+    "Dirección": "AV VENEZUELA CL 35 9 41",
+    "Ciudad": "CARTAGENA",
+    "Departamento": "BOLIVAR"
+  },
+  {
+    "Codigo": "0075",
+    "Tienda": "EXITO MAYORCA 075",
+    "Dirección": "CALLE 51 SUR # 48 - 57",
+    "Ciudad": "SABANETA",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "4086",
+    "Tienda": "EXITO MELENDEZ 4086",
+    "Dirección": "CRA 94 # 4 - 85 MELENDEZ",
+    "Ciudad": "CALI",
+    "Departamento": "VALLE DEL CAUCA"
+  },
+  {
+    "Codigo": "0407",
+    "Tienda": "EXITO MELGAR 407",
+    "Dirección": "CL 8 CR 15 C",
+    "Ciudad": "MELGAR",
+    "Departamento": "TOLIMA"
+  },
+  {
+    "Codigo": "0289",
+    "Tienda": "EXITO MODELIA 289",
+    "Dirección": "CR 75 23 F 30",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0514",
+    "Tienda": "EXITO MOLINOS 514",
+    "Dirección": "CL 30 A CR 82 C.CIAL MOLINARES",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "0263",
+    "Tienda": "EXITO MONTERIA CENTRO 263",
+    "Dirección": "CARRERA 2 CALLE 35",
+    "Ciudad": "MONTERIA",
+    "Departamento": "CORDOBA"
+  },
+  {
+    "Codigo": "0262",
+    "Tienda": "EXITO MONTERIA NORTE 262",
+    "Dirección": "CARRERA 5# 62-81 URB BONGOS",
+    "Ciudad": "MONTERIA",
+    "Departamento": "CORDOBA"
+  },
+  {
+    "Codigo": "0173",
+    "Tienda": "EXITO MOSQUERA 173",
+    "Dirección": "CRA 3 # 15A - 57",
+    "Ciudad": "MOSQUERA",
+    "Departamento": "CUNDINAMARCA"
+  },
+  {
+    "Codigo": "0366",
+    "Tienda": "EXITO MURILLO BARRANQUILLA 366",
+    "Dirección": "CL 45 26 129",
+    "Ciudad": "BARRANQUILLA",
+    "Departamento": "ATLANTICO"
+  },
+  {
+    "Codigo": "0328",
+    "Tienda": "EXITO NEIVA",
+    "Dirección": "CALLE 8 # 2-2",
+    "Ciudad": "NEIVA",
+    "Departamento": "HUILA"
+  },
+  {
+    "Codigo": "0157",
+    "Tienda": "EXITO NEIVA 157",
+    "Dirección": "AVENIDA 26 CALLE 42",
+    "Ciudad": "NEIVA",
+    "Departamento": "HUILA"
+  },
+  {
+    "Codigo": "0556",
+    "Tienda": "EXITO NIZA",
+    "Dirección": "CARRERA 53 # 119-04",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0092",
+    "Tienda": "EXITO NORTE 092",
+    "Dirección": "CALLE 172A # 41-64",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4035",
+    "Tienda": "EXITO NUESTRO CARTAGO 4035",
+    "Dirección": "CARRERA 2 # 34-15 LOCAL 101 CCIAL NUESTRO CARTAGO",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "VALLE DEL CAUCA"
+  },
+  {
+    "Codigo": "0283",
+    "Tienda": "EXITO NUEVO KENNEDY 283",
+    "Dirección": "CR 78 K 37 A 53 SUR",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0046",
+    "Tienda": "EXITO OCANA 046",
+    "Dirección": "CL 11 10 55 BERRIO CENTRO",
+    "Ciudad": "OCA#A",
+    "Departamento": "NORTE DE SANTANDER"
+  },
+  {
+    "Codigo": "0091",
+    "Tienda": "EXITO OCCIDENTE 091",
+    "Dirección": "CR 114A # 78B -85 AUTOPISTA MEDELLIN",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0352",
+    "Tienda": "EXITO ORIENTAL BUCARAMANGA 352",
+    "Dirección": "VIADUCTO LA FLORA FRENTE ESTAD IO ATLETISMO",
+    "Ciudad": "BUCARAMANGA",
+    "Departamento": "SANTANDER"
+  },
+  {
+    "Codigo": "0616",
+    "Tienda": "EXITO PALMETO 616",
+    "Dirección": "CRA 39 #5D -15 LEYSUR",
+    "Ciudad": "CALI",
+    "Departamento": "VALLE DEL CAUCA"
+  },
+  {
+    "Codigo": "0620",
+    "Tienda": "EXITO PALMIRA 620",
+    "Dirección": "CRA 26 # 28-26",
+    "Ciudad": "PALMIRA",
+    "Departamento": "VALLE DEL CAUCA"
+  },
+  {
+    "Codigo": "0062",
+    "Tienda": "EXITO PARQUE ARBOLEDA 062",
+    "Dirección": "AV CIRCUNVALAR 120 5 20",
+    "Ciudad": "PEREIRA",
+    "Departamento": "RISARALDA"
+  },
+  {
+    "Codigo": "4069",
+    "Tienda": "EXITO PARQUE FONTIBON 4069",
+    "Dirección": "CRA 99 # 18 A 25",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4037",
+    "Tienda": "EXITO PASEO DEL PUENTE 4037",
+    "Dirección": "CRA 6 CON CALLE 22 PIEDECUESTA",
+    "Ciudad": "PIEDECUESTA",
+    "Departamento": "SANTANDER"
+  },
+  {
+    "Codigo": "0058",
+    "Tienda": "EXITO PASTO 058",
+    "Dirección": "CL 2A AV PANAMERICANA CR 22 B Y 22 D",
+    "Ciudad": "PASTO",
+    "Departamento": "NARINO"
+  },
+  {
+    "Codigo": "0422",
+    "Tienda": "EXITO PASTO CENTRO",
+    "Dirección": "CARRERA 17 # 26-40",
+    "Ciudad": "PASTO",
+    "Departamento": "NARINO"
+  },
+  {
+    "Codigo": "0063",
+    "Tienda": "EXITO PEREIRA 063",
+    "Dirección": "CL 14 CR 11 ESQ",
+    "Ciudad": "PEREIRA",
+    "Departamento": "RISARALDA"
+  },
+  {
+    "Codigo": "0174",
+    "Tienda": "EXITO PEREIRA CUBA 174",
+    "Dirección": "CL 71 ENTRE CR 26 Y 27 CUBA",
+    "Ciudad": "PEREIRA",
+    "Departamento": "RISARALDA"
+  },
+  {
+    "Codigo": "0378",
+    "Tienda": "EXITO PIEDECUESTA 378",
+    "Dirección": "LOTE 2 URB CALLEJUELAS AUTP PI DECUESTA",
+    "Ciudad": "PIEDECUESTA",
+    "Departamento": "SANTANDER"
+  },
+  {
+    "Codigo": "0379",
+    "Tienda": "EXITO PITALITO 379",
+    "Dirección": "CR 15 NO 19A - 31 SUR LOTES 1A 1B 1C",
+    "Ciudad": "PITALITO",
+    "Departamento": "HUILA"
+  },
+  {
+    "Codigo": "4028",
+    "Tienda": "EXITO PLAZA 77 SUR 4028",
+    "Dirección": "CARRERA 50D CON CALLE 77 SUR",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "0558",
+    "Tienda": "EXITO PLAZA BOLIVAR558",
+    "Dirección": "CARRERA 7 # 11-30",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4051",
+    "Tienda": "EXITO PLAZA FABRICATO 4051",
+    "Dirección": "CRA 50 # 38-201 LOCAL 1013",
+    "Ciudad": "BELLO",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "0033",
+    "Tienda": "EXITO POBLADO 033",
+    "Dirección": "CALLE 10 # 43F-135",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "0435",
+    "Tienda": "EXITO POPAYAN 435",
+    "Dirección": "CARRERA 9 # 6N -03",
+    "Ciudad": "POPAYAN",
+    "Departamento": "CAUCA"
+  },
+  {
+    "Codigo": "4071",
+    "Tienda": "EXITO PRADILLA 4071",
+    "Dirección": "AV. PADRILLA # 5 - 92 LOCAL 30",
+    "Ciudad": "CHIA",
+    "Departamento": "CUNDINAMARCA"
+  },
+  {
+    "Codigo": "4068",
+    "Tienda": "EXITO PRIMAVERA 4068",
+    "Dirección": "AV. CALLE 80 # 89 A 03 CC PRIM AVERA PLAZA",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4072",
+    "Tienda": "EXITO PUERTO BERRIO 4072",
+    "Dirección": "CARRERA 7 # 7 - 15",
+    "Ciudad": "PUERTO BERRIO",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "4754",
+    "Tienda": "EXITO PUERTO GAITAN 4754",
+    "Dirección": "TRANSVERSAL 7 # 7 - 47",
+    "Ciudad": "PUERTO GAITAN",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0287",
+    "Tienda": "EXITO QUIRINAL 287",
+    "Dirección": "CL 61 43 40 LC 148",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0291",
+    "Tienda": "EXITO RESTREPO 291",
+    "Dirección": "CR 20 14 17 SUR RESTREPO",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0042",
+    "Tienda": "EXITO RIONEGRO 042",
+    "Dirección": "CL 43 AV GALAN CON CR 56",
+    "Ciudad": "RIONEGRO",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "0098",
+    "Tienda": "EXITO ROBLEDO 098",
+    "Dirección": "KRR 80 # 64-21 ROBLEDO",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "0095",
+    "Tienda": "EXITO SABANETA 095",
+    "Dirección": "CR 45",
+    "Ciudad": "SABANETA",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "0307",
+    "Tienda": "EXITO SALITRE 307",
+    "Dirección": "PER MANZANA 11 SECTOR 1",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4063",
+    "Tienda": "EXITO SAN ANDRES 20 DE JULIO 4063",
+    "Dirección": "CRA 7 # 4-55",
+    "Ciudad": "PROVIDENCIA",
+    "Departamento": "SAN ANDRES"
+  },
+  {
+    "Codigo": "0039",
+    "Tienda": "EXITO SAN ANTONIO 039",
+    "Dirección": "CALLE 48 # 46-115",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "0250",
+    "Tienda": "EXITO SAN BLAS 250",
+    "Dirección": "SAN BLAS CARRERA 41 CALLE 36",
+    "Ciudad": "BARRANQUILLA",
+    "Departamento": "ATLANTICO"
+  },
+  {
+    "Codigo": "0420",
+    "Tienda": "EXITO SAN CANCIO 420",
+    "Dirección": "CLL 66 CRA 28 CCIAL. SANCANCIO",
+    "Ciudad": "MANIZALES",
+    "Departamento": "CALDAS"
+  },
+  {
+    "Codigo": "0408",
+    "Tienda": "EXITO SAN DIEGO 408",
+    "Dirección": "CENTRO COMERCIAL SAN DIEGO",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "0367",
+    "Tienda": "EXITO SAN DIEGO CARTAGENA 367",
+    "Dirección": "CL 38 10 85",
+    "Ciudad": "CARTAGENA",
+    "Departamento": "BOLIVAR"
+  },
+  {
+    "Codigo": "0051",
+    "Tienda": "EXITO SAN FERNANDO 051",
+    "Dirección": "CALLE 5 # 38D-35",
+    "Ciudad": "CALI",
+    "Departamento": "VALLE DEL CAUCA"
+  },
+  {
+    "Codigo": "0368",
+    "Tienda": "EXITO SAN FRANCISCO BARRANQUILLA 368",
+    "Dirección": "CR 38 70 B 177",
+    "Ciudad": "BARRANQUILLA",
+    "Departamento": "ATLANTICO"
+  },
+  {
+    "Codigo": "4067",
+    "Tienda": "EXITO SAN JAVIER 4067",
+    "Dirección": "CARRERA 101 # 42 - 17",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "0074",
+    "Tienda": "EXITO SAN JERONIMO 074",
+    "Dirección": "CARRERA 12 AA 22 -13 ENTRADA PRINCIPAL SAN JERONIMO",
+    "Ciudad": "SAN JERONIMO",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "0082",
+    "Tienda": "EXITO SAN MARTIN 082",
+    "Dirección": "CR 732 16N LOC 201",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0353",
+    "Tienda": "EXITO SAN MATEO CUCUTA 353",
+    "Dirección": "AV DEMETRIO MENDOZA DIAGONAL STDER",
+    "Ciudad": "CUCUTA",
+    "Departamento": "NORTE DE SANTANDER"
+  },
+  {
+    "Codigo": "4065",
+    "Tienda": "EXITO SAN PEDRO DE LOS MILAGROS 4065",
+    "Dirección": "CARRERA 50 # 44 C 13",
+    "Ciudad": "SAN PEDRO",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "0043",
+    "Tienda": "EXITO SINCELEJO 043",
+    "Dirección": "CRA 25# 22-133 VIA LAS PENITAS",
+    "Ciudad": "SINCELEJO",
+    "Departamento": "SUCRE"
+  },
+  {
+    "Codigo": "0264",
+    "Tienda": "EXITO SINCELEJO CENTRO 264",
+    "Dirección": "CRA. 18 CALLE 20",
+    "Ciudad": "SINCELEJO",
+    "Departamento": "SUCRE"
+  },
+  {
+    "Codigo": "4025",
+    "Tienda": "EXITO SOACHA 4025",
+    "Dirección": "CRA 7N # 30B 139 LC 101 C.C ANTARES",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "CUNDINAMARCA"
+  },
+  {
+    "Codigo": "0578",
+    "Tienda": "EXITO SOGAMOSO 578",
+    "Dirección": "CL 12 CR 13 #11-50 ESQUINA 770 1001057804 10/01/1",
+    "Ciudad": "SOGAMOSO",
+    "Departamento": "BOYACA"
+  },
+  {
+    "Codigo": "0171",
+    "Tienda": "EXITO SOLEDAD 171",
+    "Dirección": "AVDA BOYACA CON CRA 36",
+    "Ciudad": "SOLEDAD",
+    "Departamento": "ATLANTICO"
+  },
+  {
+    "Codigo": "0093",
+    "Tienda": "EXITO SUBA 093",
+    "Dirección": "CL 145 # 105B-58 SUBA",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4056",
+    "Tienda": "EXITO SUPERCENTRO TULUA4056",
+    "Dirección": "CARRERA 40#37-51LOCAL F C. CIAL TULUA",
+    "Ciudad": "TULUA",
+    "Departamento": "VALLE DEL CAUCA"
+  },
+  {
+    "Codigo": "0282",
+    "Tienda": "EXITO TINTAL 282",
+    "Dirección": "CL 6 A 95 75",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0068",
+    "Tienda": "EXITO TOLU068",
+    "Dirección": "CALLE 15 # 2 -42 PLAZA PRINCIPAL",
+    "Ciudad": "TOLU",
+    "Departamento": "SUCRE"
+  },
+  {
+    "Codigo": "0064",
+    "Tienda": "EXITO TULUA 064",
+    "Dirección": "CR 19 # 28-76 C.C. LA HERRADURA",
+    "Ciudad": "TULUA",
+    "Departamento": "VALLE DEL CAUCA"
+  },
+  {
+    "Codigo": "0580",
+    "Tienda": "EXITO TUNJA 580",
+    "Dirección": "CR 11 # 18-28 77010010580 09 0 8/17/1988",
+    "Ciudad": "TUNJA",
+    "Departamento": "BOYACA"
+  },
+  {
+    "Codigo": "4093",
+    "Tienda": "EXITO TURBACO",
+    "Dirección": "CALLE 15 # 28 - 27 CARTAGENA",
+    "Ciudad": "CARTAGENA",
+    "Departamento": "BOLIVAR"
+  },
+  {
+    "Codigo": "0177",
+    "Tienda": "EXITO TURBO177",
+    "Dirección": "CRA 14 # 105 - 16 PARQUEADERO MAGO QUINTO",
+    "Ciudad": "TURBO",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "0056",
+    "Tienda": "EXITO UNICALI 056",
+    "Dirección": "CALLE 5A CRA. 100",
+    "Ciudad": "CALI",
+    "Departamento": "VALLE DEL CAUCA"
+  },
+  {
+    "Codigo": "0065",
+    "Tienda": "EXITO UNICENTRO ARMENIA 065",
+    "Dirección": "CR 14 14 34",
+    "Ciudad": "ARMENIA",
+    "Departamento": "QUINDIO"
+  },
+  {
+    "Codigo": "0303",
+    "Tienda": "EXITO UNICENTRO BOGOTA 303",
+    "Dirección": "CARRERA 15 # 123-30",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4039",
+    "Tienda": "EXITO UNICENTRO GIRARDOT 4039",
+    "Dirección": "CRA 7A # 33-77/199",
+    "Ciudad": "GIRARDOT",
+    "Departamento": "CUNDINAMARCA"
+  },
+  {
+    "Codigo": "0409",
+    "Tienda": "EXITO UNICENTRO MEDELLIN 409",
+    "Dirección": "CENTRO COMERCIAL UNICENTRO",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "4027",
+    "Tienda": "EXITO UNICENTRO NEIVA 4027",
+    "Dirección": "CRA 7 CON CLL 19A SUR LC 1 - 15",
+    "Ciudad": "NEIVA",
+    "Departamento": "HUILA"
+  },
+  {
+    "Codigo": "0358",
+    "Tienda": "EXITO UNICENTRO VILLAVICENCIO 358",
+    "Dirección": "AV 40CR 33 00",
+    "Ciudad": "VILLAVICENCIO",
+    "Departamento": "META"
+  },
+  {
+    "Codigo": "0097",
+    "Tienda": "EXITO USME 097",
+    "Dirección": "CR 165D SUR - 58 USME",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4058",
+    "Tienda": "EXITO VALLE DEL LILI 4058",
+    "Dirección": "CARRERA 98 B # 25-2",
+    "Ciudad": "CALI",
+    "Departamento": "VALLE DEL CAUCA"
+  },
+  {
+    "Codigo": "0266",
+    "Tienda": "EXITO VALLEDUPAR CENTRO 266",
+    "Dirección": "CRA. 6 CALLE 16",
+    "Ciudad": "VALLEDUPAR",
+    "Departamento": "CESAR"
+  },
+  {
+    "Codigo": "0083",
+    "Tienda": "EXITO VILLA MAYOR 083",
+    "Dirección": "AUTOP. SUR CALLE 38A RIO SECO",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4097",
+    "Tienda": "EXITO VILLA OLIMPICA 4097",
+    "Dirección": "CARRERA 14 # 83 - 347",
+    "Ciudad": "PEREIRA",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "4096",
+    "Tienda": "EXITO VILLA VERDE",
+    "Dirección": "CALLE 37 # 30 - 51 CC VILLA VE RDE",
+    "Ciudad": "PEREIRA",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "0330",
+    "Tienda": "EXITO VILLAVICENCIO CENTRO",
+    "Dirección": "CL 37B # 29-83",
+    "Ciudad": "VILLAVICENCIO",
+    "Departamento": "META"
+  },
+  {
+    "Codigo": "0159",
+    "Tienda": "EXITO VILLAVICENCIO CENTRO 159",
+    "Dirección": "KM 2 VIA LAS ACACIAS",
+    "Ciudad": "VILLAVICENCIO",
+    "Departamento": "META"
+  },
+  {
+    "Codigo": "0079",
+    "Tienda": "EXITO VIVA TUNJA 79",
+    "Dirección": "AV. UNIVERSITARIOS # 50 - 21 FRENTE A CLINICA",
+    "Ciudad": "TUNJA",
+    "Departamento": "BOYACA"
+  },
+  {
+    "Codigo": "4052",
+    "Tienda": "EXITO WOW NUESTRO BOGOTA 4052",
+    "Dirección": "AVENIDA CARRERA 86 # 55A-75",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0135",
+    "Tienda": "EXITO YOPAL135 DEP",
+    "Dirección": "CLL 30 # 26 -29 / 65 PLAZA COMERCIAL ALCARAVAN",
+    "Ciudad": "YOPAL",
+    "Departamento": "CASANARE"
+  },
+  {
+    "Codigo": "0158",
+    "Tienda": "EXITO ZIPAQUIRA 158",
+    "Dirección": "CL 110 08CCCIAL LA CASONA PLAZA ZIPAQUIRA",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "CUNDINAMARCA"
+  },
+  {
+    "Codigo": "0758",
+    "Tienda": "RETIRADO 758B GUITA S MAX SAN JAVIER",
+    "Dirección": "CR 9944 25",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "4243",
+    "Tienda": "RETIRADO SUPERINTER CARTAGO 4243",
+    "Dirección": "CRA 7 # 12 - 96",
+    "Ciudad": "CARTAGO",
+    "Departamento": "VALLE DEL CAUCA"
+  },
+  {
+    "Codigo": "0342",
+    "Tienda": "RETIRADO SURTIMAX BELLO 342",
+    "Dirección": "CARRERA 49 #47-35",
+    "Ciudad": "BELLO",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "4302",
+    "Tienda": "SUPER INTER ALTA SUIZA",
+    "Dirección": "CR 21 74 157 ALTA SUIZA",
+    "Ciudad": "MANIZALES",
+    "Departamento": "CALDAS"
+  },
+  {
+    "Codigo": "4279",
+    "Tienda": "SUPER INTER CHIPRE 4279",
+    "Dirección": "CALLE 9 # 9C - 15",
+    "Ciudad": "MANIZALES",
+    "Departamento": "CALDAS"
+  },
+  {
+    "Codigo": "4301",
+    "Tienda": "SUPER INTER CRISTO REY",
+    "Dirección": "CR 25 45 32 CRISTO REY",
+    "Ciudad": "MANIZALES",
+    "Departamento": "CALDAS"
+  },
+  {
+    "Codigo": "4266",
+    "Tienda": "SUPER INTER LA FLORA 4266",
+    "Dirección": "CALLE 52 # 5 B 76 LC 11",
+    "Ciudad": "CALI",
+    "Departamento": "VALLE DEL CAUCA"
+  },
+  {
+    "Codigo": "4303",
+    "Tienda": "SUPER INTER SAN SEBASTIAN 4303",
+    "Dirección": "CR 2 E 48 E 07 CENTRO",
+    "Ciudad": "MANIZALES",
+    "Departamento": "CALDAS"
+  },
+  {
+    "Codigo": "4304",
+    "Tienda": "SUPER INTER VILLA MARIA 4304",
+    "Dirección": "CR 5 8 50 CENTRO",
+    "Ciudad": "MANIZALES",
+    "Departamento": "CALDAS"
+  },
+  {
+    "Codigo": "4280",
+    "Tienda": "SUPER INTER VILLA PILAR",
+    "Dirección": "CL 98 1 F 60 SECTOR VILLA PILA",
+    "Ciudad": "MANIZALES",
+    "Departamento": "CALDAS"
+  },
+  {
+    "Codigo": "4227",
+    "Tienda": "SUPERINTER ACUARIO 4227",
+    "Dirección": "CRA 2H # 10 - 99",
+    "Ciudad": "JAMUNDI",
+    "Departamento": "VALLE DEL CAUCA"
+  },
+  {
+    "Codigo": "4239",
+    "Tienda": "SUPERINTER ARMENIA PLAZA 4239",
+    "Dirección": "CRA 19 # 36 NORTE 82 C.C.",
+    "Ciudad": "ARMENIA",
+    "Departamento": "QUINDIO"
+  },
+  {
+    "Codigo": "4262",
+    "Tienda": "SUPERINTER BUENOS AIRES 4262",
+    "Dirección": "CARRERA 73 # 3 - 07",
+    "Ciudad": "CALI",
+    "Departamento": "VALLE DEL CAUCA"
+  },
+  {
+    "Codigo": "4238",
+    "Tienda": "SUPERINTER CAICEDONIA 4238",
+    "Dirección": "CRA 16 # 10 - 28 CENTRO",
+    "Ciudad": "CAICEDONIA",
+    "Departamento": "VALLE DEL CAUCA"
+  },
+  {
+    "Codigo": "4237",
+    "Tienda": "SUPERINTER CALARCA 4237",
+    "Dirección": "CRA 24 # 36 - 24",
+    "Ciudad": "CALARCA",
+    "Departamento": "QUINDIO"
+  },
+  {
+    "Codigo": "4251",
+    "Tienda": "SUPERINTER CASTILLA 4251",
+    "Dirección": "KILOMETRO 10 VIA CERRITO",
+    "Ciudad": "PEREIRA",
+    "Departamento": "RISARALDA"
+  },
+  {
+    "Codigo": "4270",
+    "Tienda": "SUPERINTER CENTENARIO 4270",
+    "Dirección": "CR 24 41 30 CENTRO",
+    "Ciudad": "CALARCA",
+    "Departamento": "QUINDIO"
+  },
+  {
+    "Codigo": "4241",
+    "Tienda": "SUPERINTER CIRCACIA 4241",
+    "Dirección": "CRA 14 # 8 - 41",
+    "Ciudad": "CIRCASIA",
+    "Departamento": "QUINDIO"
+  },
+  {
+    "Codigo": "4234",
+    "Tienda": "SUPERINTER DEL NORTE 4234",
+    "Dirección": "AV CENTENARIO # 2- 50",
+    "Ciudad": "ARMENIA",
+    "Departamento": "QUINDIO"
+  },
+  {
+    "Codigo": "4245",
+    "Tienda": "SUPERINTER DOSQUEBRADAS 4245",
+    "Dirección": "CRA 16 # 27 - 37",
+    "Ciudad": "DOS QUEBRADAS",
+    "Departamento": "RISARALDA"
+  },
+  {
+    "Codigo": "4230",
+    "Tienda": "SUPERINTER ESTADIO 4230",
+    "Dirección": "CALLE 5 # 34 A 02 SAN FERNANDO",
+    "Ciudad": "CALI",
+    "Departamento": "VALLE DEL CAUCA"
+  },
+  {
+    "Codigo": "4254",
+    "Tienda": "SUPERINTER FERIA DE LOS PLATANOS 4254",
+    "Dirección": "CRA 50 # 25 - 00",
+    "Ciudad": "ARMENIA",
+    "Departamento": "QUINDIO"
+  },
+  {
+    "Codigo": "4206",
+    "Tienda": "SUPERINTER GUAYACANES 4206",
+    "Dirección": "CLL 62 2 A 15GUAYACANES",
+    "Ciudad": "CALI",
+    "Departamento": "VALLE DEL CAUCA"
+  },
+  {
+    "Codigo": "4261",
+    "Tienda": "SUPERINTER INDEPENCIA 4261",
+    "Dirección": "CARRERA 40B # 27 - 40",
+    "Ciudad": "CALI",
+    "Departamento": "VALLE DEL CAUCA"
+  },
+  {
+    "Codigo": "4224",
+    "Tienda": "SUPERINTER LA 80 4224",
+    "Dirección": "CRA 80 # 13 - 261 C.CIAL PLAZA 80",
+    "Ciudad": "CALI",
+    "Departamento": "VALLE DEL CAUCA"
+  },
+  {
+    "Codigo": "4250",
+    "Tienda": "SUPERINTER LA CAPILLA 4250",
+    "Dirección": "CRA 16 # 64 - 24 LA CAPILLA",
+    "Ciudad": "DOS QUEBRADAS",
+    "Departamento": "RISARALDA"
+  },
+  {
+    "Codigo": "4207",
+    "Tienda": "SUPERINTER LA COMETA 4207",
+    "Dirección": "CLL 44 # 17 - 31",
+    "Ciudad": "PALMIRA",
+    "Departamento": "VALLE DEL CAUCA"
+  },
+  {
+    "Codigo": "4266",
+    "Tienda": "SUPERINTER LA FLORA 4266",
+    "Dirección": "CALLE 52 # 5B - 76LOC 11",
+    "Ciudad": "CALI",
+    "Departamento": "VALLE DEL CAUCA"
+  },
+  {
+    "Codigo": "4225",
+    "Tienda": "SUPERINTER LA LUNA 4225",
+    "Dirección": "CALLE 14 DIAG 25 - 16",
+    "Ciudad": "CALI",
+    "Departamento": "VALLE DEL CAUCA"
+  },
+  {
+    "Codigo": "4228",
+    "Tienda": "SUPERINTER LA MARIA 4228",
+    "Dirección": "CL 18 # 127 - 36 AV CANASGORDAS",
+    "Ciudad": "CALI",
+    "Departamento": "VALLE DEL CAUCA"
+  },
+  {
+    "Codigo": "4240",
+    "Tienda": "SUPERINTER LA TEBAIDA 4240",
+    "Dirección": "CRA 6 # 11 - 38 CENTRO",
+    "Ciudad": "LA TEBAIDA",
+    "Departamento": "QUINDIO"
+  },
+  {
+    "Codigo": "4244",
+    "Tienda": "SUPERINTER LA TIENDA 4244",
+    "Dirección": "CRA 7 # 38 - 56",
+    "Ciudad": "PEREIRA",
+    "Departamento": "RISARALDA"
+  },
+  {
+    "Codigo": "4226",
+    "Tienda": "SUPERINTER LA UNION 4226",
+    "Dirección": "CRA 46 # 42A - 45",
+    "Ciudad": "CALI",
+    "Departamento": "VALLE DEL CAUCA"
+  },
+  {
+    "Codigo": "4235",
+    "Tienda": "SUPERINTER LAS AMERICAS 4235",
+    "Dirección": "CALLE 23 # 33 - 15",
+    "Ciudad": "ARMENIA",
+    "Departamento": "QUINDIO"
+  },
+  {
+    "Codigo": "4273",
+    "Tienda": "SUPERINTER MANIZALES CENTRO 4273",
+    "Dirección": "CALLE 19 # 22-32",
+    "Ciudad": "MANIZALES",
+    "Departamento": "CALDAS"
+  },
+  {
+    "Codigo": "4242",
+    "Tienda": "SUPERINTER MEGA MIO CAICEDO 4242",
+    "Dirección": "CRA 16 # 11 - 41 LOC I CENTRO",
+    "Ciudad": "CAICEDONIA",
+    "Departamento": "VALLE DEL CAUCA"
+  },
+  {
+    "Codigo": "4214",
+    "Tienda": "SUPERINTER PASARELA 4214",
+    "Dirección": "AVE 5 N # 23 DG 40 SAN VICENTE",
+    "Ciudad": "CALI",
+    "Departamento": "VALLE DEL CAUCA"
+  },
+  {
+    "Codigo": "4248",
+    "Tienda": "SUPERINTER PEREIRA CENTRO 4248",
+    "Dirección": "CRA 17 # 6 - 60 CENTRO",
+    "Ciudad": "PEREIRA",
+    "Departamento": "RISARALDA"
+  },
+  {
+    "Codigo": "4216",
+    "Tienda": "SUPERINTER PLAZA SEMBRADOR 4216",
+    "Dirección": "C.CIAL EL SEMBRADOR AV 19 LC 232-154",
+    "Ciudad": "PALMIRA",
+    "Departamento": "VALLE DEL CAUCA"
+  },
+  {
+    "Codigo": "4215",
+    "Tienda": "SUPERINTER PLAZA VILLA COLOMBIA 4215",
+    "Dirección": "CRA 8 # 51 - 06 VILLA COLOMBIA",
+    "Ciudad": "CALI",
+    "Departamento": "VALLE DEL CAUCA"
+  },
+  {
+    "Codigo": "4208",
+    "Tienda": "SUPERINTER POPALA4208",
+    "Dirección": "CRA 71 BIS # 75 - 04 POPALA",
+    "Ciudad": "CALI",
+    "Departamento": "VALLE DEL CAUCA"
+  },
+  {
+    "Codigo": "4210",
+    "Tienda": "SUPERINTER POPULAR 4210",
+    "Dirección": "CRA 56 # NORTE 44 - 20",
+    "Ciudad": "CALI",
+    "Departamento": "VALLE DEL CAUCA"
+  },
+  {
+    "Codigo": "4271",
+    "Tienda": "SUPERINTER PRIMAVERA 4271",
+    "Dirección": "CR 39 32 A 01 PRIMAVERA",
+    "Ciudad": "CALI",
+    "Departamento": "VALLE DEL CAUCA"
+  },
+  {
+    "Codigo": "4232",
+    "Tienda": "SUPERINTER SAN FERNANDO 4232",
+    "Dirección": "CALLE 4 # 27 - 161 SAN FERNANDO",
+    "Ciudad": "CALI",
+    "Departamento": "VALLE DEL CAUCA"
+  },
+  {
+    "Codigo": "4246",
+    "Tienda": "SUPERINTER SANTA ISABEL 4246",
+    "Dirección": "CLL 34 CRA 10 ESQ SANTA ISABEL",
+    "Ciudad": "DOS QUEBRADAS",
+    "Departamento": "RISARALDA"
+  },
+  {
+    "Codigo": "4252",
+    "Tienda": "SUPERINTER SANTA ROSA4252",
+    "Dirección": "CALLE 14 # 14 - 50 CENTRO",
+    "Ciudad": "SANTA ROSA DE CABAL",
+    "Departamento": "RISARALDA"
+  },
+  {
+    "Codigo": "4212",
+    "Tienda": "SUPERINTER SEXTA 4212",
+    "Dirección": "AVENIDA 6 N 24 N 33 VERSALLES",
+    "Ciudad": "CALI",
+    "Departamento": "VALLE DEL CAUCA"
+  },
+  {
+    "Codigo": "4223",
+    "Tienda": "SUPERINTER SILOE 4223",
+    "Dirección": "CALLE 2 OESTE # D 60 - 60",
+    "Ciudad": "CALI",
+    "Departamento": "VALLE DEL CAUCA"
+  },
+  {
+    "Codigo": "4218",
+    "Tienda": "SUPERINTER UNICO SALOMIA 4218",
+    "Dirección": "CALLE 53 # 3 - 30 SALOMIA",
+    "Ciudad": "CALI",
+    "Departamento": "VALLE DEL CAUCA"
+  },
+  {
+    "Codigo": "4233",
+    "Tienda": "SUPERINTER VELODROMO 4233",
+    "Dirección": "CRA 84 # 5 - 100 LAS VEGAS",
+    "Ciudad": "CALI",
+    "Departamento": "VALLE DEL CAUCA"
+  },
+  {
+    "Codigo": "4253",
+    "Tienda": "SUPERINTER VILLA OLIMPICA 4253",
+    "Dirección": "CRA 14 # 83- 347 VILLA OLIMPICA",
+    "Ciudad": "PEREIRA",
+    "Departamento": "RISARALDA"
+  },
+  {
+    "Codigo": "4213",
+    "Tienda": "SUPERINTER YUMBO 4213",
+    "Dirección": "CALLE 53 N 3 - 30LOCAL 1010",
+    "Ciudad": "YUMBO",
+    "Departamento": "VALLE DEL CAUCA"
+  },
+  {
+    "Codigo": "4247",
+    "Tienda": "SUPERINTER ZARZAL 4247",
+    "Dirección": "CRA 10 # 8 - 20",
+    "Ciudad": "ZARZAL",
+    "Departamento": "VALLE DEL CAUCA"
+  },
+  {
+    "Codigo": "4535",
+    "Tienda": "SURTIMAX BELLO PRADO 4535",
+    "Dirección": "CALLE 53 # 46-73 LOC 1 ED SAN JOSE",
+    "Ciudad": "BELLO",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "0311",
+    "Tienda": "SURTIMAX BRASIL BOSA 311",
+    "Dirección": "CARRERA 88C # 52B - 05SUR",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4534",
+    "Tienda": "SURTIMAX CALDAS 4534",
+    "Dirección": "CALLE 130 SUR # 52-42",
+    "Ciudad": "CALDAS",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0688",
+    "Tienda": "SURTIMAX CERETE 688",
+    "Dirección": "CRA 15 # 9B - 66",
+    "Ciudad": "CERETE",
+    "Departamento": "CORDOBA"
+  },
+  {
+    "Codigo": "4523",
+    "Tienda": "SURTIMAX CHAPINERO 4523",
+    "Dirección": "CALLE 56 # 16-35",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0775",
+    "Tienda": "SURTIMAX CHUNIZA775",
+    "Dirección": "CALLE 89 SUR # 3B - 14ESTE",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0105",
+    "Tienda": "SURTIMAX DINDALITO 105",
+    "Dirección": "CALLE 42 A # 91 C 21 SUR",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0768",
+    "Tienda": "SURTIMAX EL SOCORRO 768",
+    "Dirección": "CL 49 SUR # 78-30",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0166",
+    "Tienda": "SURTIMAX ESTACION 166",
+    "Dirección": "CALLE 65 SUR # 78B - 12",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0382",
+    "Tienda": "SURTIMAX FREDONIA 0382",
+    "Dirección": "CRA 49 # 50-49",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "4559",
+    "Tienda": "SURTIMAX GUATAPE4559",
+    "Dirección": "CARRERA 28#31-43",
+    "Ciudad": "GUATAPE",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "4536",
+    "Tienda": "SURTIMAX LA AMERICA 4536",
+    "Dirección": "CRA 84 # 42C-78",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "0481",
+    "Tienda": "SURTIMAX LA GLORIA 481",
+    "Dirección": "CRA 10 ESTE # 42 A - 76SUR",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0310",
+    "Tienda": "SURTIMAX LA LIBERTAD310",
+    "Dirección": "CALLE 59C # 87G- 04 SUR",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4538",
+    "Tienda": "SURTIMAX LAURELES 4538",
+    "Dirección": "CIRCULAR 2DA #72-18/20",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "4524",
+    "Tienda": "SURTIMAX LIJACA 4524",
+    "Dirección": "CRA 8C # 187A-46",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4537",
+    "Tienda": "SURTIMAX NUTIBARA 4537",
+    "Dirección": "CRA 80 #39-177/179",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "4527",
+    "Tienda": "SURTIMAX QUIROGA 4527",
+    "Dirección": "CRA 24 # 32A-05 SUR",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0165",
+    "Tienda": "SURTIMAX RIONEGRO165",
+    "Dirección": "CRA 48 # 51 - 69",
+    "Ciudad": "RIONEGRO",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "0450",
+    "Tienda": "SURTIMAX SAN ANTONIO 450",
+    "Dirección": "CALLE 70 SUR # 88 C - 04",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4539",
+    "Tienda": "SURTIMAX SANTA ISABEL 4539",
+    "Dirección": "CRA 31 BIS # 1C-34",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "CUNDINAMARCA"
+  },
+  {
+    "Codigo": "4533",
+    "Tienda": "SURTIMAX SUBA BILBAO 4533",
+    "Dirección": "CALLE 143 B # 149 B 23",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0794",
+    "Tienda": "SURTIMAX USME CALLE 136 DEP 794",
+    "Dirección": "CALLE 136 SUR # 4 - 21",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "0485",
+    "Tienda": "SURTIMAX VILLA HERMOSA 485",
+    "Dirección": "CRA 39A # 66 - 20",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "4551",
+    "Tienda": "SURTIMAXPILARICA4557",
+    "Dirección": "CARERA51#55-35",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "VALLE DEL CAUCA"
+  },
+  {
+    "Codigo": "4541",
+    "Tienda": "SURTIMAXVILLA PAULA4541",
+    "Dirección": "CARERA51#55-35",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "0888",
+    "Tienda": "SURTIMAZ NORMANDIA 888",
+    "Dirección": "CALLE 53 # 73-33",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "CUNDINAMARCA"
+  },
+  {
+    "Codigo": "4442",
+    "Tienda": "TRUBO CARULLA MAR DEL NORTE 4442",
+    "Dirección": "CRA 1 # 46A- 6 EDIF MAR DEL NO RTE LOCAL 3",
+    "Ciudad": "CARTAGENA",
+    "Departamento": "BOLIVAR"
+  },
+  {
+    "Codigo": "4494",
+    "Tienda": "TUBO CARULLA TITAN 4464",
+    "Dirección": "CRA 69C # 394A-26",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4460",
+    "Tienda": "TURBO CAR PARQ CENTRAL BAVARIA 4460",
+    "Dirección": "CRA 7 #29-10",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4573",
+    "Tienda": "TURBO CARULLA ALAMEDA 4573",
+    "Dirección": "CALLE 44 # 10 - 54 LOCAL 1",
+    "Ciudad": "MONTERIA",
+    "Departamento": "CORDOBA"
+  },
+  {
+    "Codigo": "4467",
+    "Tienda": "TURBO CARULLA AMERICAS 4467",
+    "Dirección": "CRA 71C # 4-06",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4571",
+    "Tienda": "TURBO CARULLA ARMENIA 4571",
+    "Dirección": "CALLE 17 # 12 - 45",
+    "Ciudad": "ARMENIA",
+    "Departamento": "QUINDIO"
+  },
+  {
+    "Codigo": "4857",
+    "Tienda": "TURBO CARULLA BARRANCAS 4857",
+    "Dirección": "CRA 7 # 155-23",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4576",
+    "Tienda": "TURBO CARULLA BAVARIA 4576",
+    "Dirección": "CALLE 27 # 12 - 19 LOCAL 1",
+    "Ciudad": "SANTA MARTA",
+    "Departamento": "MAGDALENA"
+  },
+  {
+    "Codigo": "4472",
+    "Tienda": "TURBO CARULLA BOCAGRANDE 4472",
+    "Dirección": "CRA 2 # 10-75",
+    "Ciudad": "CARTAGENA",
+    "Departamento": "BOLIVAR"
+  },
+  {
+    "Codigo": "4462",
+    "Tienda": "TURBO CARULLA CABECERA D LLANO 4462",
+    "Dirección": "CRA 31 # 32-41",
+    "Ciudad": "BUCARAMANGA",
+    "Departamento": "SANTANDER"
+  },
+  {
+    "Codigo": "4445",
+    "Tienda": "TURBO CARULLA CALLE 80 4445",
+    "Dirección": "CALLE 79 # 162-10",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4464",
+    "Tienda": "TURBO CARULLA CANAVERAL 4464",
+    "Dirección": "CRA 24 # 30-53 LOCAL 2",
+    "Ciudad": "BUCARAMANGA",
+    "Departamento": "SANTANDER"
+  },
+  {
+    "Codigo": "4500",
+    "Tienda": "TURBO CARULLA CD JARDIN CALI 4500",
+    "Dirección": "CALLE 13 A # 100 - 35 LOCAL 1 EDIFICIO TORRE EMPRESARIAL",
+    "Ciudad": "CALI",
+    "Departamento": "VALLE DEL CAUCA"
+  },
+  {
+    "Codigo": "4846",
+    "Tienda": "TURBO CARULLA CEDRITOS 4846",
+    "Dirección": "AVENIDA CALLE 19 #150-30",
+    "Ciudad": "CHIA",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4455",
+    "Tienda": "TURBO CARULLA CHIA 4455",
+    "Dirección": "AVENIDA CHILACOS CALLE 21 #1E 90 CHIA",
+    "Ciudad": "CHIA",
+    "Departamento": "CUNDINAMARCA"
+  },
+  {
+    "Codigo": "4474",
+    "Tienda": "TURBO CARULLA CIUDAD DEL RIO 4474",
+    "Dirección": "CRA 43F #17-647",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "4849",
+    "Tienda": "TURBO CARULLA COLINA 4849",
+    "Dirección": "CRA 53 # 137-22",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4458",
+    "Tienda": "TURBO CARULLA COMUNEROS 4458",
+    "Dirección": "CRA 31B # 4A-33",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4847",
+    "Tienda": "TURBO CARULLA COUNTRY 4847",
+    "Dirección": "CALLE 134 #9A-66",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4841",
+    "Tienda": "TURBO CARULLA EL LAGO 4841",
+    "Dirección": "CRA 13 # 78-52",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4475",
+    "Tienda": "TURBO CARULLA EL POBLADO B/QUILLA",
+    "Dirección": "CALLE 93 # 49C-274",
+    "Ciudad": "BARRANQUILLA",
+    "Departamento": "ATLANTICO"
+  },
+  {
+    "Codigo": "4476",
+    "Tienda": "TURBO CARULLA EL PRADO BQUILLA 4476",
+    "Dirección": "CRA 60 # 70-31",
+    "Ciudad": "BARRANQUILLA",
+    "Departamento": "ATLANTICO"
+  },
+  {
+    "Codigo": "4471",
+    "Tienda": "TURBO CARULLA ENVIGADO ALTO 4471",
+    "Dirección": "CALLE 40 SUR # 28 B 2",
+    "Ciudad": "ENVIGADO",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "4477",
+    "Tienda": "TURBO CARULLA ENVIGADO BAJO 4477",
+    "Dirección": "CRA 49 D SUR # 40 A 340",
+    "Ciudad": "ENVIGADO",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "4459",
+    "Tienda": "TURBO CARULLA ESPERANZA 4459",
+    "Dirección": "AV CALLE 24 LA ESPERANZA # 48- 50",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4447",
+    "Tienda": "TURBO CARULLA GRANADA NORTE 4447",
+    "Dirección": "CALLE 169 # 51-23",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4575",
+    "Tienda": "TURBO CARULLA IBAGUE 4575",
+    "Dirección": "CR 8 A # 60 - 180",
+    "Ciudad": "IBAGUE",
+    "Departamento": "TOLIMA"
+  },
+  {
+    "Codigo": "4851",
+    "Tienda": "TURBO CARULLA ISERRA 100 4851",
+    "Dirección": "CLL 98 A # 58-19",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4437",
+    "Tienda": "TURBO CARULLA LA CASTELLANA 4437",
+    "Dirección": "DG 32 # 69 A 17",
+    "Ciudad": "CARTAGENA",
+    "Departamento": "BOLIVAR"
+  },
+  {
+    "Codigo": "4438",
+    "Tienda": "TURBO CARULLA LA FRONTERA 4438",
+    "Dirección": "CARRERA 27 # 23 SUR 120",
+    "Ciudad": "ENVIGADO",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "4484",
+    "Tienda": "TURBO CARULLA LA MOTA 4484",
+    "Dirección": "CRA 76 # 26A-18 PISO1",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "4485",
+    "Tienda": "TURBO CARULLA LA PLAYA 4485",
+    "Dirección": "CALLE 55 # 34-58",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "4486",
+    "Tienda": "TURBO CARULLA LAS COLINAS 4486",
+    "Dirección": "CRA 38 # 76-50",
+    "Ciudad": "BARRANQUILLA",
+    "Departamento": "ATLANTICO"
+  },
+  {
+    "Codigo": "4487",
+    "Tienda": "TURBO CARULLA LOS LAURELES 4487",
+    "Dirección": "AVENIDA NUTIBARA # 75-10",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "4489",
+    "Tienda": "TURBO CARULLA MANGA 4489",
+    "Dirección": "CALLE 26 # 18B-29 LOCAL 3",
+    "Ciudad": "CARTAGENA",
+    "Departamento": "BOLIVAR"
+  },
+  {
+    "Codigo": "4461",
+    "Tienda": "TURBO CARULLA MODELIA 4461",
+    "Dirección": "CALLE 24D # 80C-34",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4848",
+    "Tienda": "TURBO CARULLA NIZA 4848",
+    "Dirección": "AVENIDA SUBA # 119-73",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4456",
+    "Tienda": "TURBO CARULLA NORMANDIA 4456",
+    "Dirección": "CRA 71D # 50-35",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4852",
+    "Tienda": "TURBO CARULLA PALERMO 4852",
+    "Dirección": "CALLE 51 # 22-36",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4843",
+    "Tienda": "TURBO CARULLA PARQUE 93 4843",
+    "Dirección": "CRA 13 # 93-35",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4498",
+    "Tienda": "TURBO CARULLA PARQUE DEL PERRO 4498",
+    "Dirección": "CRA 34 # 3-70",
+    "Ciudad": "CALI",
+    "Departamento": "VALLE DEL CAUCA"
+  },
+  {
+    "Codigo": "4572",
+    "Tienda": "TURBO CARULLA PEREIRA 4572",
+    "Dirección": "CALLE 15 # 08 - 12 BOD 30",
+    "Ciudad": "PEREIRA",
+    "Departamento": "RISARALDA"
+  },
+  {
+    "Codigo": "4578",
+    "Tienda": "TURBO CARULLA QUINTA CAMACHO 4578",
+    "Dirección": "CARRERA 11 # 69 - 99",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4842",
+    "Tienda": "TURBO CARULLA ROSALES 4842",
+    "Dirección": "CALLE 62 # 5-85",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4491",
+    "Tienda": "TURBO CARULLA SABANETA 4491",
+    "Dirección": "CALLE 70 SUR #46-150",
+    "Ciudad": "SABANETA",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "4492",
+    "Tienda": "TURBO CARULLA SAN FERNANDO 4492",
+    "Dirección": "CRA 125 # 19-170 L 13-14",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4844",
+    "Tienda": "TURBO CARULLA SAN PATRICIO 4844",
+    "Dirección": "CALLE 106 #14-50",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4499",
+    "Tienda": "TURBO CARULLA SAN VICENTE 4499",
+    "Dirección": "CALLE 30 # 2BN-82",
+    "Ciudad": "CALI",
+    "Departamento": "VALLE DEL CAUCA"
+  },
+  {
+    "Codigo": "4493",
+    "Tienda": "TURBO CARULLA SUBA TURINGIA 4493",
+    "Dirección": "CRA 147 # 94C-20",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4854",
+    "Tienda": "TURBO CARULLA TESORO 4854",
+    "Dirección": "CRA 25 # 155",
+    "Ciudad": "MEDELLIN",
+    "Departamento": "ANTIOQUIA"
+  },
+  {
+    "Codigo": "4845",
+    "Tienda": "TURBO CARULLA USAQUEN 4845",
+    "Dirección": "CRA 6 #117-12",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4859",
+    "Tienda": "TURBO CARULLA USAQUEN CALLE 120 4859",
+    "Dirección": "CALLE 120A # 6-40",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4463",
+    "Tienda": "TURBO CARULLA VERBENAL 4463",
+    "Dirección": "CRA 18A 187#32",
+    "Ciudad": "BOGOTA D.C.",
+    "Departamento": "BOGOTA D.C."
+  },
+  {
+    "Codigo": "4496",
+    "Tienda": "TURBO CARULLA VILLA DE ANDALUCIA 4496",
+    "Dirección": "CRA 65 # 85-51",
+    "Ciudad": "BARRANQUILLA",
+    "Departamento": "ATLANTICO"
+  },
+  {
+    "Codigo": "4577",
+    "Tienda": "TURBO CARULLA VILLAVICENCIO 45776",
+    "Dirección": "CALLE 21 # 35 - 36 / 42",
+    "Ciudad": "VILLAVICENCIO",
+    "Departamento": "META"
+  }
+]

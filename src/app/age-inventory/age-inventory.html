@@ -1,0 +1,317 @@
+<div class="page-breadcrumb-fixed">
+  <p-breadcrumb
+    [model]="breadcrumbItems"
+    [home]="breadcrumbHome"
+    styleClass="app-breadcrumb"
+  ></p-breadcrumb>
+</div>
+
+<p-toast position="top-right"></p-toast>
+
+<section class="sales-module">
+  <div class="table-container">
+    <div class="table-header">
+      <div class="header-info">
+        <div class="logo-area">
+          <i class="pi pi-calendar-clock"></i>
+          <h2>Análisis de Antigüedad de Inventario</h2>
+        </div>
+        <div class="summary" *ngIf="analysisResult()">
+          {{ analysisResult()?.summary }}
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <div class="search-wrapper">
+          <i class="pi pi-search search-icon"></i>
+          <input
+            type="text"
+            pInputText
+            [(ngModel)]="searchValue"
+            (input)="dt1.filterGlobal($any($event.target).value, 'contains')"
+            placeholder="Buscar SKU, lote o localizacion..."
+            class="search-input"
+          />
+          <i
+            class="pi pi-times clear-icon"
+            *ngIf="searchValue"
+            (click)="searchValue = ''; clearFilters()"
+          ></i>
+        </div>
+
+        <button
+          pButton
+          icon="pi pi-filter-slash"
+          label="Limpiar"
+          class="p-button-outlined p-button-sm clear-btn"
+          (click)="clearFilters()"
+          pTooltip="Limpiar todos los filtros"
+          tooltipPosition="top"
+        ></button>
+
+        <button
+          pButton
+          icon="pi pi-cog"
+          label="Analizar"
+          class="p-button-outlined p-button-sm analyze-btn"
+          (click)="generateAgeAnalysis()"
+          [disabled]="!inventoryFile()"
+          pTooltip="Analizar antigüedad del inventario"
+          tooltipPosition="top"
+        ></button>
+
+        <button
+          pButton
+          *ngIf="analysisResult()"
+          icon="pi pi-file-excel"
+          label="Exportar Excel"
+          class="p-button-outlined p-button-sm export-btn"
+          (click)="exportToExcel()"
+          pTooltip="Exportar análisis a Excel"
+          tooltipPosition="top"
+        ></button>
+      </div>
+    </div>
+
+    <div class="upload-area">
+      <div
+        class="drop-zone"
+        [class.dragging]="isDraggingInventory()"
+        [class.has-file]="inventoryFile()"
+        (dragover)="onDragOver($event)"
+        (dragleave)="onDragLeave($event)"
+        (drop)="onDrop($event)"
+      >
+        <ng-container *ngIf="inventoryFile() as file; else noInventoryFile">
+          <div class="drop-zone-content">
+            <i class="pi" [class.pi-database]="file"></i>
+            <div class="drop-zone-text">
+              <span class="title">{{ file.name }}</span>
+              <span class="subtitle"
+                >{{ formatFileSize(file.size || 0) }} • {{ file.uploadDate | date: 'short' }}</span
+              >
+            </div>
+            <div class="drop-zone-actions">
+              <button
+                pButton
+                type="button"
+                icon="pi pi-times"
+                class="p-button-rounded p-button-danger p-button-text p-button-sm"
+                (click)="removeFile(); $event.stopPropagation()"
+                pTooltip="Eliminar archivo"
+                tooltipPosition="left"
+              ></button>
+            </div>
+          </div>
+        </ng-container>
+
+        <ng-template #noInventoryFile>
+          <div class="drop-zone-content">
+            <i class="pi pi-calendar-clock"></i>
+            <div class="drop-zone-text">
+              <span class="title">📦 Archivo de Inventario</span>
+              <span class="subtitle">Arrastra o haz clic para subir (CSV, Excel)</span>
+            </div>
+          </div>
+        </ng-template>
+
+        <input
+          type="file"
+          (change)="onFileUpload($event)"
+          accept=".csv,.xlsx,.xls,.txt"
+          hidden
+          #inventoryInput
+        />
+        <button class="hidden-button" type="button" (click)="inventoryInput.click()"></button>
+      </div>
+    </div>
+
+    <div class="results-header" *ngIf="analysisResult()">
+      <div class="stats-cards">
+        <div class="stat-card stat-products">
+          <div class="stat-icon blue"><i class="pi pi-box"></i></div>
+          <div class="stat-info">
+            <div class="stat-value">{{ analysisResult()?.stats?.totalRegistros || 0 }}</div>
+            <div class="stat-label">Registros</div>
+          </div>
+        </div>
+        <div class="stat-card stat-restock">
+          <div class="stat-icon red"><i class="pi pi-exclamation-triangle"></i></div>
+          <div class="stat-info">
+            <div class="stat-value">{{ analysisResult()?.stats?.masDe12Meses || 0 }}</div>
+            <div class="stat-label">> 12 meses</div>
+          </div>
+        </div>
+        <div class="stat-card stat-missing">
+          <div class="stat-icon orange"><i class="pi pi-clock"></i></div>
+          <div class="stat-info">
+            <div class="stat-value">{{ analysisResult()?.stats?.de6a12Meses || 0 }}</div>
+            <div class="stat-label">6-12 meses</div>
+          </div>
+        </div>
+        <div class="stat-card stat-coverage">
+          <div class="stat-icon green"><i class="pi pi-info-circle"></i></div>
+          <div class="stat-info">
+            <div class="stat-value">{{ analysisResult()?.stats?.sinFechaEntrada || 0 }}</div>
+            <div class="stat-label">Sin fecha</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="table-wrapper" *ngIf="analysisResult()">
+      <p-table
+        #dt1
+        [value]="analysisResult()?.results || []"
+        [loading]="loading()"
+        [paginator]="true"
+        [rows]="10"
+        [rowsPerPageOptions]="[10, 25, 50, 100]"
+        [paginatorDropdownAppendTo]="'body'"
+        [showCurrentPageReport]="true"
+        currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+        [globalFilterFields]="['sku', 'descripcion', 'localizacion', 'lote', 'rangoEdad']"
+        styleClass="p-datatable-sm custom-table"
+        [tableStyle]="{ 'min-width': '1520px' }"
+      >
+        <ng-template pTemplate="header">
+          <tr>
+            <th pSortableColumn="sku" class="col-sku">
+              <div class="column-header">
+                <span>SKU</span>
+                <div class="column-controls">
+                  <p-sortIcon field="sku" />
+                  <p-columnFilter type="text" field="sku" display="menu" />
+                </div>
+              </div>
+            </th>
+            <th pSortableColumn="descripcion" class="col-description">
+              <div class="column-header">
+                <span>Descripcion</span>
+                <div class="column-controls">
+                  <p-sortIcon field="descripcion" />
+                  <p-columnFilter type="text" field="descripcion" display="menu" />
+                </div>
+              </div>
+            </th>
+            <th pSortableColumn="localizacion" class="col-location">
+              <div class="column-header">
+                <span>Localizacion</span>
+                <div class="column-controls">
+                  <p-sortIcon field="localizacion" />
+                  <p-columnFilter type="text" field="localizacion" display="menu" />
+                </div>
+              </div>
+            </th>
+            <th pSortableColumn="lote" class="col-lote">
+              <div class="column-header">
+                <span>Lote</span>
+                <div class="column-controls">
+                  <p-sortIcon field="lote" />
+                  <p-columnFilter type="text" field="lote" display="menu" />
+                </div>
+              </div>
+            </th>
+            <th pSortableColumn="disponible" class="col-number">
+              <div class="column-header column-header-center">
+                <span>Disponible</span>
+                <div class="column-controls">
+                  <p-sortIcon field="disponible" />
+                  <p-columnFilter type="numeric" field="disponible" display="menu" />
+                </div>
+              </div>
+            </th>
+            <th pSortableColumn="estado" class="col-date">
+              <div class="column-header">
+                <span>Estado</span>
+                <div class="column-controls">
+                  <p-sortIcon field="estado" />
+                  <p-columnFilter type="text" field="estado" display="menu" />
+                </div>
+              </div>
+            </th>
+            <th pSortableColumn="fechaEntrada" class="col-date">
+              <div class="column-header">
+                <span>Fecha Entrada</span>
+                <div class="column-controls">
+                  <p-sortIcon field="fechaEntrada" />
+                  <p-columnFilter type="text" field="fechaEntrada" display="menu" />
+                </div>
+              </div>
+            </th>
+            <th pSortableColumn="diasEnInventario" class="col-number">
+              <div class="column-header column-header-center">
+                <span>Dias</span>
+                <div class="column-controls">
+                  <p-sortIcon field="diasEnInventario" />
+                  <p-columnFilter type="numeric" field="diasEnInventario" display="menu" />
+                </div>
+              </div>
+            </th>
+            <th pSortableColumn="rangoEdad" class="col-range">
+              <div class="column-header column-header-center">
+                <span>Rango Antigüedad</span>
+                <div class="column-controls">
+                  <p-sortIcon field="rangoEdad" />
+                  <p-columnFilter type="text" field="rangoEdad" display="menu" />
+                </div>
+              </div>
+            </th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-row>
+          <tr>
+            <td class="col-sku">
+              <strong>{{ row.sku }}</strong>
+            </td>
+            <td class="desc-cell" pTooltip="{{ row.descripcion }}" tooltipPosition="top">
+              {{ row.descripcion }}
+            </td>
+            <td class="col-location">{{ row.localizacion }}</td>
+            <td class="col-lote">{{ row.lote || '-' }}</td>
+            <td class="text-center col-number">{{ row.disponible | number }}</td>
+            <td class="col-date">{{ row.estado }}</td>
+            <td class="col-date">{{ row.fechaEntrada || '-' }}</td>
+            <td class="text-center col-number">{{ row.diasEnInventario ?? '-' }}</td>
+            <td class="text-center col-range">
+              <p-tag
+                [value]="row.rangoEdad"
+                [severity]="getRangeSeverity(row.rangoEdad)"
+                [rounded]="true"
+              ></p-tag>
+            </td>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="9" class="empty-message">
+              <i class="pi pi-info-circle"></i>
+              <p>Sin datos para mostrar</p>
+              <small>Sube el archivo de inventario para ejecutar el analisis</small>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+
+    <div class="empty-state" *ngIf="!analysisResult() && !loading()">
+      <i class="pi pi-calendar-clock"></i>
+      <p>Sube el inventario para analizar la antigüedad de los lotes</p>
+      <small>Luego haz clic en Analizar</small>
+    </div>
+
+    <!-- LOADING OVERLAY -->
+    <div *ngIf="loading()" class="loading-overlay">
+      <div class="loading-content">
+        <p-progressSpinner
+          strokeWidth="4"
+          [style]="{ width: '60px', height: '60px' }"
+        ></p-progressSpinner>
+        <p>Procesando archivos...</p>
+        <small>Esto puede tomar unos segundos</small>
+      </div>
+    </div>
+  </div>
+</section>

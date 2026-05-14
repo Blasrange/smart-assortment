@@ -1,0 +1,570 @@
+<div class="page-breadcrumb-fixed">
+  <p-breadcrumb
+    [model]="breadcrumbItems"
+    [home]="breadcrumbHome"
+    styleClass="app-breadcrumb"
+  ></p-breadcrumb>
+</div>
+
+<p-toast position="top-right"></p-toast>
+
+<section class="cross-module">
+  <div class="table-container">
+    <!-- HEADER -->
+    <div class="table-header">
+      <div class="header-info">
+        <div class="logo-area">
+          <i class="pi pi-chart-line"></i>
+          <h2>Conciliación de Inventarios Cliente vs WMS</h2>
+        </div>
+        <div class="summary" *ngIf="analysisResult()">
+          {{ analysisResult()?.summary }}
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <div class="search-wrapper">
+          <i class="pi pi-search search-icon"></i>
+          <input
+            type="text"
+            pInputText
+            [(ngModel)]="searchValue"
+            (input)="applyGlobalFilter()"
+            placeholder="Buscar SKU o descripción..."
+            class="search-input"
+          />
+          <i class="pi pi-times clear-icon" *ngIf="searchValue" (click)="clearGlobalFilter()"></i>
+        </div>
+
+        <button
+          pButton
+          icon="pi pi-filter-slash"
+          label="Limpiar"
+          class="p-button-outlined p-button-sm clear-btn"
+          (click)="clearAllFilters()"
+          pTooltip="Limpiar todos los filtros"
+        ></button>
+
+        <button
+          pButton
+          icon="pi pi-cog"
+          label="Analizar"
+          class="p-button-outlined p-button-sm analyze-btn"
+          (click)="generateReconciliation()"
+          [disabled]="!clientFile() || !wmsFile()"
+          pTooltip="Analizar inventario Cliente contra WMS"
+        ></button>
+
+        <button
+          pButton
+          *ngIf="analysisResult()"
+          icon="pi pi-file-excel"
+          label="Exportar Excel"
+          class="p-button-outlined p-button-sm export-btn"
+          (click)="exportToExcel()"
+          pTooltip="Exportar resultado a Excel"
+        ></button>
+      </div>
+    </div>
+
+    <!-- UPLOAD AREA - 3 ARCHIVOS -->
+    <div class="upload-area">
+      <!-- Archivo Cliente -->
+      <div
+        class="drop-zone"
+        [class.dragging]="isDraggingClient()"
+        [class.has-file]="clientFile()"
+        (dragover)="onDragOver($event, 'client')"
+        (dragleave)="onDragLeave($event, 'client')"
+        (drop)="onDrop($event, 'client')"
+      >
+        <ng-container *ngIf="clientFile() as file; else noClientFile">
+          <div class="drop-zone-content">
+            <i class="pi pi-briefcase"></i>
+            <div class="drop-zone-text">
+              <span class="title">{{ file.name }}</span>
+              <span class="subtitle"
+                >{{ formatFileSize(file.size || 0) }} • {{ file.uploadDate | date: 'short' }}</span
+              >
+            </div>
+            <div class="drop-zone-actions">
+              <button
+                pButton
+                type="button"
+                icon="pi pi-times"
+                class="p-button-rounded p-button-danger p-button-text p-button-sm"
+                (click)="removeFile('client'); $event.stopPropagation()"
+                pTooltip="Eliminar archivo"
+              ></button>
+            </div>
+          </div>
+        </ng-container>
+        <ng-template #noClientFile>
+          <div class="drop-zone-content">
+            <i class="pi pi-building"></i>
+            <div class="drop-zone-text">
+              <span class="title">📦 Inventario Cliente (SAP)</span>
+              <span class="subtitle">Material, Saldo, Estado de calidad</span>
+            </div>
+          </div>
+        </ng-template>
+        <input
+          type="file"
+          (change)="onFileUpload('client', $event)"
+          accept=".csv,.xlsx,.xls,.txt"
+          hidden
+          #clientInput
+        />
+        <button class="hidden-button" type="button" (click)="clientInput.click()"></button>
+      </div>
+
+      <!-- Archivo WMS -->
+      <div
+        class="drop-zone"
+        [class.dragging]="isDraggingWms()"
+        [class.has-file]="wmsFile()"
+        (dragover)="onDragOver($event, 'wms')"
+        (dragleave)="onDragLeave($event, 'wms')"
+        (drop)="onDrop($event, 'wms')"
+      >
+        <ng-container *ngIf="wmsFile() as file; else noWmsFile">
+          <div class="drop-zone-content">
+            <i class="pi pi-database"></i>
+            <div class="drop-zone-text">
+              <span class="title">{{ file.name }}</span>
+              <span class="subtitle"
+                >{{ formatFileSize(file.size || 0) }} • {{ file.uploadDate | date: 'short' }}</span
+              >
+            </div>
+            <div class="drop-zone-actions">
+              <button
+                pButton
+                type="button"
+                icon="pi pi-times"
+                class="p-button-rounded p-button-danger p-button-text p-button-sm"
+                (click)="removeFile('wms'); $event.stopPropagation()"
+                pTooltip="Eliminar archivo"
+              ></button>
+            </div>
+          </div>
+        </ng-container>
+        <ng-template #noWmsFile>
+          <div class="drop-zone-content">
+            <i class="pi pi-database"></i>
+            <div class="drop-zone-text">
+              <span class="title">📦 Inventario WMS</span>
+              <span class="subtitle">SKU, Estado, Cantidad (CAJAS)</span>
+            </div>
+          </div>
+        </ng-template>
+        <input
+          type="file"
+          (change)="onFileUpload('wms', $event)"
+          accept=".csv,.xlsx,.xls,.txt"
+          hidden
+          #wmsInput
+        />
+        <button class="hidden-button" type="button" (click)="wmsInput.click()"></button>
+      </div>
+
+      <!-- Archivo Maestro de Materiales (Familia) -->
+      <div
+        class="drop-zone"
+        [class.dragging]="isDraggingFamily()"
+        [class.has-file]="familyFile()"
+        (dragover)="onDragOver($event, 'family')"
+        (dragleave)="onDragLeave($event, 'family')"
+        (drop)="onDrop($event, 'family')"
+      >
+        <ng-container *ngIf="familyFile() as file; else noFamilyFile">
+          <div class="drop-zone-content">
+            <i class="pi pi-tags"></i>
+            <div class="drop-zone-text">
+              <span class="title">{{ file.name }}</span>
+              <span class="subtitle"
+                >{{ formatFileSize(file.size || 0) }} • {{ file.uploadDate | date: 'short' }}</span
+              >
+            </div>
+            <div class="drop-zone-actions">
+              <button
+                pButton
+                type="button"
+                icon="pi pi-times"
+                class="p-button-rounded p-button-danger p-button-text p-button-sm"
+                (click)="removeFile('family'); $event.stopPropagation()"
+                pTooltip="Eliminar archivo"
+              ></button>
+            </div>
+          </div>
+        </ng-container>
+        <ng-template #noFamilyFile>
+          <div class="drop-zone-content">
+            <i class="pi pi-tags"></i>
+            <div class="drop-zone-text">
+              <span class="title">🏷️ Maestro de Materiales</span>
+              <span class="subtitle">Familia, Subfamilia, GTINs, Valor Unitario</span>
+            </div>
+          </div>
+        </ng-template>
+        <input
+          type="file"
+          (change)="onFileUpload('family', $event)"
+          accept=".csv,.xlsx,.xls,.txt"
+          hidden
+          #familyInput
+        />
+        <button class="hidden-button" type="button" (click)="familyInput.click()"></button>
+      </div>
+    </div>
+
+    <!-- PANEL DE MAPEO DE ESTADOS WMS -->
+    <div class="status-mapping-panel" *ngIf="showStatusMapping">
+      <div class="mapping-header">
+        <h3>📋 Mapeo de Estados de Calidad (WMS → Categoría)</h3>
+        <button
+          pButton
+          type="button"
+          icon="pi pi-pencil"
+          label="Editar"
+          class="p-button-sm p-button-outlined"
+          (click)="toggleStatusEdit()"
+        ></button>
+      </div>
+      <div class="status-grid">
+        <div class="status-row header">
+          <span>Código Estado WMS</span>
+          <span>Categoría Asignada</span>
+        </div>
+        <div class="status-row" *ngFor="let mapping of wmsStatusMappings; let i = index">
+          <span class="status-code">{{ mapping.code }}</span>
+          <select [(ngModel)]="mapping.category" [disabled]="!editingStatus" class="status-select">
+            <option value="disponible">📦 Disponible</option>
+            <option value="recuperable">🔄 Recuperable</option>
+            <option value="averiado">⚠️ Averiado</option>
+            <option value="vencido">📅 Vencido</option>
+            <option value="maquilas">🏭 Maquilas</option>
+          </select>
+        </div>
+        <div class="status-actions" *ngIf="editingStatus">
+          <button
+            pButton
+            type="button"
+            label="Guardar"
+            icon="pi pi-save"
+            class="p-button-sm p-button-success"
+            (click)="saveStatusMapping()"
+          ></button>
+          <button
+            pButton
+            type="button"
+            label="Cancelar"
+            icon="pi pi-times"
+            class="p-button-sm p-button-secondary"
+            (click)="cancelStatusEdit()"
+          ></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="mode-selector">
+      <button class="mode-btn" (click)="toggleStatusMapping()">
+        <i class="pi pi-sliders-h"></i> {{ showStatusMapping ? 'Ocultar' : 'Mostrar' }} Mapeo
+        Estados WMS
+      </button>
+    </div>
+
+    <!-- TARJETAS DE ESTADÍSTICAS -->
+    <div class="results-header" *ngIf="analysisResult()">
+      <div class="stats-cards">
+        <div class="stat-card">
+          <div class="stat-icon blue"><i class="pi pi-box"></i></div>
+          <div class="stat-info">
+            <div class="stat-value">{{ getTotalMateriales() }}</div>
+            <div class="stat-label">Materiales</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon green"><i class="pi pi-check-circle"></i></div>
+          <div class="stat-info">
+            <div class="stat-value">{{ getCoincidencias() }}</div>
+            <div class="stat-label">Coincidencias</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon orange"><i class="pi pi-exclamation-triangle"></i></div>
+          <div class="stat-info">
+            <div class="stat-value">{{ getConDiferencias() }}</div>
+            <div class="stat-label">Con diferencias</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon purple"><i class="pi pi-percentage"></i></div>
+          <div class="stat-info">
+            <div class="stat-value">{{ getPorcentajeCoincidencia() }}%</div>
+            <div class="stat-label">Match</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TABLA DE RESULTADOS -->
+    <div class="table-wrapper" *ngIf="analysisResult()">
+      <p-table
+        #dt
+        [value]="analysisResult()?.results || []"
+        [loading]="loading()"
+        [paginator]="true"
+        [rows]="15"
+        [rowsPerPageOptions]="[10, 15, 25, 50, 100]"
+        [showCurrentPageReport]="true"
+        currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+        [globalFilterFields]="[
+          'material',
+          'materialDescription',
+          'family',
+          'subfamily',
+          'caseConfig',
+          'gtinCases',
+          'gtinInner',
+          'gtinEach',
+        ]"
+        styleClass="p-datatable-sm custom-table"
+        [tableStyle]="{ 'min-width': '2000px' }"
+      >
+        <ng-template pTemplate="header">
+          <tr>
+            <th rowspan="2" pSortableColumn="material" class="col-sku">
+              <div class="column-header">
+                <span>Material</span>
+                <div class="column-controls">
+                  <p-sortIcon field="material" />
+                  <p-columnFilter type="text" field="material" display="menu" />
+                </div>
+              </div>
+            </th>
+            <th rowspan="2" pSortableColumn="materialDescription" class="col-desc">
+              <div class="column-header">
+                <span>Descripción</span>
+                <div class="column-controls">
+                  <p-sortIcon field="materialDescription" />
+                  <p-columnFilter type="text" field="materialDescription" display="menu" />
+                </div>
+              </div>
+            </th>
+            <th rowspan="2" pSortableColumn="family" class="col-family">
+              <div class="column-header">
+                <span>Familia</span>
+                <div class="column-controls">
+                  <p-sortIcon field="family" />
+                  <p-columnFilter type="text" field="family" display="menu" />
+                </div>
+              </div>
+            </th>
+            <th rowspan="2" pSortableColumn="subfamily" class="col-family">
+              <div class="column-header">
+                <span>Subfamilia</span>
+                <div class="column-controls">
+                  <p-sortIcon field="subfamily" />
+                  <p-columnFilter type="text" field="subfamily" display="menu" />
+                </div>
+              </div>
+            </th>
+            <th rowspan="2" pSortableColumn="caseConfig" class="col-config">
+              <div class="column-header">
+                <span>Case Config</span>
+                <div class="column-controls">
+                  <p-sortIcon field="caseConfig" />
+                  <p-columnFilter type="text" field="caseConfig" display="menu" />
+                </div>
+              </div>
+            </th>
+            <th colspan="3" class="text-center">DISPONIBLE</th>
+            <th colspan="3" class="text-center">RECUPERABLE</th>
+            <th colspan="3" class="text-center">AVERIADO</th>
+            <th colspan="3" class="text-center">VENCIDO</th>
+            <th colspan="3" class="text-center">MAQUILAS</th>
+            <th rowspan="2" pSortableColumn="diferencia" class="col-number">
+              <div class="column-header column-header-center">
+                <span>Diferencia Total</span>
+                <div class="column-controls">
+                  <p-sortIcon field="diferencia" />
+                  <p-columnFilter type="numeric" field="diferencia" display="menu" />
+                </div>
+              </div>
+            </th>
+            <th rowspan="2" pSortableColumn="valorUnitario" class="col-number">
+              <div class="column-header column-header-center">
+                <span>Valor Unitario</span>
+                <div class="column-controls">
+                  <p-sortIcon field="valorUnitario" />
+                  <p-columnFilter type="numeric" field="valorUnitario" display="menu" />
+                </div>
+              </div>
+            </th>
+            <th rowspan="2" pSortableColumn="valorTotal" class="col-number">
+              <div class="column-header column-header-center">
+                <span>Valor Total</span>
+                <div class="column-controls">
+                  <p-sortIcon field="valorTotal" />
+                  <p-columnFilter type="numeric" field="valorTotal" display="menu" />
+                </div>
+              </div>
+            </th>
+            <th rowspan="2" pSortableColumn="gtinCases" class="col-family">
+              <div class="column-header">
+                <span>GTIN Cases</span>
+                <div class="column-controls">
+                  <p-sortIcon field="gtinCases" />
+                  <p-columnFilter type="text" field="gtinCases" display="menu" />
+                </div>
+              </div>
+            </th>
+            <th rowspan="2" pSortableColumn="gtinInner" class="col-family">
+              <div class="column-header">
+                <span>GTIN Inner</span>
+                <div class="column-controls">
+                  <p-sortIcon field="gtinInner" />
+                  <p-columnFilter type="text" field="gtinInner" display="menu" />
+                </div>
+              </div>
+            </th>
+            <th rowspan="2" pSortableColumn="gtinEach" class="col-family">
+              <div class="column-header">
+                <span>GTIN Each</span>
+                <div class="column-controls">
+                  <p-sortIcon field="gtinEach" />
+                  <p-columnFilter type="text" field="gtinEach" display="menu" />
+                </div>
+              </div>
+            </th>
+          </tr>
+          <tr>
+            <th class="text-center">SAP</th>
+            <th class="text-center">WMS</th>
+            <th class="text-center">DIF</th>
+            <th class="text-center">SAP</th>
+            <th class="text-center">WMS</th>
+            <th class="text-center">DIF</th>
+            <th class="text-center">SAP</th>
+            <th class="text-center">WMS</th>
+            <th class="text-center">DIF</th>
+            <th class="text-center">SAP</th>
+            <th class="text-center">WMS</th>
+            <th class="text-center">DIF</th>
+            <th class="text-center">SAP</th>
+            <th class="text-center">WMS</th>
+            <th class="text-center">DIF</th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-row>
+          <tr [class.row-with-diff]="row.diferencia !== 0">
+            <td class="col-sku">
+              <strong>{{ row.material }}</strong>
+            </td>
+            <td class="col-desc" pTooltip="{{ row.materialDescription }}" tooltipPosition="top">
+              {{ row.materialDescription }}
+            </td>
+            <td>{{ row.family || '—' }}</td>
+            <td>{{ row.subfamily || '—' }}</td>
+            <td>{{ row.caseConfig || '—' }}</td>
+            <!-- Disponible -->
+            <td class="text-right">{{ row.disponibleSAP | number: '1.0-3' }}</td>
+            <td class="text-right">{{ row.disponibleWMS | number: '1.0-3' }}</td>
+            <td
+              class="text-right"
+              [class.text-positive]="row.disponibleDif > 0"
+              [class.text-negative]="row.disponibleDif < 0"
+            >
+              {{ row.disponibleDif | number: '1.0-3' }}
+            </td>
+            <!-- Recuperable -->
+            <td class="text-right">{{ row.recuperableSAP | number: '1.0-3' }}</td>
+            <td class="text-right">{{ row.recuperableWMS | number: '1.0-3' }}</td>
+            <td
+              class="text-right"
+              [class.text-positive]="row.recuperableDif > 0"
+              [class.text-negative]="row.recuperableDif < 0"
+            >
+              {{ row.recuperableDif | number: '1.0-3' }}
+            </td>
+            <!-- Averiado -->
+            <td class="text-right">{{ row.averiadoSAP | number: '1.0-3' }}</td>
+            <td class="text-right">{{ row.averiadoWMS | number: '1.0-3' }}</td>
+            <td
+              class="text-right"
+              [class.text-positive]="row.averiadoDif > 0"
+              [class.text-negative]="row.averiadoDif < 0"
+            >
+              {{ row.averiadoDif | number: '1.0-3' }}
+            </td>
+            <!-- Vencido -->
+            <td class="text-right">{{ row.vencidoSAP | number: '1.0-3' }}</td>
+            <td class="text-right">{{ row.vencidoWMS | number: '1.0-3' }}</td>
+            <td
+              class="text-right"
+              [class.text-positive]="row.vencidoDif > 0"
+              [class.text-negative]="row.vencidoDif < 0"
+            >
+              {{ row.vencidoDif | number: '1.0-3' }}
+            </td>
+            <!-- Maquilas -->
+            <td class="text-right">{{ row.maquilasSAP | number: '1.0-3' }}</td>
+            <td class="text-right">{{ row.maquilasWMS | number: '1.0-3' }}</td>
+            <td
+              class="text-right"
+              [class.text-positive]="row.maquilasDif > 0"
+              [class.text-negative]="row.maquilasDif < 0"
+            >
+              {{ row.maquilasDif | number: '1.0-3' }}
+            </td>
+            <!-- Totales -->
+            <td
+              class="text-right"
+              [class.text-positive]="row.diferencia > 0"
+              [class.text-negative]="row.diferencia < 0"
+            >
+              <strong>{{ row.diferencia | number: '1.0-3' }}</strong>
+            </td>
+            <td class="text-right">
+              {{ row.valorUnitario | currency: 'COP' : 'symbol' : '1.0-0' }}
+            </td>
+            <td class="text-right">{{ row.valorTotal | currency: 'COP' : 'symbol' : '1.0-0' }}</td>
+            <td class="text-center">{{ row.gtinCases || '—' }}</td>
+            <td class="text-center">{{ row.gtinInner || '—' }}</td>
+            <td class="text-center">{{ row.gtinEach || '—' }}</td>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="32" class="empty-message">
+              <i class="pi pi-inbox"></i>
+              <p>No hay datos para mostrar</p>
+              <small>Carga los archivos y haz clic en Conciliar</small>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+
+    <!-- ESTADO VACÍO -->
+    <div class="empty-state" *ngIf="!analysisResult() && !loading()">
+      <i class="pi pi-chart-line"></i>
+      <p>Carga archivos de inventario Cliente, WMS y Maestro de Materiales</p>
+      <small>El sistema cruzará por SKU y Estado de Calidad</small>
+    </div>
+
+    <!-- LOADING OVERLAY -->
+    <div *ngIf="loading()" class="loading-overlay">
+      <div class="loading-content">
+        <p-progressSpinner
+          strokeWidth="4"
+          [style]="{ width: '60px', height: '60px' }"
+        ></p-progressSpinner>
+        <p>Procesando conciliación...</p>
+        <small>Calculando diferencias por estado</small>
+      </div>
+    </div>
+  </div>
+</section>
